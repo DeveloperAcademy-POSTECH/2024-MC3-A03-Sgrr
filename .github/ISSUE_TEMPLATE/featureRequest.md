@@ -1,20 +1,12 @@
 ---
-name: 이슈템플릿
+name: ✅ Feature request
 about: 한국어
-title: ''
+title: '작업할 내용을 작성하세요!'
 labels: ''
 assignees: ''
 
 ---
 
----
-name: "✅ Feature request"
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
----
 
 ## Description
 
