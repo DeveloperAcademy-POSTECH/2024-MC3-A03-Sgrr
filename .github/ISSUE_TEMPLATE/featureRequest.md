@@ -1,7 +1,7 @@
 ---
 name: ✅ Feature request
-about: 한국어
-title: '작업할 내용을 작성하세요!'
+about: 작업할 내용을 작성하세요!
+title: ''
 labels: ''
 assignees: ''
 
