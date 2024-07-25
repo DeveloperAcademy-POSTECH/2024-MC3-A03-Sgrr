@@ -13,6 +13,9 @@
 		86034B9D2C51DAA5006106BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86034B9C2C51DAA5006106BC /* Preview Assets.xcassets */; };
 		86034B9F2C51DAA5006106BC /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B9E2C51DAA5006106BC /* Persistence.swift */; };
 		86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */; };
+		86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034BA92C5234CB006106BC /* Cake3DView.swift */; };
+		86034BAC2C523A83006106BC /* cakeTray.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 86034BAB2C523A83006106BC /* cakeTray.usdz */; };
+		86034BAE2C523AED006106BC /* cakeModel.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 86034BAD2C523AED006106BC /* cakeModel.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		86034B9C2C51DAA5006106BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		86034B9E2C51DAA5006106BC /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		86034BA12C51DAA5006106BC /* Sgrr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sgrr.xcdatamodel; sourceTree = "<group>"; };
+		86034BA92C5234CB006106BC /* Cake3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake3DView.swift; sourceTree = "<group>"; };
+		86034BAB2C523A83006106BC /* cakeTray.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeTray.usdz; path = ../../../../../../Downloads/Jenga/Packages/RealityKitContent/Sources/RealityKitContent/RealityKitContent.rkassets/cakeTray.usdz; sourceTree = "<group>"; };
+		86034BAD2C523AED006106BC /* cakeModel.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeModel.usdz; path = ../../../../../../Downloads/Jenga/Packages/RealityKitContent/Sources/RealityKitContent/RealityKitContent.rkassets/cakeModel.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,7 @@
 			children = (
 				86034B952C51DAA4006106BC /* SgrrApp.swift */,
 				86034B972C51DAA4006106BC /* ContentView.swift */,
+				86034BA92C5234CB006106BC /* Cake3DView.swift */,
 				86034B992C51DAA5006106BC /* Assets.xcassets */,
 				86034B9E2C51DAA5006106BC /* Persistence.swift */,
 				86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */,
@@ -68,6 +75,8 @@
 		86034B9B2C51DAA5006106BC /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				86034BAD2C523AED006106BC /* cakeModel.usdz */,
+				86034BAB2C523A83006106BC /* cakeTray.usdz */,
 				86034B9C2C51DAA5006106BC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -133,6 +142,8 @@
 			files = (
 				86034B9D2C51DAA5006106BC /* Preview Assets.xcassets in Resources */,
 				86034B9A2C51DAA5006106BC /* Assets.xcassets in Resources */,
+				86034BAC2C523A83006106BC /* cakeTray.usdz in Resources */,
+				86034BAE2C523AED006106BC /* cakeModel.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +156,7 @@
 			files = (
 				86034B9F2C51DAA5006106BC /* Persistence.swift in Sources */,
 				86034B982C51DAA4006106BC /* ContentView.swift in Sources */,
+				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
 				86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */,
 			);
