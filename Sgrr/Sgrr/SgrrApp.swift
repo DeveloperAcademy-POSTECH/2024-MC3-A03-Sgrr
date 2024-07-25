@@ -1,6 +1,6 @@
 //
-//  SgrrrApp.swift
-//  Sgrrr
+//  SgrrApp.swift
+//  Sgrr
 //
 //  Created by dora on 7/25/24.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct SgrrrApp: App {
+struct SgrrApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {

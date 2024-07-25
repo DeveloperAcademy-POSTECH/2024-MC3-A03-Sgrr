@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Sgrrr
+//  Sgrr
 //
 //  Created by dora on 7/25/24.
 //

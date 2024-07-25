@@ -1,6 +1,6 @@
 //
 //  Persistence.swift
-//  Sgrrr
+//  Sgrr
 //
 //  Created by dora on 7/25/24.
 //
@@ -31,7 +31,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Sgrrr")
+        container = NSPersistentContainer(name: "Sgrr")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
