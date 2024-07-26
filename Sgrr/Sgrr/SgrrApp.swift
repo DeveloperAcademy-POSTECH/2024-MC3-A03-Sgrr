@@ -16,7 +16,8 @@ struct SgrrApp: App {
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
             //Cake3DView()
-            Canvas()
+            //Canvas()
+            NuggiedItemCell()
         }
     }
 }
