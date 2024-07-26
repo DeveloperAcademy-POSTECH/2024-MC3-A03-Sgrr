@@ -15,7 +15,8 @@ struct SgrrApp: App {
         WindowGroup {
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            Cake3DView()
+            //Cake3DView()
+            Canvas()
         }
     }
 }

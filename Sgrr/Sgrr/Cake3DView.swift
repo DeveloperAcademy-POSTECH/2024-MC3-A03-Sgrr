@@ -9,10 +9,16 @@ import SwiftUI
 import ARKit
 import RealityKit
 
-// min, max 크기 제한하기!
-// 회전 자연스럽게 고치기..!
+// 회전 방향 수정!
+// 최대 크기, 최저 크기, 최대 회전 수정하기
 
 let cakeMaterial = SimpleMaterial(color: .systemPink, isMetallic: false)
+
+let minRotation = SIMD3<Float>(0.0, 0.0, 0.0)
+let maxRotation = SIMD3<Float>(0.0, 0.0, 0.0)
+
+let minScale = SIMD3<Float>(0.0, 0.0, 0.0)
+let maxScale = SIMD3<Float>(0.0, 0.0, 0.0)
 
 struct Cake3DView: View {
     
@@ -23,28 +29,26 @@ struct Cake3DView: View {
         ARViewContainer(currentRotation: $currentRotation, currentScale: $currentScale)
             .edgesIgnoringSafeArea(.all)
             .gesture(TapGesture().onEnded {
-                // Handle tap gesture here
-                print("Tap gesture detected")
+                currentRotation = SIMD3<Float>(0,0,0)
+                currentScale = SIMD3<Float>(1,1,1)
             })
             .gesture(DragGesture().onChanged { value in
-                // Handle drag gesture here
-                let rotationChangeX = Float(value.translation.width) * .pi / 180 * 0.1
-                let rotationChangeY = Float(value.translation.height) * .pi / 180 * 0.1
+                let rotationChangeX = Float(value.translation.width) * .pi / 180 * 0.01
+                let rotationChangeY = Float(value.translation.height) * .pi / 180 * 0.01
                 currentRotation.x += rotationChangeY
                 currentRotation.y += rotationChangeX
-                print("Drag gesture detected: \(value.translation)")
-                
+                //print("currentRotation X: + \(currentRotation.x) +, currentRotation Y: \(currentRotation.y)")
             })
             .gesture(MagnificationGesture().onChanged { value in
-                // Handle pinch gesture here
-                print("Pinch gesture detected: \(value.magnitude)")
                 let pinchScale = Float(value.magnitude)
                 currentScale = SIMD3<Float>(x: pinchScale, y: pinchScale, z: pinchScale)
+                //print("currentScale + \(currentScale)")
             })
     }
 }
 
 struct ARViewContainer: UIViewRepresentable {
+    
     @Binding var currentRotation: SIMD3<Float>
     @Binding var currentScale: SIMD3<Float>
 
@@ -52,11 +56,11 @@ struct ARViewContainer: UIViewRepresentable {
         let arView = ARView(frame: .zero, cameraMode: .nonAR, automaticallyConfigureSession: true)
         
         let cakeTrayModel = try! ModelEntity.loadModel(named: "cakeTray")
-        cakeTrayModel.scale = SIMD3(x: 0.2, y: 0.2, z: 0.2)
+        cakeTrayModel.scale = SIMD3(x: 0.3, y: 0.3, z: 0.3)
         cakeTrayModel.generateCollisionShapes(recursive: true)
         
         let cakeModel = try! ModelEntity.loadModel(named: "cakeModel")
-        cakeModel.scale = SIMD3(x: 0.2, y: 0.2, z: 0.2)
+        cakeModel.scale = SIMD3(x: 0.3, y: 0.3, z: 0.3)
         cakeModel.generateCollisionShapes(recursive: true)
         
         let anchor = AnchorEntity(world: [0, 0, 0])
@@ -74,21 +78,22 @@ struct ARViewContainer: UIViewRepresentable {
         cameraAnchor.addChild(camera)
         arView.scene.addAnchor(cameraAnchor)
         
-        // Store anchor in the context for later updates
         context.coordinator.anchor = anchor
         
         return arView
     }
 
     func updateUIView(_ uiView: ARView, context: Context) {
+
         guard let anchor = context.coordinator.anchor else { return }
         
-        // Apply rotation
+        
         let rotation = simd_quatf(angle: currentRotation.y, axis: [0, 1, 0]) *
                        simd_quatf(angle: currentRotation.x, axis: [1, 0, 0])
-        anchor.transform.rotation = rotation
         
-        // Apply scale
+
+        
+        anchor.transform.rotation = rotation
         anchor.transform.scale = currentScale
     }
     
