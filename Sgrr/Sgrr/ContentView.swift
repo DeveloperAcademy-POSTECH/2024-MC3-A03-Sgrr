@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    // test 주석
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
