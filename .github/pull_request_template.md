@@ -1,5 +1,5 @@
 <!--[#이슈번호] Title
-ex) [#1] PR Templete 생성
+ex) Prefix/#1 PR Templete 생성
 타이틀 양식 참고하고 지우기 !!-->
 
 ## 📝 작업 내용
