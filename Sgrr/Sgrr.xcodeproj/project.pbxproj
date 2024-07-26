@@ -14,6 +14,8 @@
 		86034B9F2C51DAA5006106BC /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B9E2C51DAA5006106BC /* Persistence.swift */; };
 		86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */; };
 		86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034BA92C5234CB006106BC /* Cake3DView.swift */; };
+		860C87E92C535D4C00D9FC24 /* cakeTray.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E72C535D4C00D9FC24 /* cakeTray.usdz */; };
+		860C87EA2C535D4C00D9FC24 /* cakeModel.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E82C535D4C00D9FC24 /* cakeModel.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		86034B9E2C51DAA5006106BC /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		86034BA12C51DAA5006106BC /* Sgrr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sgrr.xcdatamodel; sourceTree = "<group>"; };
 		86034BA92C5234CB006106BC /* Cake3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake3DView.swift; sourceTree = "<group>"; };
+		860C87E72C535D4C00D9FC24 /* cakeTray.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeTray.usdz; path = ../../../cakeScene/cakeTray.usdz; sourceTree = "<group>"; };
+		860C87E82C535D4C00D9FC24 /* cakeModel.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeModel.usdz; path = ../../../cakeScene/cakeModel.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 		86034B9B2C51DAA5006106BC /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				860C87E82C535D4C00D9FC24 /* cakeModel.usdz */,
+				860C87E72C535D4C00D9FC24 /* cakeTray.usdz */,
 				86034B9C2C51DAA5006106BC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -136,6 +142,8 @@
 			files = (
 				86034B9D2C51DAA5006106BC /* Preview Assets.xcassets in Resources */,
 				86034B9A2C51DAA5006106BC /* Assets.xcassets in Resources */,
+				860C87E92C535D4C00D9FC24 /* cakeTray.usdz in Resources */,
+				860C87EA2C535D4C00D9FC24 /* cakeModel.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
