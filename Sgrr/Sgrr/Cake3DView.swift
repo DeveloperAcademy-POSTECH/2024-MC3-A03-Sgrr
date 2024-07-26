@@ -9,34 +9,44 @@ import SwiftUI
 import ARKit
 import RealityKit
 
+// min, max 크기 제한하기!
+// 회전 자연스럽게 고치기..!
+
 let cakeMaterial = SimpleMaterial(color: .systemPink, isMetallic: false)
 
 struct Cake3DView: View {
     
-    @State private var currentRotation: Float = 0.0
+    @State private var currentRotation: SIMD3<Float> = SIMD3<Float>(0.0, 0.0, 0.0)
+    @State private var currentScale: SIMD3<Float> = SIMD3<Float>(1.0, 1.0, 1.0)
     
     var body: some View {
-        ARViewContainer(currentRotation: $currentRotation).edgesIgnoringSafeArea(.all)
+        ARViewContainer(currentRotation: $currentRotation, currentScale: $currentScale)
+            .edgesIgnoringSafeArea(.all)
             .gesture(TapGesture().onEnded {
                 // Handle tap gesture here
                 print("Tap gesture detected")
             })
             .gesture(DragGesture().onChanged { value in
                 // Handle drag gesture here
-                let rotationChange = Float(value.translation.width) * .pi / 180
-                currentRotation += rotationChange
+                let rotationChangeX = Float(value.translation.width) * .pi / 180 * 0.1
+                let rotationChangeY = Float(value.translation.height) * .pi / 180 * 0.1
+                currentRotation.x += rotationChangeY
+                currentRotation.y += rotationChangeX
                 print("Drag gesture detected: \(value.translation)")
                 
             })
             .gesture(MagnificationGesture().onChanged { value in
                 // Handle pinch gesture here
                 print("Pinch gesture detected: \(value.magnitude)")
+                let pinchScale = Float(value.magnitude)
+                currentScale = SIMD3<Float>(x: pinchScale, y: pinchScale, z: pinchScale)
             })
     }
 }
 
 struct ARViewContainer: UIViewRepresentable {
-    @Binding var currentRotation: Float
+    @Binding var currentRotation: SIMD3<Float>
+    @Binding var currentScale: SIMD3<Float>
 
     func makeUIView(context: Context) -> ARView {
         let arView = ARView(frame: .zero, cameraMode: .nonAR, automaticallyConfigureSession: true)
@@ -72,7 +82,14 @@ struct ARViewContainer: UIViewRepresentable {
 
     func updateUIView(_ uiView: ARView, context: Context) {
         guard let anchor = context.coordinator.anchor else { return }
-        anchor.transform.rotation = simd_quatf(angle: currentRotation, axis: [0, 1, 0])
+        
+        // Apply rotation
+        let rotation = simd_quatf(angle: currentRotation.y, axis: [0, 1, 0]) *
+                       simd_quatf(angle: currentRotation.x, axis: [1, 0, 0])
+        anchor.transform.rotation = rotation
+        
+        // Apply scale
+        anchor.transform.scale = currentScale
     }
     
     func makeCoordinator() -> Coordinator {
@@ -87,3 +104,4 @@ struct ARViewContainer: UIViewRepresentable {
 #Preview {
     Cake3DView()
 }
+
