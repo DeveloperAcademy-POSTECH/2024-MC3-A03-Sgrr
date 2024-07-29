@@ -9,16 +9,8 @@ import SwiftUI
 import ARKit
 import RealityKit
 
-// 회전 방향 수정!
-// 최대 크기, 최저 크기, 최대 회전 수정하기
-
+///pkcanvasview > cgimage로 뽑아서 material 씌울 예정
 let cakeMaterial = SimpleMaterial(color: .systemPink, isMetallic: false)
-
-let minRotation = SIMD3<Float>(0.0, 0.0, 0.0)
-let maxRotation = SIMD3<Float>(0.0, 0.0, 0.0)
-
-let minScale = SIMD3<Float>(0.0, 0.0, 0.0)
-let maxScale = SIMD3<Float>(0.0, 0.0, 0.0)
 
 struct Cake3DView: View {
     
@@ -29,20 +21,24 @@ struct Cake3DView: View {
         ARViewContainer(currentRotation: $currentRotation, currentScale: $currentScale)
             .edgesIgnoringSafeArea(.all)
             .gesture(TapGesture().onEnded {
+                ///tap하면 원래로 돌아오게!
                 currentRotation = SIMD3<Float>(0,0,0)
                 currentScale = SIMD3<Float>(1,1,1)
+                
             })
             .gesture(DragGesture().onChanged { value in
                 let rotationChangeX = Float(value.translation.width) * .pi / 180 * 0.01
                 let rotationChangeY = Float(value.translation.height) * .pi / 180 * 0.01
                 currentRotation.x += rotationChangeY
                 currentRotation.y += rotationChangeX
-                //print("currentRotation X: + \(currentRotation.x) +, currentRotation Y: \(currentRotation.y)")
+                
+                print("rotation은 + \(currentRotation)")
             })
             .gesture(MagnificationGesture().onChanged { value in
                 let pinchScale = Float(value.magnitude)
                 currentScale = SIMD3<Float>(x: pinchScale, y: pinchScale, z: pinchScale)
-                //print("currentScale + \(currentScale)")
+                
+                print("scale은 + \(pinchScale)")
             })
     }
 }
@@ -84,19 +80,21 @@ struct ARViewContainer: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: ARView, context: Context) {
-
         guard let anchor = context.coordinator.anchor else { return }
         
+        /// 수정 필요!
+        let clampedRotationX = max(min(currentRotation.x, 0.3), -0.6)
+        let clampedRotationY = max(min(currentRotation.y, 1.2), -7.0)
+        let clampedScale = max(min(currentScale.x, 1.6), 0.8)  // Assuming uniform scale
         
-        let rotation = simd_quatf(angle: currentRotation.y, axis: [0, 1, 0]) *
-                       simd_quatf(angle: currentRotation.x, axis: [1, 0, 0])
-        
-
+        let rotation = simd_quatf(angle: clampedRotationY, axis: [0, 1, 0]) *
+                       simd_quatf(angle: clampedRotationX, axis: [1, 0, 0])
         
         anchor.transform.rotation = rotation
-        anchor.transform.scale = currentScale
+        anchor.transform.scale = SIMD3<Float>(repeating: clampedScale)
     }
     
+    /// UIKit, SwiftUI 연동을 위함
     func makeCoordinator() -> Coordinator {
         Coordinator()
     }
@@ -109,4 +107,5 @@ struct ARViewContainer: UIViewRepresentable {
 #Preview {
     Cake3DView()
 }
+
 
