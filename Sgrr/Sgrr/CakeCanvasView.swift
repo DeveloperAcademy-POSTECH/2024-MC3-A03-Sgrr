@@ -10,7 +10,10 @@ import PencilKit
 import PhotosUI
 
 struct Canvas: View {
+    
+    /// 펜 팔레트
     let picker = PKToolPicker()
+    
     @State private var canvasView = PKCanvasView()
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage? = nil

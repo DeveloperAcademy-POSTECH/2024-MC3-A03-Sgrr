@@ -12,11 +12,14 @@ def Xform "Root"
 {
     reorder nameChildren = ["cakeModel", "cake", "cakeTray"]
     def Xform "cakeModel" (
+        customData = {
+            float3 rotationEulerHint = (-1.5707967, 1.4901161e-7, 0)
+        }
         references = </Root/cake/Meshes/Sketchfab_model/Collada_visual_scene_group/Cylinder001>
     )
     {
-        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
-        float3 xformOp:scale = (0.024437785, 0.024437785, 0.024437785)
+        quatf xformOp:orient = (0.70710665, -0.7071069, 5.268355e-8, 5.2683568e-8)
+        float3 xformOp:scale = (0.024, 0.024, 0.024)
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 0, -1, 0), (0, 1, 0, 0), (0, 0, 0, 1) )
         float3 xformOp:translate = (0, 0, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
@@ -48,6 +51,7 @@ def Xform "Root"
     }
 
     def "cakeTray" (
+        active = false
         references = @cake.usdz@
     )
     {
