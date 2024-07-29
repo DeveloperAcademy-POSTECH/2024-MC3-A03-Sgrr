@@ -42,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43D7561D2C57355000D52E06 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		86034B892C51DAA4006106BC = {
 			isa = PBXGroup;
 			children = (
@@ -61,12 +69,12 @@
 		86034B942C51DAA4006106BC /* Sgrr */ = {
 			isa = PBXGroup;
 			children = (
+				43D7561D2C57355000D52E06 /* Model */,
 				86034B952C51DAA4006106BC /* SgrrApp.swift */,
 				86034B972C51DAA4006106BC /* ContentView.swift */,
 				86034BA92C5234CB006106BC /* Cake3DView.swift */,
 				86034B992C51DAA5006106BC /* Assets.xcassets */,
 				86034B9E2C51DAA5006106BC /* Persistence.swift */,
-				86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */,
 				86034B9B2C51DAA5006106BC /* Preview Content */,
 			);
 			path = Sgrr;
