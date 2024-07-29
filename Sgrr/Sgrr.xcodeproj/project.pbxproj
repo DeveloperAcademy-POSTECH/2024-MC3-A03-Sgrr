@@ -16,6 +16,7 @@
 		86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034BA92C5234CB006106BC /* Cake3DView.swift */; };
 		860C87E92C535D4C00D9FC24 /* cakeTray.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E72C535D4C00D9FC24 /* cakeTray.usdz */; };
 		860C87EA2C535D4C00D9FC24 /* cakeModel.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E82C535D4C00D9FC24 /* cakeModel.usdz */; };
+		953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EC5F82C53C6B2002E5876 /* OrderFormView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		86034BA92C5234CB006106BC /* Cake3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake3DView.swift; sourceTree = "<group>"; };
 		860C87E72C535D4C00D9FC24 /* cakeTray.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeTray.usdz; path = ../../../cakeScene/cakeTray.usdz; sourceTree = "<group>"; };
 		860C87E82C535D4C00D9FC24 /* cakeModel.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeModel.usdz; path = ../../../cakeScene/cakeModel.usdz; sourceTree = "<group>"; };
+		953EC5F82C53C6B2002E5876 /* OrderFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				86034B952C51DAA4006106BC /* SgrrApp.swift */,
 				86034B972C51DAA4006106BC /* ContentView.swift */,
 				86034BA92C5234CB006106BC /* Cake3DView.swift */,
+				953EC5F82C53C6B2002E5876 /* OrderFormView.swift */,
 				86034B992C51DAA5006106BC /* Assets.xcassets */,
 				86034B9E2C51DAA5006106BC /* Persistence.swift */,
 				86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */,
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86034B9F2C51DAA5006106BC /* Persistence.swift in Sources */,
+				953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */,
 				86034B982C51DAA4006106BC /* ContentView.swift in Sources */,
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
