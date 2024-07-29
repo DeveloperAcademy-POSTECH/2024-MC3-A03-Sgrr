@@ -34,7 +34,7 @@ class CoredataManager {
 
 extension CoredataManager {
     // MARK: - 저장, 업데이트
-    func saveOrUpdateOrder(colorBG: String, colorLetter: String, conceptKey: String, conceptImg: String, elementKey: [String], elementImg: [String]) {
+    func saveOrUpdateOrder(colorBG: String, colorLetter: String, conceptKey: String, conceptImg: Data, elementKey: [String], elementImg: [Data]) {
         let fetchRequest: NSFetchRequest<OrderForm> = OrderForm.fetchRequest()
         
         do {
