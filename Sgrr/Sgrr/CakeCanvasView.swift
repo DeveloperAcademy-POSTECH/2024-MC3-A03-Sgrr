@@ -7,40 +7,72 @@
 
 import SwiftUI
 import PencilKit
-import PhotosUI
+
+enum Mode {
+    case draw
+    case addPhoto
+}
 
 struct Canvas: View {
+    let items = Array(0..<5)
+    
     let picker = PKToolPicker()
     
     @State private var canvasView = PKCanvasView()
-    @State private var showImagePicker = false
-    @State private var selectedImage: UIImage? = nil
+    @State private var selectedMode: Mode = .draw
     
     var body: some View {
         VStack {
-            
-            DrawingViewContainer(canvasView: $canvasView, picker: picker)
-                .onAppear {
-                    picker.setVisible(true, forFirstResponder: canvasView)
-                    picker.addObserver(canvasView)
-                    canvasView.becomeFirstResponder()
-                }
-            
-            
-            Button(action: {
-                showImagePicker = true
-            }) {
-                Image("cakeElement_5")
-                    .resizable()
+            // Picker to switch between modes
+            Picker("Select Mode", selection: $selectedMode) {
+                Text("Draw").tag(Mode.draw)
+                Text("Add Photo").tag(Mode.addPhoto)
             }
-            .frame(width: 100, height: 100)
+            .pickerStyle(SegmentedPickerStyle())
             .padding()
             
-        }
-        .sheet(isPresented: $showImagePicker) {
-            ImagePicker(selectedImage: $selectedImage, onImagePicked: { image in
-                addImageToCanvas(image)
-            })
+            // Central canvas for drawing or adding photos
+            DrawingViewContainer(canvasView: $canvasView, picker: picker)
+                .onAppear {
+                    if selectedMode == .draw {
+                        picker.setVisible(true, forFirstResponder: canvasView)
+                        picker.addObserver(canvasView)
+                        canvasView.becomeFirstResponder()
+                    }
+                }
+                .onDisappear {
+                    picker.setVisible(false, forFirstResponder: canvasView)
+                    picker.removeObserver(canvasView)
+                }
+            
+            Spacer()
+            
+            // Conditional UI based on the selected mode
+            if selectedMode == .draw {
+                Text("Drawing Mode Active")
+                    .onAppear {
+                        picker.setVisible(true, forFirstResponder: canvasView)
+                        picker.addObserver(canvasView)
+                        canvasView.becomeFirstResponder()
+                    }
+            } else if selectedMode == .addPhoto {
+                HStack {
+                    ForEach(items, id: \.self) { item in
+                        Button(action: {
+                            addImageToCanvas(UIImage(imageLiteralResourceName: "cakeElement_" + "\(item + 1)"))
+                        }) {
+                            ZStack {
+                                Rectangle()
+                                Image("cakeElement_" + "\(item + 1)")
+                                    .resizable()
+                                    .padding(5)
+                            }
+                        }
+                        .frame(width: 67, height: 67)
+                    }
+                }
+                .padding()
+            }
         }
     }
     
@@ -48,11 +80,11 @@ struct Canvas: View {
         print("addImageToCanvas")
         DispatchQueue.main.async {
             let imageView = UIImageView(image: image)
-            imageView.frame = CGRect(x: 0, y: 0, width: self.canvasView.bounds.width, height: self.canvasView.bounds.height)
+            imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
             imageView.contentMode = .scaleAspectFit
             
             self.canvasView.addSubview(imageView)
-            //self.canvasView.sendSubviewToBack(imageView)
+            self.canvasView.sendSubviewToBack(imageView)
         }
     }
 }
@@ -62,59 +94,25 @@ struct DrawingViewContainer: UIViewRepresentable {
     let picker: PKToolPicker
     
     func makeUIView(context: Context) -> PKCanvasView {
+        canvasView.backgroundColor = .clear
         canvasView.tool = PKInkingTool(.pen, color: .black, width: 15)
         return canvasView
     }
     
-    func updateUIView(_ uiView: PKCanvasView, context: Context) {}
-}
-
-struct ImagePicker: UIViewControllerRepresentable {
-    class Coordinator: NSObject, PHPickerViewControllerDelegate {
-        var parent: ImagePicker
-        
-        init(parent: ImagePicker) {
-            self.parent = parent
-        }
-        
-        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-            picker.dismiss(animated: true)
-            
-            guard let provider = results.first?.itemProvider else { return }
-            
-            if provider.canLoadObject(ofClass: UIImage.self) {
-                provider.loadObject(ofClass: UIImage.self) { image, _ in
-                    DispatchQueue.main.async {
-                        if let uiImage = image as? UIImage {
-                            self.parent.onImagePicked(uiImage)
-                        }
-                    }
-                }
-            }
-        }
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {
+        uiView.backgroundColor = .clear
     }
-    
-    @Binding var selectedImage: UIImage?
-    var onImagePicked: (UIImage) -> Void
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
-    }
-    
-    func makeUIViewController(context: Context) -> PHPickerViewController {
-        var config = PHPickerConfiguration()
-        config.filter = .images
-        let picker = PHPickerViewController(configuration: config)
-        picker.delegate = context.coordinator
-        return picker
-    }
-    
-    func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {}
 }
 
 #Preview {
     Canvas()
 }
+
+
+
+
+
+
 
 
 
