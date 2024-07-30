@@ -3,9 +3,9 @@
     <entity name="OrderForm" representedClassName="OrderForm" syncable="YES" codeGenerationType="class">
         <attribute name="colorBackground" optional="YES" attributeType="String"/>
         <attribute name="colorLettering" optional="YES" attributeType="String"/>
-        <attribute name="conceptImage" optional="YES" attributeType="String"/>
+        <attribute name="conceptImage" optional="YES" attributeType="Binary"/>
         <attribute name="conceptKeyword" optional="YES" attributeType="String"/>
-        <attribute name="elementImage" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="elementImage" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Data]"/>
         <attribute name="elementKeyword" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
