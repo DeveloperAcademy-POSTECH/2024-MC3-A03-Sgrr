@@ -14,13 +14,8 @@ struct testView: View {
         VStack {
             
             Cake3DView(cakeImage: $cakeImage)
-                .frame(height: 300)
-                .background(Color.gray.opacity(0.1))
-            
             Divider()
-            
-            
-            CakeCanvasView_test(cakeImage: $cakeImage)
+            CakeCanvasView(cakeImage: $cakeImage)
         }
        
     }
