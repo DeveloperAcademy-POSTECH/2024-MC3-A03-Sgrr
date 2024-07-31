@@ -13,9 +13,11 @@ struct SgrrApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            Cake3DView()
+            ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            //Cake3DView()
+            Canvas()
+            //NuggiedItemCell()
         }
     }
 }

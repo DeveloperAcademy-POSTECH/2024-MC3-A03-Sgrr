@@ -9,52 +9,104 @@ import SwiftUI
 import ARKit
 import RealityKit
 
+// 회전 방향 수정!
+// 최대 크기, 최저 크기, 최대 회전 수정하기
+
 let cakeMaterial = SimpleMaterial(color: .systemPink, isMetallic: false)
 
+let minRotation = SIMD3<Float>(0.0, 0.0, 0.0)
+let maxRotation = SIMD3<Float>(0.0, 0.0, 0.0)
+
+let minScale = SIMD3<Float>(0.0, 0.0, 0.0)
+let maxScale = SIMD3<Float>(0.0, 0.0, 0.0)
+
 struct Cake3DView: View {
+    
+    @State private var currentRotation: SIMD3<Float> = SIMD3<Float>(0.0, 0.0, 0.0)
+    @State private var currentScale: SIMD3<Float> = SIMD3<Float>(1.0, 1.0, 1.0)
+    
     var body: some View {
-        ARViewContainer().edgesIgnoringSafeArea(.all)
+        ARViewContainer(currentRotation: $currentRotation, currentScale: $currentScale)
+            .edgesIgnoringSafeArea(.all)
+            .gesture(TapGesture().onEnded {
+                currentRotation = SIMD3<Float>(0,0,0)
+                currentScale = SIMD3<Float>(1,1,1)
+            })
+            .gesture(DragGesture().onChanged { value in
+                let rotationChangeX = Float(value.translation.width) * .pi / 180 * 0.01
+                let rotationChangeY = Float(value.translation.height) * .pi / 180 * 0.01
+                currentRotation.x += rotationChangeY
+                currentRotation.y += rotationChangeX
+                //print("currentRotation X: + \(currentRotation.x) +, currentRotation Y: \(currentRotation.y)")
+            })
+            .gesture(MagnificationGesture().onChanged { value in
+                let pinchScale = Float(value.magnitude)
+                currentScale = SIMD3<Float>(x: pinchScale, y: pinchScale, z: pinchScale)
+                //print("currentScale + \(currentScale)")
+            })
     }
 }
 
 struct ARViewContainer: UIViewRepresentable {
     
+    @Binding var currentRotation: SIMD3<Float>
+    @Binding var currentScale: SIMD3<Float>
+
     func makeUIView(context: Context) -> ARView {
-        
         let arView = ARView(frame: .zero, cameraMode: .nonAR, automaticallyConfigureSession: true)
         
         let cakeTrayModel = try! ModelEntity.loadModel(named: "cakeTray")
-        cakeTrayModel.scale = SIMD3(x: 0.2, y: 0.2, z: 0.2)
+        cakeTrayModel.scale = SIMD3(x: 0.3, y: 0.3, z: 0.3)
         cakeTrayModel.generateCollisionShapes(recursive: true)
         
         let cakeModel = try! ModelEntity.loadModel(named: "cakeModel")
-        cakeModel.scale = SIMD3(x: 0.2, y: 0.2, z: 0.2)
+        cakeModel.scale = SIMD3(x: 0.3, y: 0.3, z: 0.3)
         cakeModel.generateCollisionShapes(recursive: true)
         
-        // Create a cube model
-        //        let mesh = MeshResource.generateBox(size: 0.1, cornerRadius: 0.005)
-        //        let material = SimpleMaterial(color: .gray, roughness: 0.15, isMetallic: true)
-        //        let model = ModelEntity(mesh: mesh, materials: [material])
-        
-        // Create world anchor at the origin
         let anchor = AnchorEntity(world: [0, 0, 0])
         anchor.addChild(cakeTrayModel)
         anchor.addChild(cakeModel)
         
-        // Add the anchor to the scene
         arView.scene.anchors.append(anchor)
         
-        // 시간흐르게 하는 코드 확인 필요
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            cakeModel.model?.materials = [cakeMaterial]
-        }
+        let camera = PerspectiveCamera()
+        let cameraAnchor = AnchorEntity(world: [0, 1.5, 1.5])
+        
+        let angle = -35.0 * .pi / 180.0
+        camera.transform.rotation = simd_quatf(angle: Float(angle), axis: [1, 0, 0])
+        
+        cameraAnchor.addChild(camera)
+        arView.scene.addAnchor(cameraAnchor)
+        
+        context.coordinator.anchor = anchor
         
         return arView
     }
+
+    func updateUIView(_ uiView: ARView, context: Context) {
+
+        guard let anchor = context.coordinator.anchor else { return }
+        
+        
+        let rotation = simd_quatf(angle: currentRotation.y, axis: [0, 1, 0]) *
+                       simd_quatf(angle: currentRotation.x, axis: [1, 0, 0])
+        
+
+        
+        anchor.transform.rotation = rotation
+        anchor.transform.scale = currentScale
+    }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
+    
+    class Coordinator {
+        var anchor: AnchorEntity?
+    }
 }
 
 #Preview {
     Cake3DView()
 }
+
