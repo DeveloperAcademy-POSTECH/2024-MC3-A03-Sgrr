@@ -19,6 +19,7 @@
 		860C87EE2C53922400D9FC24 /* CakeCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860C87ED2C53922400D9FC24 /* CakeCanvasView.swift */; };
 		860C87F02C53B25300D9FC24 /* NuggiedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860C87EF2C53B25300D9FC24 /* NuggiedItemCell.swift */; };
 		860C880E2C58C74B00D9FC24 /* CakeCanvasView_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860C880D2C58C74B00D9FC24 /* CakeCanvasView_test.swift */; };
+		86112C282C5A1EDE009AF3DA /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86112C272C5A1EDE009AF3DA /* testView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		860C87ED2C53922400D9FC24 /* CakeCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeCanvasView.swift; sourceTree = "<group>"; };
 		860C87EF2C53B25300D9FC24 /* NuggiedItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuggiedItemCell.swift; sourceTree = "<group>"; };
 		860C880D2C58C74B00D9FC24 /* CakeCanvasView_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeCanvasView_test.swift; sourceTree = "<group>"; };
+		86112C272C5A1EDE009AF3DA /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				86034B952C51DAA4006106BC /* SgrrApp.swift */,
 				86034B972C51DAA4006106BC /* ContentView.swift */,
 				86034BA92C5234CB006106BC /* Cake3DView.swift */,
+				86112C272C5A1EDE009AF3DA /* testView.swift */,
 				860C87ED2C53922400D9FC24 /* CakeCanvasView.swift */,
 				860C880D2C58C74B00D9FC24 /* CakeCanvasView_test.swift */,
 				860C87EF2C53B25300D9FC24 /* NuggiedItemCell.swift */,
@@ -176,6 +179,7 @@
 				860C87F02C53B25300D9FC24 /* NuggiedItemCell.swift in Sources */,
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
+				86112C282C5A1EDE009AF3DA /* testView.swift in Sources */,
 				86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */,
 				860C880E2C58C74B00D9FC24 /* CakeCanvasView_test.swift in Sources */,
 				860C87EE2C53922400D9FC24 /* CakeCanvasView.swift in Sources */,

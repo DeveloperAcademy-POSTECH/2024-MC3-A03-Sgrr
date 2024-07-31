@@ -1,32 +1,22 @@
 {
+  "6E474F83-45D6-42B6-B56B-C5B1C1D7E764" : {
+    "objectMetadataList" : [
+      [
+        "6E474F83-45D6-42B6-B56B-C5B1C1D7E764",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "C709B131-1253-40D3-9EF7-BCF72AFE0E7A" : {
     "objectMetadataList" : [
       [
         "C709B131-1253-40D3-9EF7-BCF72AFE0E7A",
         "Root",
-        "cake",
-        "Meshes",
-        "Sketchfab_model"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "C709B131-1253-40D3-9EF7-BCF72AFE0E7A",
-        "Root",
         "cake_1",
-        "Meshes",
-        "Sketchfab_model"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "C709B131-1253-40D3-9EF7-BCF72AFE0E7A",
-        "Root",
-        "cake",
         "Meshes",
         "Sketchfab_model",
         "Collada_visual_scene_group"
@@ -47,14 +37,6 @@
       },
       [
         "C709B131-1253-40D3-9EF7-BCF72AFE0E7A",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "C709B131-1253-40D3-9EF7-BCF72AFE0E7A",
         "Root",
         "cake_1",
         "Meshes"
@@ -67,6 +49,36 @@
         "C709B131-1253-40D3-9EF7-BCF72AFE0E7A",
         "Root",
         "cake_1",
+        "Meshes",
+        "Sketchfab_model"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C709B131-1253-40D3-9EF7-BCF72AFE0E7A",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C709B131-1253-40D3-9EF7-BCF72AFE0E7A",
+        "Root",
+        "cake",
+        "Meshes",
+        "Sketchfab_model"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C709B131-1253-40D3-9EF7-BCF72AFE0E7A",
+        "Root",
+        "cake",
         "Meshes",
         "Sketchfab_model",
         "Collada_visual_scene_group"
