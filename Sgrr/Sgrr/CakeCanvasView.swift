@@ -15,7 +15,6 @@ enum Mode {
 
 struct Canvas: View {
     let items = Array(0..<5)
-    
     let picker = PKToolPicker()
     
     @State private var canvasView = PKCanvasView()
@@ -23,7 +22,7 @@ struct Canvas: View {
     
     var body: some View {
         VStack {
-            // Picker to switch between modes
+            /// picker 에서 버튼으로 바꾸기!
             Picker("Select Mode", selection: $selectedMode) {
                 Text("Draw").tag(Mode.draw)
                 Text("Add Photo").tag(Mode.addPhoto)
@@ -31,11 +30,10 @@ struct Canvas: View {
             .pickerStyle(SegmentedPickerStyle())
             .padding()
             
-            // Central canvas for drawing or adding photos
             DrawingViewContainer(canvasView: $canvasView, picker: picker)
                 .onAppear {
-                    if selectedMode == .draw {
-                        picker.setVisible(true, forFirstResponder: canvasView)
+                    if selectedMode == .addPhoto {
+                        //picker.setVisible(true, forFirstResponder: canvasView)
                         picker.addObserver(canvasView)
                         canvasView.becomeFirstResponder()
                     }
@@ -47,11 +45,11 @@ struct Canvas: View {
             
             Spacer()
             
-            // Conditional UI based on the selected mode
             if selectedMode == .draw {
                 Text("Drawing Mode Active")
                     .onAppear {
-                        picker.setVisible(true, forFirstResponder: canvasView)
+                        //picker.setVisible(true, forFirstResponder: canvasView)
+                        picker.setVisible(false, forFirstResponder: canvasView)
                         picker.addObserver(canvasView)
                         canvasView.becomeFirstResponder()
                     }
@@ -71,6 +69,11 @@ struct Canvas: View {
                         .frame(width: 67, height: 67)
                     }
                 }
+                .onAppear {
+                    //picker.setVisible(true, forFirstResponder: canvasView)
+                    picker.addObserver(canvasView)
+                    canvasView.becomeFirstResponder()
+                }
                 .padding()
             }
         }
@@ -78,6 +81,7 @@ struct Canvas: View {
     
     private func addImageToCanvas(_ image: UIImage) {
         print("addImageToCanvas")
+        
         DispatchQueue.main.async {
             let imageView = UIImageView(image: image)
             imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
@@ -85,6 +89,7 @@ struct Canvas: View {
             
             self.canvasView.addSubview(imageView)
             self.canvasView.sendSubviewToBack(imageView)
+           
         }
     }
 }
@@ -101,6 +106,10 @@ struct DrawingViewContainer: UIViewRepresentable {
     
     func updateUIView(_ uiView: PKCanvasView, context: Context) {
         uiView.backgroundColor = .clear
+    }
+    
+    func exportUIView(){
+        
     }
 }
 

@@ -17,6 +17,7 @@ struct Cake3DView: View {
     @State private var currentRotation: SIMD3<Float> = SIMD3<Float>(0.0, 0.0, 0.0)
     @State private var currentScale: SIMD3<Float> = SIMD3<Float>(1.0, 1.0, 1.0)
     
+    
     var body: some View {
         ARViewContainer(currentRotation: $currentRotation, currentScale: $currentScale)
             .edgesIgnoringSafeArea(.all)
@@ -50,6 +51,8 @@ struct ARViewContainer: UIViewRepresentable {
 
     func makeUIView(context: Context) -> ARView {
         let arView = ARView(frame: .zero, cameraMode: .nonAR, automaticallyConfigureSession: true)
+        ///✅배경색이 적용이 안됌!
+        //arView.environment.background = ARView.Environment.Background.color(UIColor(red: 100, green: 100, blue: 100, alpha: 100))
         
         let cakeTrayModel = try! ModelEntity.loadModel(named: "cakeTray")
         cakeTrayModel.scale = SIMD3(x: 0.3, y: 0.3, z: 0.3)
@@ -92,6 +95,11 @@ struct ARViewContainer: UIViewRepresentable {
         
         anchor.transform.rotation = rotation
         anchor.transform.scale = SIMD3<Float>(repeating: clampedScale)
+        
+        // 이벤트 감지하면서 계속 바뀌어야 함!
+        DispatchQueue.main.async{
+            uiView.becomeFirstResponder()
+        }
     }
     
     /// UIKit, SwiftUI 연동을 위함

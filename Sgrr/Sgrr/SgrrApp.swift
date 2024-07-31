@@ -18,6 +18,7 @@ struct SgrrApp: App {
             VStack{
                 Cake3DView()
                 //Canvas()
+                //CakeCanvasView_test()
             }
         }
     }
