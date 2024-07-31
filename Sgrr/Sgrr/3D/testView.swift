@@ -14,7 +14,6 @@ struct testView: View {
         VStack {
             
             Cake3DView(cakeImage: $cakeImage)
-            Divider()
             CakeCanvasView(cakeImage: $cakeImage)
         }
        
