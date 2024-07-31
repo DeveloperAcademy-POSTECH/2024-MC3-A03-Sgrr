@@ -10,7 +10,10 @@ import CoreData
 
 class CoredataManager {
     static var shared: CoredataManager = CoredataManager()
-    private init () {}
+    var cake = Cake()
+    private init () {
+        self.cake = Cake()
+    }
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Sgrr")
@@ -34,7 +37,7 @@ class CoredataManager {
 
 extension CoredataManager {
     // MARK: - 저장, 업데이트
-    func saveOrUpdateOrder(colorBG: String, colorLetter: String, conceptKey: String, conceptImg: Data, elementKey: [String], elementImg: [Data]) {
+    func saveOrUpdateOrder() {
         let fetchRequest: NSFetchRequest<OrderForm> = OrderForm.fetchRequest()
         
         do {
@@ -48,12 +51,12 @@ extension CoredataManager {
                 orderForm.uuid = UUID()
             }
             
-            orderForm.colorBackground = colorBG
-            orderForm.colorLettering = colorLetter
-            orderForm.conceptKeyword = conceptKey
-            orderForm.conceptImage = conceptImg
-            orderForm.elementKeyword = elementKey
-            orderForm.elementImage = elementImg
+            orderForm.colorBackground = cake.colorBG
+            orderForm.colorLettering = cake.colorLetter
+            orderForm.conceptKeyword = cake.conceptKey
+            orderForm.conceptImage = cake.conceptImg
+            orderForm.elementKeyword = cake.elementKey
+            orderForm.elementImage = cake.elementImg
             
             try context.save()
             
