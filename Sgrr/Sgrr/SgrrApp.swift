@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import Observation
 
 @main
 struct SgrrApp: App {
-    let persistenceController = PersistenceController.shared
+    @State private var cake = Cake()
+    let managedObject = CoredataManager.shared
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.managedObjectContext, managedObject.context)
+                .environment(cake)
             //Cake3DView()
             Canvas()
             //NuggiedItemCell()
