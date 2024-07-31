@@ -10,7 +10,7 @@ import PhotosUI
 
 struct ImageAddView: View {
     
-    @State private var avartarImage: UIImage?
+    @State private var referenceImage: UIImage?
     @State private var photosPickerItem: PhotosPickerItem?
     
     var body: some View {
@@ -21,11 +21,20 @@ struct ImageAddView: View {
                 Rectangle()
                     .frame(width: 62, height: 62)
                     .cornerRadius(10, corners: [.topLeft, .bottomLeft])
-                    .foregroundColor(.white)
-                Image(uiImage: (avartarImage ?? UIImage(named: "ImageIcon"))!)
+                    .foregroundColor(.yellow)
+                Image("ImageIcon")
                     .resizable()
                     .frame(width: 30, height: 24)
-                    .scaledToFill()
+                    .scaledToFit()
+                
+                if let referenceImage = referenceImage {
+                    Image(uiImage: referenceImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 62, height: 62)
+                        .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                }
+             
             }
             
         }
@@ -34,7 +43,7 @@ struct ImageAddView: View {
                 if let photosPickerItem,
                    let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
                     if let image = UIImage(data: data) {
-                        avartarImage = image
+                        referenceImage = image
                     }
                 }
             }
