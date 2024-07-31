@@ -19,6 +19,7 @@
 		860C87EA2C535D4C00D9FC24 /* cakeModel.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E82C535D4C00D9FC24 /* cakeModel.usdz */; };
 		860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860C880D2C58C74B00D9FC24 /* CakeCanvasView.swift */; };
 		86112C282C5A1EDE009AF3DA /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86112C272C5A1EDE009AF3DA /* testView.swift */; };
+		86D737062C5A887200078D47 /* Cake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D737052C5A887200078D47 /* Cake.swift */; };
 		953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EC5F82C53C6B2002E5876 /* OrderFormView.swift */; };
 		95DC46832C5A23FE00AFC976 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46822C5A23FE00AFC976 /* ColorView.swift */; };
 		95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46862C5A462400AFC976 /* ImageAddView.swift */; };
@@ -40,6 +41,7 @@
 		860C87E82C535D4C00D9FC24 /* cakeModel.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeModel.usdz; path = ../../../cakeScene/cakeModel.usdz; sourceTree = "<group>"; };
 		860C880D2C58C74B00D9FC24 /* CakeCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeCanvasView.swift; sourceTree = "<group>"; };
 		86112C272C5A1EDE009AF3DA /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
+		86D737052C5A887200078D47 /* Cake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake.swift; sourceTree = "<group>"; };
 		953EC5F82C53C6B2002E5876 /* OrderFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormView.swift; sourceTree = "<group>"; };
 		95DC46822C5A23FE00AFC976 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
 		95DC46862C5A462400AFC976 /* ImageAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAddView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */,
+				86D737052C5A887200078D47 /* Cake.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */,
 				860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */,
 				43D756202C57760500D52E06 /* CoredataManager.swift in Sources */,
+				86D737062C5A887200078D47 /* Cake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

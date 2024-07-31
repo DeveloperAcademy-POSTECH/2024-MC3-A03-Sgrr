@@ -5,23 +5,19 @@
 //  Created by dora on 7/25/24.
 //
 
-// SgrrApp.swift
 import SwiftUI
+import Observation
 
 @main
 struct SgrrApp: App {
-    @State private var cakeImage: CGImage?
+    @State private var cake = Cake()
+    let managedObject = CoredataManager.shared
 
     var body: some Scene {
         WindowGroup {
-
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            //Cake3DView()
-            Canvas()
-            //NuggiedItemCell()
-
+                .environment(\.managedObjectContext, managedObject.context)
+                .environment(cake)
         }
     }
 }
-
