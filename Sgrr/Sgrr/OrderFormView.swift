@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct OrderFormView: View {
+    
+  
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        ZStack {
+            Color(hex: "FFFCF1")
+            }
+        }
     }
-}
+
 
 #Preview {
     OrderFormView()
