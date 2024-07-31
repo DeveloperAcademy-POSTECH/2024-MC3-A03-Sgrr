@@ -14,17 +14,13 @@ struct SgrrApp: App {
 
     var body: some Scene {
         WindowGroup {
-            VStack {
-                
-                Cake3DView(cakeImage: $cakeImage)
-                    .frame(height: 300)
-                    .background(Color.gray.opacity(0.1))
-                
-                Divider() 
-                
-                
-                CakeCanvasView_test(cakeImage: $cakeImage)
-            }
+
+            ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            //Cake3DView()
+            Canvas()
+            //NuggiedItemCell()
+
         }
     }
 }
