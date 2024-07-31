@@ -14,9 +14,8 @@ struct OrderFormView: View {
     var body: some View {
         
         GeometryReader { geo in
-            ScrollView {
-                
-                    
+            ZStack {
+                ScrollView {
                     LazyVStack {
                         VStack {
                             ColorView()
@@ -28,10 +27,26 @@ struct OrderFormView: View {
                             ComponentView()
                         } .frame(height: geo.size.height)
                     }
+                    
+                }
+                .background(Color(hex: "FFFCF1"))
                 
+                Button {
+                    // 작성 완료하기
+                } label: {
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(Color(hex: "FA5738"))
+                        .frame(width: 345, height: 50)
+                        .overlay() {
+                            Text("작성 완료")
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                        }
+                }
+                .padding(.top, 680)
             }
-            .background(Color(hex: "FFFCF1"))
         }
+       
     }
 }
 
