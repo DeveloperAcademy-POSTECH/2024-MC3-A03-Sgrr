@@ -1,9 +1,17 @@
+////
+////  ContentView.swift
+////  Sgrr
+////
+////  Created by dora on 7/25/24.
+////
 //
-//  ContentView.swift
-//  Sgrr
+//import SwiftUI
+//import CoreData
 //
-//  Created by dora on 7/25/24.
+//struct ContentView: View {
+//    @Environment(\.managedObjectContext) private var viewContext
 //
+
 
 import SwiftUI
 import CoreData

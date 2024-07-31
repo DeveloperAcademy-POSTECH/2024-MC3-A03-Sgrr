@@ -48,6 +48,7 @@ def Xform "Root"
     }
 
     def "cakeTray" (
+        active = false
         references = @cake.usdz@
     )
     {
