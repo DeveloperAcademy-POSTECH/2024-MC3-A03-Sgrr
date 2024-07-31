@@ -15,10 +15,7 @@ struct ColorView: View {
         
     var body: some View {
         
-//        ZStack {
-//            Color(hex: "FFFCF1")
-//                .ignoresSafeArea()
-            
+//
             VStack {
                 ZStack {
                     Rectangle()
@@ -48,7 +45,7 @@ struct ColorView: View {
                     Spacer()
                 }
             }
-//        }
+
        
     }
 }

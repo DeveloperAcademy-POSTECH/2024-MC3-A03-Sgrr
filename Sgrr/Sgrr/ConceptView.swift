@@ -9,10 +9,7 @@ import SwiftUI
 
 struct ConceptView: View {
     var body: some View {
-//        ZStack {
-//            Color(hex: "FFFCF1")
-//                .ignoresSafeArea()
-            
+
             VStack {
                 ZStack {
                     Rectangle()
@@ -31,7 +28,7 @@ struct ConceptView: View {
                 
                
             }
-//        }
+
     }
 }
 
