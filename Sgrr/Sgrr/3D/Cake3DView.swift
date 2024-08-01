@@ -14,22 +14,26 @@ let defaultMaterial = PhysicallyBasedMaterial()
 struct Cake3DView: View {
     @State private var currentRotation: SIMD3<Float> = SIMD3<Float>(0.0, 0.0, 0.0)
     @State private var currentScale: SIMD3<Float> = SIMD3<Float>(1.0, 1.0, 1.0)
-    @Binding var cakeImage: CGImage?
+    @State var cakeImage: CGImage?
 
     var body: some View {
         ARViewContainer(currentRotation: $currentRotation, currentScale: $currentScale, cakeImage: $cakeImage)
             .edgesIgnoringSafeArea(.all)
+            /// tap시 원 상태로 복귀
             .gesture(TapGesture().onEnded {
-                // Reset rotation and scale on tap
                 currentRotation = SIMD3<Float>(0, 0, 0)
                 currentScale = SIMD3<Float>(1, 1, 1)
             })
+            /// drag시 회전
             .gesture(DragGesture().onChanged { value in
+                /// 화면상 가로 이동(x좌표 변화) - 3D상 Y축 회전
+                /// 화면상 세로 이동(y좌표 변화) - 3D상 X축 회전
                 let rotationChangeX = Float(value.translation.width) * .pi / 180 * 0.01
                 let rotationChangeY = Float(value.translation.height) * .pi / 180 * 0.01
                 currentRotation.x += rotationChangeY
                 currentRotation.y += rotationChangeX
             })
+            /// pinch시 확대, 축소
             .gesture(MagnificationGesture().onChanged { value in
                 let pinchScale = Float(value.magnitude)
                 currentScale = SIMD3<Float>(x: pinchScale, y: pinchScale, z: pinchScale)
