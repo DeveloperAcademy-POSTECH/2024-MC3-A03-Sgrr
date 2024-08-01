@@ -22,6 +22,7 @@
 		864031742C5B5CA200666B91 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031732C5B5CA200666B91 /* HomeView.swift */; };
 		864031782C5B5E3200666B91 /* ConceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031772C5B5E3200666B91 /* ConceptView.swift */; };
 		8640317A2C5B5E5100666B91 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031792C5B5E5100666B91 /* ComponentView.swift */; };
+		864031A82C5B925400666B91 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031A72C5B925400666B91 /* Extension+Font.swift */; };
 		86D737062C5A887200078D47 /* Cake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D737052C5A887200078D47 /* Cake.swift */; };
 		953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EC5F82C53C6B2002E5876 /* OrderFormView.swift */; };
 		95DC46832C5A23FE00AFC976 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46822C5A23FE00AFC976 /* ColorView.swift */; };
@@ -47,6 +48,14 @@
 		864031732C5B5CA200666B91 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		864031772C5B5E3200666B91 /* ConceptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptView.swift; sourceTree = "<group>"; };
 		864031792C5B5E5100666B91 /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
+		864031A02C5B923E00666B91 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProDisplay-Medium.otf"; path = "../../../../../cakeTest/Font/SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
+		864031A12C5B923E00666B91 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProDisplay-Bold.otf"; path = "../../../../../cakeTest/Font/SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
+		864031A22C5B923E00666B91 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GmarketSansMedium.otf; path = ../../../../../cakeTest/Font/GmarketSansMedium.otf; sourceTree = "<group>"; };
+		864031A32C5B923E00666B91 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProDisplay-Regular.otf"; path = "../../../../../cakeTest/Font/SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
+		864031A42C5B923E00666B91 /* SFProRounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProRounded-Semibold.otf"; path = "../../../../../cakeTest/Font/SFProRounded-Semibold.otf"; sourceTree = "<group>"; };
+		864031A52C5B923E00666B91 /* PilGi Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PilGi Regular.ttf"; path = "../../../../../cakeTest/Font/PilGi Regular.ttf"; sourceTree = "<group>"; };
+		864031A62C5B923E00666B91 /* SFProDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProDisplay-Semibold.otf"; path = "../../../../../cakeTest/Font/SFProDisplay-Semibold.otf"; sourceTree = "<group>"; };
+		864031A72C5B925400666B91 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
 		86D737052C5A887200078D47 /* Cake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake.swift; sourceTree = "<group>"; };
 		953EC5F82C53C6B2002E5876 /* OrderFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormView.swift; sourceTree = "<group>"; };
 		95DC46822C5A23FE00AFC976 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
@@ -105,6 +114,7 @@
 			children = (
 				86034B952C51DAA4006106BC /* SgrrApp.swift */,
 				86034B972C51DAA4006106BC /* ContentView.swift */,
+				8640319F2C5B922700666B91 /* Font */,
 				864031722C5B5C8A00666B91 /* Home */,
 				864031752C5B5D6300666B91 /* Orderform */,
 				86D737042C5A84BD00078D47 /* 3D */,
@@ -152,8 +162,23 @@
 			isa = PBXGroup;
 			children = (
 				95EACC382C58E3E900F64E8F /* Extension.swift */,
+				864031A72C5B925400666B91 /* Extension+Font.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		8640319F2C5B922700666B91 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				864031A22C5B923E00666B91 /* GmarketSansMedium.otf */,
+				864031A52C5B923E00666B91 /* PilGi Regular.ttf */,
+				864031A12C5B923E00666B91 /* SFProDisplay-Bold.otf */,
+				864031A02C5B923E00666B91 /* SFProDisplay-Medium.otf */,
+				864031A32C5B923E00666B91 /* SFProDisplay-Regular.otf */,
+				864031A62C5B923E00666B91 /* SFProDisplay-Semibold.otf */,
+				864031A42C5B923E00666B91 /* SFProRounded-Semibold.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		86D737042C5A84BD00078D47 /* 3D */ = {
@@ -244,6 +269,7 @@
 				864031782C5B5E3200666B91 /* ConceptView.swift in Sources */,
 				864031742C5B5CA200666B91 /* HomeView.swift in Sources */,
 				95DC46832C5A23FE00AFC976 /* ColorView.swift in Sources */,
+				864031A82C5B925400666B91 /* Extension+Font.swift in Sources */,
 				95EACC392C58E3E900F64E8F /* Extension.swift in Sources */,
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
