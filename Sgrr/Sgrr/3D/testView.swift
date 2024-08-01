@@ -1,25 +1,27 @@
-////
-////  testView.swift
-////  Sgrr
-////
-////  Created by dora on 7/31/24.
-////
 //
-//import SwiftUI
+//  testView.swift
+//  Sgrr
 //
-//struct testView: View {
-//    @State private var cakeImage: CGImage?
-//    
-//    var body: some View {
-//        VStack {
-//            
-//            Cake3DView(cakeImage: $cakeImage)
-//            CakeCanvasView(cakeImage: $cakeImage)
-//        }
-//       
-//    }
-//}
+//  Created by dora on 7/31/24.
 //
-//#Preview {
-//    testView()
-//}
+
+import SwiftUI
+
+struct testView: View {
+    @State private var cakeImage: CGImage?
+    
+    var body: some View {
+        VStack {
+            
+            Cake3DView(cakeImage: $cakeImage)
+            CakeCanvasView(cakeImage: $cakeImage)
+        }
+       
+    }
+}
+
+#Preview {
+    testView()
+}
+
+
