@@ -1,20 +1,21 @@
 //
-//  ComponentView.swift
+//  test.swift
 //  Sgrr
 //
-//  Created by KIM SEOWOO on 7/31/24.
+//  Created by KIM SEOWOO on 8/1/24.
 //
 
 import SwiftUI
 
-struct ComponentView: View {
-    @State var cakeTopItems: [Int] = []
-    @State var cakeSideItems: [Int] = []
+struct test: View {
+    @State private var cakeTopItems: [Int] = []
+    @State private var cakeSideItems: [Int] = []
 
     var body: some View {
         VStack {
             ZStack {
                 Rectangle()
+                    .cornerRadius(10, corners: [.topLeft, .topRight])
                     .frame(width: 393, height: 95)
                     .foregroundColor(Color(hex: "FAC0B5"))
                 Text("요소")
@@ -28,36 +29,30 @@ struct ComponentView: View {
             List {
                 Section(header: HStack {
                     Text("케이크 윗면")
-                        .foregroundColor(Color(hex: "FA5738"))
                     Spacer()
                     Button {
 //                        addItem(in: &cakeTopItems)
                         cakeTopItems = addItem(to: cakeTopItems)
                     } label: {
                         Image(systemName: "plus")
-                            .foregroundColor(Color(hex: "FA5738"))
                     }
                     .disabled(totalItems >= 5)
                 }) {
                     ForEach(cakeTopItems.indices, id: \.self) { index in
                         ImageAddView()
                     }
-                   
                     .onDelete(perform: { deleteItem(at: $0, from: &cakeTopItems) })
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
                 .listRowSeparator(.hidden)
                 
                 Section(header: HStack {
                     Text("케이크 옆면")
-                        .foregroundColor(Color(hex: "FA5738"))
                     Spacer()
                     Button {
 //                        addItem(in: &cakeSideItems)
                         cakeSideItems = addItem(to: cakeSideItems)
                     } label: {
                         Image(systemName: "plus")
-                            .foregroundColor(Color(hex: "FA5738"))
                     }
                     .disabled(totalItems >= 5)
                 }) {
@@ -65,15 +60,14 @@ struct ComponentView: View {
                         ImageAddView()
                     }
                     .onDelete(perform: { deleteItem(at: $0, from: &cakeSideItems) })
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
                 .listRowSeparator(.hidden)
             }
-            .listStyle(SidebarListStyle())
-            .listRowBackground(Color.clear)
-//            .listRowInsets(EdgeInsets())
+            .listStyle(PlainListStyle())
             .background(Color.clear)
             .scrollContentBackground(.hidden)
+            
+            Spacer()
         }
     }
     
@@ -99,7 +93,6 @@ struct ComponentView: View {
     }
 }
 
-
 #Preview {
-    ComponentView()
+    test()
 }

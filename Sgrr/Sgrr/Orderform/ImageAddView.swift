@@ -20,8 +20,10 @@ struct ImageAddView: View {
             ZStack {
                 Rectangle()
                     .frame(width: 62, height: 62)
+                // 이블린 이꺼 둥근 모서리 쓰면 돼!
                     .cornerRadius(10, corners: [.topLeft, .bottomLeft])
                     .foregroundColor(.white)
+                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
                 Image("ImageIcon")
                     .resizable()
                     .frame(width: 30, height: 24)

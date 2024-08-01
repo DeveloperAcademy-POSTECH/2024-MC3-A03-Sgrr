@@ -19,7 +19,6 @@ struct ColorView: View {
             VStack {
                 ZStack {
                     Rectangle()
-                        .cornerRadius(10, corners: [.topLeft, .topRight])
                         .frame(width:393, height: 95)
                         .foregroundColor(Color(hex: "FA5738"))
                     Text("컬러")
