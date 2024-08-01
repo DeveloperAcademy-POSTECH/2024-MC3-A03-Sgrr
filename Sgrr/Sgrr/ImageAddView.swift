@@ -21,7 +21,7 @@ struct ImageAddView: View {
                 Rectangle()
                     .frame(width: 62, height: 62)
                     .cornerRadius(10, corners: [.topLeft, .bottomLeft])
-                    .foregroundColor(.white)
+                    .foregroundColor(.yellow)
                 Image("ImageIcon")
                     .resizable()
                     .frame(width: 30, height: 24)
