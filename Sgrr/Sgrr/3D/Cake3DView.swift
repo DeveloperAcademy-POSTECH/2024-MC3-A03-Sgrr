@@ -14,7 +14,7 @@ let defaultMaterial = PhysicallyBasedMaterial()
 struct Cake3DView: View {
     @State private var currentRotation: SIMD3<Float> = SIMD3<Float>(0.0, 0.0, 0.0)
     @State private var currentScale: SIMD3<Float> = SIMD3<Float>(1.0, 1.0, 1.0)
-    @State var cakeImage: CGImage?
+    @Binding var cakeImage: CGImage?
 
     var body: some View {
         ARViewContainer(currentRotation: $currentRotation, currentScale: $currentScale, cakeImage: $cakeImage)
