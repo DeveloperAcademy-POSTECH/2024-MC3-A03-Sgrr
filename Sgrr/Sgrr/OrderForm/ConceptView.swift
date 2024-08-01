@@ -24,9 +24,12 @@ struct ConceptView: View {
                         .padding(.top, 30)
                 }
                 
+               
+                ImageAddView()
+                
                 Spacer()
                 
-               
+
             }
 
     }

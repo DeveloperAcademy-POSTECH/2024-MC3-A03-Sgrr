@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct OrderFormView: View {
-    
-    
-    
+    @EnvironmentObject var router: Router<NavigationPath>
+
     var body: some View {
         
         GeometryReader { geo in
@@ -29,6 +28,7 @@ struct OrderFormView: View {
                     }
                     
                 }
+                .scrollTargetBehavior(.paging)
                 .background(Color(hex: "FFFCF1"))
                 
                 Button {
@@ -44,6 +44,17 @@ struct OrderFormView: View {
                         }
                 }
                 .padding(.top, 680)
+            }
+        }
+        .toolbarBackground(Color.green, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    
+                } label: {
+                   Image(systemName: "plus")
+                        .foregroundColor(.white)
+                }
             }
         }
        

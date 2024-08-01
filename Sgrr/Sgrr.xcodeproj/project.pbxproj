@@ -21,6 +21,8 @@
 		95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46862C5A462400AFC976 /* ImageAddView.swift */; };
 		95DC46892C5A4D7800AFC976 /* ConceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46882C5A4D7800AFC976 /* ConceptView.swift */; };
 		95DC468B2C5A4DC100AFC976 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC468A2C5A4DC100AFC976 /* ComponentView.swift */; };
+		95DC468D2C5A55D800AFC976 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC468C2C5A55D800AFC976 /* HomeView.swift */; };
+		95DC468F2C5A60D300AFC976 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC468E2C5A60D300AFC976 /* Router.swift */; };
 		95EACC352C58D5CF00F64E8F /* ColorAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EACC342C58D5CF00F64E8F /* ColorAddView.swift */; };
 		95EACC392C58E3E900F64E8F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EACC382C58E3E900F64E8F /* Extension.swift */; };
 /* End PBXBuildFile section */
@@ -41,6 +43,8 @@
 		95DC46862C5A462400AFC976 /* ImageAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAddView.swift; sourceTree = "<group>"; };
 		95DC46882C5A4D7800AFC976 /* ConceptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptView.swift; sourceTree = "<group>"; };
 		95DC468A2C5A4DC100AFC976 /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
+		95DC468C2C5A55D800AFC976 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		95DC468E2C5A60D300AFC976 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		95EACC342C58D5CF00F64E8F /* ColorAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorAddView.swift; sourceTree = "<group>"; };
 		95EACC382C58E3E900F64E8F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,16 +79,12 @@
 		86034B942C51DAA4006106BC /* Sgrr */ = {
 			isa = PBXGroup;
 			children = (
-				86034B952C51DAA4006106BC /* SgrrApp.swift */,
+				95E9E1332C5B5A3900EAD58F /* Manager */,
 				86034B972C51DAA4006106BC /* ContentView.swift */,
 				86034BA92C5234CB006106BC /* Cake3DView.swift */,
-				953EC5F82C53C6B2002E5876 /* OrderFormView.swift */,
-				95DC46822C5A23FE00AFC976 /* ColorView.swift */,
-				95EACC342C58D5CF00F64E8F /* ColorAddView.swift */,
-				95DC46882C5A4D7800AFC976 /* ConceptView.swift */,
-				95DC468A2C5A4DC100AFC976 /* ComponentView.swift */,
-				95DC46862C5A462400AFC976 /* ImageAddView.swift */,
-				95EACC382C58E3E900F64E8F /* Extension.swift */,
+				95E9E1322C5B5A1400EAD58F /* Home */,
+				95E9E12F2C5B59C300EAD58F /* OrderForm */,
+				95E9E1312C5B59F400EAD58F /* Extension */,
 				86034B992C51DAA5006106BC /* Assets.xcassets */,
 				86034B9E2C51DAA5006106BC /* Persistence.swift */,
 				86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */,
@@ -101,6 +101,44 @@
 				86034B9C2C51DAA5006106BC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		95E9E12F2C5B59C300EAD58F /* OrderForm */ = {
+			isa = PBXGroup;
+			children = (
+				953EC5F82C53C6B2002E5876 /* OrderFormView.swift */,
+				95DC46822C5A23FE00AFC976 /* ColorView.swift */,
+				95EACC342C58D5CF00F64E8F /* ColorAddView.swift */,
+				95DC46882C5A4D7800AFC976 /* ConceptView.swift */,
+				95DC468A2C5A4DC100AFC976 /* ComponentView.swift */,
+				95DC46862C5A462400AFC976 /* ImageAddView.swift */,
+			);
+			path = OrderForm;
+			sourceTree = "<group>";
+		};
+		95E9E1312C5B59F400EAD58F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				95EACC382C58E3E900F64E8F /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		95E9E1322C5B5A1400EAD58F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				95DC468C2C5A55D800AFC976 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		95E9E1332C5B5A3900EAD58F /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				86034B952C51DAA4006106BC /* SgrrApp.swift */,
+				95DC468E2C5A60D300AFC976 /* Router.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +215,7 @@
 			files = (
 				95EACC352C58D5CF00F64E8F /* ColorAddView.swift in Sources */,
 				86034B9F2C51DAA5006106BC /* Persistence.swift in Sources */,
+				95DC468D2C5A55D800AFC976 /* HomeView.swift in Sources */,
 				953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */,
 				86034B982C51DAA4006106BC /* ContentView.swift in Sources */,
 				95DC46832C5A23FE00AFC976 /* ColorView.swift in Sources */,
@@ -184,6 +223,7 @@
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
 				95DC46892C5A4D7800AFC976 /* ConceptView.swift in Sources */,
 				95DC468B2C5A4DC100AFC976 /* ComponentView.swift in Sources */,
+				95DC468F2C5A60D300AFC976 /* Router.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
 				86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */,
 				95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */,
