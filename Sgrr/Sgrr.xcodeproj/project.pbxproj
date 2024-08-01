@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4368A8E62C5B60070078B181 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4368A8E52C5B60070078B181 /* GmarketSansMedium.otf */; };
+		4368A8E82C5B60510078B181 /* PilGi Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4368A8E72C5B60510078B181 /* PilGi Regular.ttf */; };
+		4368A8EB2C5B61180078B181 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4368A8EA2C5B61180078B181 /* Extension+Font.swift */; };
+		4368A8EE2C5B635D0078B181 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4368A8ED2C5B635D0078B181 /* SFProDisplay-Regular.otf */; };
+		4368A8F72C5B71EB0078B181 /* OrderForm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4368A8F52C5B71EB0078B181 /* OrderForm.xcdatamodeld */; };
+		4368A8F92C5B74560078B181 /* SFProRounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4368A8F82C5B74560078B181 /* SFProRounded-Semibold.otf */; };
+		4368A8FB2C5B74800078B181 /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4368A8FA2C5B74800078B181 /* SFProDisplay-Bold.otf */; };
+		4368A8FD2C5B749A0078B181 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4368A8FC2C5B749A0078B181 /* SFProDisplay-Medium.otf */; };
+		4368A8FF2C5B7C440078B181 /* SFProDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4368A8FE2C5B7C430078B181 /* SFProDisplay-Semibold.otf */; };
+		43B20CDF2C5A916500B7C7B5 /* FinalGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B20CDE2C5A916500B7C7B5 /* FinalGuideView.swift */; };
+		43B20CE52C5B33BF00B7C7B5 /* GuideImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B20CE42C5B33BF00B7C7B5 /* GuideImageComponent.swift */; };
 		43D756202C57760500D52E06 /* CoredataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D7561F2C57760500D52E06 /* CoredataManager.swift */; };
 		86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B952C51DAA4006106BC /* SgrrApp.swift */; };
 		86034B982C51DAA4006106BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B972C51DAA4006106BC /* ContentView.swift */; };
 		86034B9A2C51DAA5006106BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86034B992C51DAA5006106BC /* Assets.xcassets */; };
 		86034B9D2C51DAA5006106BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86034B9C2C51DAA5006106BC /* Preview Assets.xcassets */; };
 		86034B9F2C51DAA5006106BC /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B9E2C51DAA5006106BC /* Persistence.swift */; };
-		86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */; };
 		86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034BA92C5234CB006106BC /* Cake3DView.swift */; };
 		860C87E92C535D4C00D9FC24 /* cakeTray.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E72C535D4C00D9FC24 /* cakeTray.usdz */; };
 		860C87EA2C535D4C00D9FC24 /* cakeModel.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E82C535D4C00D9FC24 /* cakeModel.usdz */; };
@@ -28,6 +38,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4368A8E52C5B60070078B181 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
+		4368A8E72C5B60510078B181 /* PilGi Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PilGi Regular.ttf"; sourceTree = "<group>"; };
+		4368A8EA2C5B61180078B181 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
+		4368A8EC2C5B61340078B181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4368A8ED2C5B635D0078B181 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
+		4368A8F62C5B71EB0078B181 /* OrderForm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OrderForm.xcdatamodel; sourceTree = "<group>"; };
+		4368A8F82C5B74560078B181 /* SFProRounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProRounded-Semibold.otf"; sourceTree = "<group>"; };
+		4368A8FA2C5B74800078B181 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
+		4368A8FC2C5B749A0078B181 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
+		4368A8FE2C5B7C430078B181 /* SFProDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.otf"; sourceTree = "<group>"; };
+		43B20CDE2C5A916500B7C7B5 /* FinalGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalGuideView.swift; sourceTree = "<group>"; };
+		43B20CE42C5B33BF00B7C7B5 /* GuideImageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideImageComponent.swift; sourceTree = "<group>"; };
 		43D7561F2C57760500D52E06 /* CoredataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoredataManager.swift; sourceTree = "<group>"; };
 		86034B922C51DAA4006106BC /* Sgrr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sgrr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86034B952C51DAA4006106BC /* SgrrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SgrrApp.swift; sourceTree = "<group>"; };
@@ -35,7 +57,6 @@
 		86034B992C51DAA5006106BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86034B9C2C51DAA5006106BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		86034B9E2C51DAA5006106BC /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		86034BA12C51DAA5006106BC /* Sgrr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sgrr.xcdatamodel; sourceTree = "<group>"; };
 		86034BA92C5234CB006106BC /* Cake3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake3DView.swift; sourceTree = "<group>"; };
 		860C87E72C535D4C00D9FC24 /* cakeTray.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeTray.usdz; path = ../../../cakeScene/cakeTray.usdz; sourceTree = "<group>"; };
 		860C87E82C535D4C00D9FC24 /* cakeModel.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeModel.usdz; path = ../../../cakeScene/cakeModel.usdz; sourceTree = "<group>"; };
@@ -60,11 +81,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4368A8E42C5B5F840078B181 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				4368A8E72C5B60510078B181 /* PilGi Regular.ttf */,
+				4368A8E52C5B60070078B181 /* GmarketSansMedium.otf */,
+				4368A8ED2C5B635D0078B181 /* SFProDisplay-Regular.otf */,
+				4368A8FE2C5B7C430078B181 /* SFProDisplay-Semibold.otf */,
+				4368A8FA2C5B74800078B181 /* SFProDisplay-Bold.otf */,
+				4368A8FC2C5B749A0078B181 /* SFProDisplay-Medium.otf */,
+				4368A8F82C5B74560078B181 /* SFProRounded-Semibold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		4368A8E92C5B61080078B181 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4368A8EA2C5B61180078B181 /* Extension+Font.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		43B20CDD2C5A914C00B7C7B5 /* FinalGuideView */ = {
+			isa = PBXGroup;
+			children = (
+				43B20CDE2C5A916500B7C7B5 /* FinalGuideView.swift */,
+				43B20CE42C5B33BF00B7C7B5 /* GuideImageComponent.swift */,
+			);
+			path = FinalGuideView;
+			sourceTree = "<group>";
+		};
 		43D7561D2C57355000D52E06 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */,
 				86D737052C5A887200078D47 /* Cake.swift */,
+				4368A8F52C5B71EB0078B181 /* OrderForm.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -96,11 +148,15 @@
 		86034B942C51DAA4006106BC /* Sgrr */ = {
 			isa = PBXGroup;
 			children = (
+				4368A8EC2C5B61340078B181 /* Info.plist */,
+				4368A8E92C5B61080078B181 /* Extension */,
+				4368A8E42C5B5F840078B181 /* Font */,
 				43D7561E2C57730400D52E06 /* Manager */,
 				86034B952C51DAA4006106BC /* SgrrApp.swift */,
 				86034B972C51DAA4006106BC /* ContentView.swift */,
 				953EC5F82C53C6B2002E5876 /* OrderFormView.swift */,
 				95DC46822C5A23FE00AFC976 /* ColorView.swift */,
+				43B20CDD2C5A914C00B7C7B5 /* FinalGuideView */,
 				95EACC342C58D5CF00F64E8F /* ColorAddView.swift */,
 				95DC46862C5A462400AFC976 /* ImageAddView.swift */,
 				95EACC382C58E3E900F64E8F /* Extension.swift */,
@@ -191,10 +247,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4368A8E82C5B60510078B181 /* PilGi Regular.ttf in Resources */,
 				86034B9D2C51DAA5006106BC /* Preview Assets.xcassets in Resources */,
+				4368A8FB2C5B74800078B181 /* SFProDisplay-Bold.otf in Resources */,
 				86034B9A2C51DAA5006106BC /* Assets.xcassets in Resources */,
+				4368A8FD2C5B749A0078B181 /* SFProDisplay-Medium.otf in Resources */,
+				4368A8F92C5B74560078B181 /* SFProRounded-Semibold.otf in Resources */,
 				860C87E92C535D4C00D9FC24 /* cakeTray.usdz in Resources */,
 				860C87EA2C535D4C00D9FC24 /* cakeModel.usdz in Resources */,
+				4368A8EE2C5B635D0078B181 /* SFProDisplay-Regular.otf in Resources */,
+				4368A8FF2C5B7C440078B181 /* SFProDisplay-Semibold.otf in Resources */,
+				4368A8E62C5B60070078B181 /* GmarketSansMedium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,14 +270,17 @@
 			files = (
 				95EACC352C58D5CF00F64E8F /* ColorAddView.swift in Sources */,
 				86034B9F2C51DAA5006106BC /* Persistence.swift in Sources */,
+				43B20CDF2C5A916500B7C7B5 /* FinalGuideView.swift in Sources */,
 				953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */,
 				86034B982C51DAA4006106BC /* ContentView.swift in Sources */,
+				4368A8EB2C5B61180078B181 /* Extension+Font.swift in Sources */,
 				95DC46832C5A23FE00AFC976 /* ColorView.swift in Sources */,
+				4368A8F72C5B71EB0078B181 /* OrderForm.xcdatamodeld in Sources */,
 				95EACC392C58E3E900F64E8F /* Extension.swift in Sources */,
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
+				43B20CE52C5B33BF00B7C7B5 /* GuideImageComponent.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
 				86112C282C5A1EDE009AF3DA /* testView.swift in Sources */,
-				86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */,
 				95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */,
 				860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */,
 				43D756202C57760500D52E06 /* CoredataManager.swift in Sources */,
@@ -355,6 +421,7 @@
 				DEVELOPMENT_TEAM = C8GTUY85R5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sgrr/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -384,6 +451,7 @@
 				DEVELOPMENT_TEAM = C8GTUY85R5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sgrr/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -426,13 +494,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */ = {
+		4368A8F52C5B71EB0078B181 /* OrderForm.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				86034BA12C51DAA5006106BC /* Sgrr.xcdatamodel */,
+				4368A8F62C5B71EB0078B181 /* OrderForm.xcdatamodel */,
 			);
-			currentVersion = 86034BA12C51DAA5006106BC /* Sgrr.xcdatamodel */;
-			path = Sgrr.xcdatamodeld;
+			currentVersion = 4368A8F62C5B71EB0078B181 /* OrderForm.xcdatamodel */;
+			name = OrderForm.xcdatamodeld;
+			path = "/Users/leewonsun/Desktop/projects/2024 Apple Developer Academy/2024-MC3-A03-Sgrr/Sgrr/Sgrr/Model/OrderForm.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
