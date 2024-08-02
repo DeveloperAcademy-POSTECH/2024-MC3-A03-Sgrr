@@ -15,7 +15,7 @@ struct SgrrApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
                 .environment(\.managedObjectContext, managedObject.context)
                 .environment(cake)
         }

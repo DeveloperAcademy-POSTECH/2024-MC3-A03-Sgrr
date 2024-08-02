@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct FinalGuideView: View {
+    @EnvironmentObject var router: Router<NavigationPath>
+
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.bg
                 
+                // 홈버튼
+                Button(action: {
+                    router.popToRoot()
+                }, label: {
+                    Image(systemName: "circle.fill")
+                })
+  
                 guideTitle()
                 
             } .ignoresSafeArea()

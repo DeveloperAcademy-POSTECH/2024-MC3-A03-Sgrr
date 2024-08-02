@@ -10,10 +10,9 @@ import SwiftUI
 struct ConceptView: View {
     var body: some View {
 
-            VStack {
+        VStack (spacing: 0) {
                 ZStack {
                     Rectangle()
-                        .cornerRadius(10, corners: [.topLeft, .topRight])
                         .frame(width:393, height: 95)
                         .foregroundColor(Color(hex: "FA8C76"))
                     Text("컨셉")
@@ -24,12 +23,19 @@ struct ConceptView: View {
                         .padding(.top, 30)
                 }
                 
-               
-                ImageAddView()
+                List {
+                    HStack {
+                        ImageAddView()
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+//                        TextFieldView()
+                    }
+                        
+                }
+                .listStyle(SidebarListStyle())
+                .listRowBackground(Color.clear)
+                .background(Color.pink)
+                .scrollContentBackground(.hidden)
                 
-                Spacer()
-                
-
             }
 
     }

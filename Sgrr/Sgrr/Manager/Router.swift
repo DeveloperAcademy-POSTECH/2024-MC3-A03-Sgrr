@@ -18,11 +18,16 @@ final class Router<T: Hashable>: ObservableObject {
     // 어디로 갈지
     func pop(to: T) {
         guard let found = paths.firstIndex(where: {$0 == to }) else {
+            
             return
         }
         
+        print(found)
         let numToPop = (found..<paths.endIndex).count - 1
         paths.removeLast(numToPop)
+        
+        
+       
     }
     
     // 홈으로 돌아가기
@@ -39,4 +44,5 @@ enum NavigationPath {
     case HomeView
     case OrderFormView
     case Cake3DView
+    case FinalGuideView
 }

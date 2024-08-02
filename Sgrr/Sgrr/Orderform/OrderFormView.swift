@@ -29,10 +29,18 @@ struct OrderFormView: View {
                     
                 }
                 .scrollTargetBehavior(.paging)
-                .background(Color(hex: "FFFCF1"))
+                .background(Color(hex: "F9F6EB"))
                 
                 Button {
                     // 작성 완료하기
+//                    router.pop(to: .FinalGuideView)
+                   router.push(.FinalGuideView)
+                    //router.pop(to: .FinalGuideView)
+                    
+//                    [home, order, 3D, final]
+//                    [order, 3d]
+//                    [3d, order]
+                    
                 } label: {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color(hex: "FA5738"))
@@ -46,17 +54,37 @@ struct OrderFormView: View {
                 .padding(.top, 680)
             }
         }
-        .toolbarBackground(Color.green, for: .navigationBar)
+        .toolbarBackground(Color(hex: "F9F6EB"), for: .navigationBar)
         .toolbar {
+            
+            ToolbarItem(placement: .navigationBarLeading) {
+                
+                
+                Button {
+                     //홈으로가기
+                    router.popToRoot()
+                } label: {
+                 Image(systemName: "chevron.backward")
+                        .foregroundColor(Color(hex: "FA5738"))
+                        .font(.system(size: 20))
+                }
+               
+            }
+
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    
+                    // 3D 뷰 이동
+                    router.push(.Cake3DView)
                 } label: {
-                   Image(systemName: "plus")
-                        .foregroundColor(.white)
+                 Text("3D")
+                        .foregroundColor(Color(hex: "FA5738"))
+                        .font(.system(size: 20))
                 }
+               
             }
+            
         }
+        .navigationBarBackButtonHidden(true)
        
     }
 }
