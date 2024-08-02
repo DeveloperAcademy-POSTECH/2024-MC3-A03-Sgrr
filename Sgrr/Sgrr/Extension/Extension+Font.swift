@@ -75,4 +75,25 @@ extension Font {
     static var completeText: Font {
         return sfProDisplaySemiboldFont(size: 17)
     }
+    
+    // MARK: - FinalGuideView
+    static var finalFormTitle: Font {
+        return sfProDisplayBoldFont(size: 17)
+    }
+    
+    static var finalHexText: Font {
+        return sfProDisplayRegularFont(size: 12)
+    }
+    
+    static var finalTextList: Font {
+        return sfProDisplayMediumFont(size: 17)
+    }
+    
+    static var finalNumber: Font {
+        return sfProRoundedSemiboldFont(size: 17)
+    }
+    
+    static var badgeText: Font {
+        return sfProDisplayRegularFont(size: 10)
+    }
 }
