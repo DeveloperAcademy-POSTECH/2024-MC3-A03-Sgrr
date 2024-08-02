@@ -15,6 +15,8 @@
 		43DB148B2C5C642300F722D6 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB14872C5C642300F722D6 /* SFProDisplay-Regular.otf */; };
 		43DB148D2C5C643A00F722D6 /* SFProRounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB148C2C5C643A00F722D6 /* SFProRounded-Semibold.otf */; };
 		43DB14922C5C6A8700F722D6 /* JCfg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB14912C5C6A8700F722D6 /* JCfg.ttf */; };
+		43DB14952C5C7AAB00F722D6 /* FinalGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14942C5C7AAB00F722D6 /* FinalGuideView.swift */; };
+		43DB14972C5C7AD100F722D6 /* FinalImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14962C5C7AD100F722D6 /* FinalImageComponent.swift */; };
 		86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B952C51DAA4006106BC /* SgrrApp.swift */; };
 		86034B982C51DAA4006106BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B972C51DAA4006106BC /* ContentView.swift */; };
 		86034B9A2C51DAA5006106BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86034B992C51DAA5006106BC /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 		43DB148C2C5C643A00F722D6 /* SFProRounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProRounded-Semibold.otf"; sourceTree = "<group>"; };
 		43DB14902C5C688C00F722D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		43DB14912C5C6A8700F722D6 /* JCfg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JCfg.ttf; sourceTree = "<group>"; };
+		43DB14942C5C7AAB00F722D6 /* FinalGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalGuideView.swift; sourceTree = "<group>"; };
+		43DB14962C5C7AD100F722D6 /* FinalImageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalImageComponent.swift; sourceTree = "<group>"; };
 		86034B922C51DAA4006106BC /* Sgrr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sgrr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86034B952C51DAA4006106BC /* SgrrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SgrrApp.swift; sourceTree = "<group>"; };
 		86034B972C51DAA4006106BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +119,15 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		43DB14932C5C7A5B00F722D6 /* FinalGuideView */ = {
+			isa = PBXGroup;
+			children = (
+				43DB14942C5C7AAB00F722D6 /* FinalGuideView.swift */,
+				43DB14962C5C7AD100F722D6 /* FinalImageComponent.swift */,
+			);
+			path = FinalGuideView;
+			sourceTree = "<group>";
+		};
 		86034B892C51DAA4006106BC = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +147,7 @@
 		86034B942C51DAA4006106BC /* Sgrr */ = {
 			isa = PBXGroup;
 			children = (
+				43DB14932C5C7A5B00F722D6 /* FinalGuideView */,
 				43DB14902C5C688C00F722D6 /* Info.plist */,
 				43DB14812C5C639200F722D6 /* Font */,
 				86034B952C51DAA4006106BC /* SgrrApp.swift */,
@@ -283,6 +297,7 @@
 				953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */,
 				86034B982C51DAA4006106BC /* ContentView.swift in Sources */,
 				864031782C5B5E3200666B91 /* ConceptView.swift in Sources */,
+				43DB14972C5C7AD100F722D6 /* FinalImageComponent.swift in Sources */,
 				864031742C5B5CA200666B91 /* HomeView.swift in Sources */,
 				95DC46832C5A23FE00AFC976 /* ColorView.swift in Sources */,
 				864031A82C5B925400666B91 /* Extension+Font.swift in Sources */,
@@ -293,6 +308,7 @@
 				86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */,
 				8640317A2C5B5E5100666B91 /* ComponentView.swift in Sources */,
 				95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */,
+				43DB14952C5C7AAB00F722D6 /* FinalGuideView.swift in Sources */,
 				864031702C5B5C4D00666B91 /* Router.swift in Sources */,
 				860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */,
 				43D756202C57760500D52E06 /* CoredataManager.swift in Sources */,
