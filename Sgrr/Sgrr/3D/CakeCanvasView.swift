@@ -8,57 +8,111 @@
 import SwiftUI
 import PencilKit
 
-let sampleImages: [UIImage] = [
-    UIImage(systemName: "star.fill")!,
-    UIImage(systemName: "heart.fill")!,
-    UIImage(systemName: "sun.and.horizon.fill")!,
-    UIImage(systemName: "sunglasses.fill")!,
-    UIImage(systemName: "paperplane.fill")!
-]
+struct CakeCanvasView: View {
+    @Binding var cakeImage: CGImage?
 
+    let palette = PKToolPicker()
+    @State private var canvasView = PKCanvasView()
+    @State private var showPhotoPalette: Bool = true
 
-struct CakeCanvasContainer: UIViewRepresentable {
-    var canvasView: PKCanvasView
+    var body: some View {
+        VStack {
+            HStack {
+                Button(action: {}) {
+                    Image(systemName: "chevron.backward")
+                }
+                
+                Spacer()
+                
+                Button(action: {
+                    if let image = exportImage(canvas: canvasView) {
+                        cakeImage = image
+                    }
+                }) {
+                    Image(systemName: "checkmark.seal.fill")
+                }
+                
+                Button(action: {
+                    palette.setVisible(true, forFirstResponder: canvasView)
+                    showPhotoPalette = false
+                }) {
+                    Image(systemName:"applepencil.tip")
+                }
+                
+                Button(action: {
+                    palette.setVisible(false, forFirstResponder: canvasView)
+                    showPhotoPalette = true
+                }) {
+                    Image(systemName:"photo")
+                }
+            }
+            .padding()
+            .background(Color(.systemBackground))
+            
+            ZStack {
+                CanvasViewContainer(canvasView: $canvasView, palette: palette)
+                    .onAppear {
+                        palette.setVisible(false, forFirstResponder: canvasView)
+                        palette.addObserver(canvasView)
+                        canvasView.becomeFirstResponder()
+                    }
+                
+                if showPhotoPalette {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            ForEach(0..<5) { index in
+                                Button(action: {
+                                    addPhoto(UIImage(named: "cakeElement_\(index + 1)")!)
+                                }) {
+                                    ZStack {
+                                        Rectangle()
+                                        Image("cakeElement_\(index + 1)")
+                                            .resizable()
+                                            .padding(5)
+                                    }
+                                    .frame(width: 67, height: 67)
+                                }
+                            }
+                        }
+                    }
+                    .background(Color(.clear))
+                    .animation(.easeInOut)
+                    .transition(.move(edge: .bottom))
+                }
+            }
+        }
+    }
+    
+    func addPhoto(_ image: UIImage) {
+        DispatchQueue.main.async {
+            let imageView = UIImageView(image: image)
+            imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+            imageView.contentMode = .scaleAspectFit
+            self.canvasView.addSubview(imageView)
+        }
+    }
+    func exportImage(canvas: UIView) -> CGImage? {
+        guard let exportedImage = canvas.asImage() else { return nil }
+        let rotatedImage = UIImage(cgImage: exportedImage, scale: 1.0, orientation: .right)
+            
+        return rotatedImage.cgImage
+    }
+}
+
+struct CanvasViewContainer: UIViewRepresentable {
+    @Binding var canvasView: PKCanvasView
     let palette: PKToolPicker
     
-    @Binding var isActive: Bool
-    @Binding var cakeImage: CGImage?
-    
     func makeUIView(context: Context) -> PKCanvasView {
-           canvasView.backgroundColor = .clear
-           canvasView.tool = PKInkingTool(.pen, color: .blue, width: 15)
-           canvasView.delegate = context.coordinator
-           return canvasView
-       }
-       
-       func updateUIView(_ uiView: PKCanvasView, context: Context) {
-           palette.setVisible(isActive, forFirstResponder: uiView)
-           uiView.backgroundColor = .clear
-           context.coordinator.updateCakeImage(from: uiView)
-       }
-
-       func makeCoordinator() -> Coordinator {
-           Coordinator(cakeImage: $cakeImage)
-       }
-
-       class Coordinator: NSObject, PKCanvasViewDelegate {
-           @Binding var cakeImage: CGImage?
-
-           init(cakeImage: Binding<CGImage?>) {
-               self._cakeImage = cakeImage
-           }
-
-           func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-               // 캔버스가 업데이트 될 때마다 호출됨
-               DispatchQueue.main.async {
-                   self.updateCakeImage(from: canvasView)
-               }
-           }
-
-           func updateCakeImage(from canvasView: PKCanvasView) {
-               self.cakeImage = canvasView.asImage()
-           }
-       }
+        canvasView.backgroundColor = .clear
+        canvasView.tool = PKInkingTool(.pen, color: .blue, width: 15)
+        return canvasView
+    }
+    
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {
+        uiView.backgroundColor = .clear
+    }
 }
 
 extension UIView {
@@ -74,48 +128,5 @@ extension UIView {
     }
 }
 
-/// 사진 팔레트
-struct PhotoPickerCell: View {
-    
-    let images: [UIImage]
-    var canvasView: PKCanvasView
-    
-    var body: some View {
-        HStack {
-            ForEach(0..<images.count, id: \.self) { index in
-                Button(action: {
-                    addPhoto(images[index])
-                }){
-                    ZStack{
-                        Rectangle()
-                            .foregroundColor(.white)
-                            .shadow(radius: 1.5)
-                        
-                        Image(uiImage: images[index])
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .padding(5)
-                            .frame(width: 67, height: 67)
-                    }
-                }
-            }
-        }
-        .frame(height: 45)
-        
-    }
-    
-    /// 사진 추가
-    func addPhoto(_ image: UIImage) {
-            let imageView = DraggableImageView(image: image)
-            imageView.frame = CGRect(x: 0, y: 0, width: 67, height: 67)
-            imageView.contentMode = .scaleAspectFit
-            
-            let canvasCenter = CGPoint(x: canvasView.bounds.midX, y: canvasView.bounds.midY)
-            imageView.center = canvasCenter
-            
-            self.canvasView.addSubview(imageView)
-        }
-}
 
-
-
+ 

@@ -35,9 +35,6 @@
 		864031782C5B5E3200666B91 /* ConceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031772C5B5E3200666B91 /* ConceptView.swift */; };
 		8640317A2C5B5E5100666B91 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031792C5B5E5100666B91 /* ComponentView.swift */; };
 		864031A82C5B925400666B91 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031A72C5B925400666B91 /* Extension+Font.swift */; };
-		8647E2642C5E863E001D85F6 /* DraggableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8647E2632C5E863E001D85F6 /* DraggableImage.swift */; };
-		8647E2662C5E8754001D85F6 /* CanvasBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8647E2652C5E8754001D85F6 /* CanvasBG.swift */; };
-		8647E2682C5E92AB001D85F6 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8647E2672C5E92AB001D85F6 /* color.swift */; };
 		86D737062C5A887200078D47 /* Cake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D737052C5A887200078D47 /* Cake.swift */; };
 		953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EC5F82C53C6B2002E5876 /* OrderFormView.swift */; };
 		95DC46832C5A23FE00AFC976 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46822C5A23FE00AFC976 /* ColorView.swift */; };
@@ -77,9 +74,6 @@
 		864031772C5B5E3200666B91 /* ConceptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptView.swift; sourceTree = "<group>"; };
 		864031792C5B5E5100666B91 /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		864031A72C5B925400666B91 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
-		8647E2632C5E863E001D85F6 /* DraggableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableImage.swift; sourceTree = "<group>"; };
-		8647E2652C5E8754001D85F6 /* CanvasBG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasBG.swift; sourceTree = "<group>"; };
-		8647E2672C5E92AB001D85F6 /* color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = color.swift; sourceTree = "<group>"; };
 		86D737052C5A887200078D47 /* Cake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake.swift; sourceTree = "<group>"; };
 		953EC5F82C53C6B2002E5876 /* OrderFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormView.swift; sourceTree = "<group>"; };
 		95DC46822C5A23FE00AFC976 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
@@ -232,10 +226,7 @@
 			children = (
 				86034BA92C5234CB006106BC /* Cake3DView.swift */,
 				860C880D2C58C74B00D9FC24 /* CakeCanvasView.swift */,
-				8647E2652C5E8754001D85F6 /* CanvasBG.swift */,
-				8647E2632C5E863E001D85F6 /* DraggableImage.swift */,
 				8640316D2C5B582500666B91 /* testView.swift */,
-				8647E2672C5E92AB001D85F6 /* color.swift */,
 			);
 			path = 3D;
 			sourceTree = "<group>";
@@ -324,12 +315,10 @@
 				86034B982C51DAA4006106BC /* ContentView.swift in Sources */,
 				864031782C5B5E3200666B91 /* ConceptView.swift in Sources */,
 				43DB14972C5C7AD100F722D6 /* FinalImageComponent.swift in Sources */,
-				8647E2642C5E863E001D85F6 /* DraggableImage.swift in Sources */,
 				864031742C5B5CA200666B91 /* HomeView.swift in Sources */,
 				95DC46832C5A23FE00AFC976 /* ColorView.swift in Sources */,
 				864031A82C5B925400666B91 /* Extension+Font.swift in Sources */,
 				43DB14992C5C85A400F722D6 /* TextFieldView.swift in Sources */,
-				8647E2662C5E8754001D85F6 /* CanvasBG.swift in Sources */,
 				95EACC392C58E3E900F64E8F /* Extension.swift in Sources */,
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
@@ -343,7 +332,6 @@
 				864031702C5B5C4D00666B91 /* Router.swift in Sources */,
 				43DB14A02C5EA3C600F722D6 /* GuideImageComponent.swift in Sources */,
 				860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */,
-				8647E2682C5E92AB001D85F6 /* color.swift in Sources */,
 				43D756202C57760500D52E06 /* CoredataManager.swift in Sources */,
 				86D737062C5A887200078D47 /* Cake.swift in Sources */,
 			);
