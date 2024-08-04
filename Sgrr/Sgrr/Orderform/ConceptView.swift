@@ -39,9 +39,9 @@ struct ConceptView: View {
                     HStack {
                         // 이미지
                         
-                        ImageAddView()
-                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        
+//                        ImageAddView()
+//                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+//                        
                         PhotosPicker(selection: $photosPickerConceptItem, matching: .images) {
                             
                             ZStack {
@@ -67,6 +67,7 @@ struct ConceptView: View {
                             }
                             
                         }
+                        
                         .onChange(of: photosPickerConceptItem) { _, _ in
                             Task {
                                 if let photosPickerConceptItem,
@@ -81,8 +82,6 @@ struct ConceptView: View {
                             }
                         }
                       
-                        
-                        
                         
                         // 텍스트필드
                         ZStack {
@@ -113,11 +112,12 @@ struct ConceptView: View {
                             }
                         }
                     }
-                        
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
+               
                 .listStyle(SidebarListStyle())
                 .listRowBackground(Color.clear)
-                .background(Color.pink)
+                .background(Color.clear)
                 .scrollContentBackground(.hidden)
                 
             }
