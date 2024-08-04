@@ -10,8 +10,12 @@ import Combine
 
 
 struct TextFieldView: View {
+    
+    private var cakeData = CoredataManager.shared
+
+
     //사용자 입력을 저장하는 상태 변수
-    @State private var text: String = ""
+    @State private var text: String
     //최대 글자 수 제한
     private let characterLimit: Int = 15
     //텍스트 필드의 포커스 상태를 관리하는 상태 변수
@@ -49,8 +53,4 @@ struct TextFieldView: View {
             text = String(newValue.prefix(upper))
         }
     }
-}
-
-#Preview {
-    TextFieldView()
 }
