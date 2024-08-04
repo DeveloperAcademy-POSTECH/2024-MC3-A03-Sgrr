@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ColorCell: View {
     
+    private var cakeData = CoredataManager.shared
+
+    
     @State var selectedBGColor: Color = .white
     @State var selectedLetteringColor: Color = .white
     @State var bgColorToString: String = ""
@@ -53,10 +56,14 @@ struct ColorCell: View {
                                     HStack {
                                         ColorPicker("", selection: $selectedBGColor)
                                             .labelsHidden()
-                                            .onChange(of: selectedBGColor) { newColor in
-                                                                                        bgColorToString = newColor.toHex() ?? ""
-                                                                                        print("Background Color: \(bgColorToString)")
-                                                                                    }
+                                            .onChange(of: selectedBGColor) {
+                                                guard let hex = selectedBGColor.toHex() else {
+                                                    return
+                                                }
+                                                cakeData.cake.colorBG = hex
+                                                saveOrder()
+                                                print("hello")
+                                            }
                                         
                                         Text("#\(selectedBGColor.toHex() ?? "N/A")")
                                             .foregroundColor(.gray)
@@ -87,10 +94,14 @@ struct ColorCell: View {
                                     HStack {
                                         ColorPicker("", selection: $selectedLetteringColor)
                                             .labelsHidden()
-                                            .onChange(of: selectedLetteringColor) { newColor in
-                                                                                        letteringColorToString = newColor.toHex() ?? ""
-                                                                                        print("Letteringground Color: \(letteringColorToString)")
-                                                                                    }
+                                            .onChange(of: selectedLetteringColor) {
+                                                guard let hex = selectedLetteringColor.toHex() else {
+                                                    return
+                                                }
+                                                cakeData.cake.colorLetter = hex
+                                                saveOrder()
+                                                print("hello")
+                                            }
                                         
                                         Text("#\(selectedLetteringColor.toHex() ?? "N/A")")
                                             .foregroundColor(.gray)
@@ -105,12 +116,15 @@ struct ColorCell: View {
                     Spacer()
                 }
             }
-
-       
     }
 }
 
-#Preview {
-   ColorCell()
+// MARK: - 저장함수
+private func saveOrder() {
+    CoredataManager.shared.saveOrUpdateOrder()
 }
+
+//#Preview {
+//   ColorCell()
+//}
 

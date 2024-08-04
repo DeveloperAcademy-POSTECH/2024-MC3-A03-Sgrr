@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OrderTest: View {
     @EnvironmentObject var router: Router
-    @State private var cakeData = CoredataManager.shared.cake
+    private var cakeData = CoredataManager.shared
 
     
     @FetchRequest(
@@ -24,7 +24,7 @@ struct OrderTest: View {
                 ScrollView {
                     LazyVStack {
                         VStack {
-                            ColorCell(bgColorToString: cakeData.colorBG, letteringColorToString: cakeData.colorLetter)
+                            ColorCell()
                         } .frame(height: geo.size.height)
                         VStack {
                             ConceptView()
@@ -43,10 +43,11 @@ struct OrderTest: View {
                     // 작성 완료하기
 //                    router.push(view: .FinalGuideView)
                     
-                    saveOrder()
+                    
                     // 타이니 수정 ver
-                    if let orderForm = orderForms.first {
-                        router.push(view: .FinalGuideView(orderForm: orderForm))
+                    
+                    if let orderForm = orderForms.last {
+                        router.push(view: .FinalGuideView)
                     }
                 } label: {
                     RoundedRectangle(cornerRadius: 10)

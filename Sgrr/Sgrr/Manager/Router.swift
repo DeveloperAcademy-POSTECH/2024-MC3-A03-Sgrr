@@ -16,7 +16,7 @@ class Router: ObservableObject{
         case HomeView
         case OrderFormView
         case Cake3DView
-        case FinalGuideView(orderForm: OrderForm)
+        case FinalGuideView
     }
     
     @ViewBuilder func view(for route: CakeyViews) -> some View {
@@ -27,8 +27,8 @@ class Router: ObservableObject{
           OrderTest()
         case .Cake3DView:
           testView()
-        case .FinalGuideView(let orderForm):
-            FinalTest(orderForm: orderForm)
+        case .FinalGuideView:
+            FinalTest()
         }
     }
     

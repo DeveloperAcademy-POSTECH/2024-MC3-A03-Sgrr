@@ -49,7 +49,7 @@ extension CoredataManager {
                 let orderResult = try context.fetch(fetchRequest)
                 let orderForm: OrderForm
                 
-                if let existingOrder = orderResult.first {
+                if let existingOrder = orderResult.last {
                     orderForm = existingOrder
                 } else {
                     orderForm = OrderForm(context: context)

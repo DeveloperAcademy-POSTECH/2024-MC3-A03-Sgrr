@@ -27,7 +27,17 @@ struct FinalTest: View {
 //        // 생성한 객체를 각각의 appearance에 할당
 //    }
     
-    let orderForm: OrderForm
+    @FetchRequest(
+        entity: OrderForm.entity(),
+        sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
+    ) private var orderForms: FetchedResults<OrderForm>
+    
+    var orderForm: OrderForm {
+        guard let order = orderForms.last else {
+            return OrderForm()
+        }
+        return order
+    }
     
     var body: some View {
         // 전달된 데이터 확인을 위한 로그
