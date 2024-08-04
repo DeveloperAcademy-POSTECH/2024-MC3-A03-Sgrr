@@ -11,7 +11,6 @@ import Observation
 
 @Observable
 class Cake {
-    var uuid = UUID()
     var colorBG: String = ""
     var colorLetter: String = ""
     var conceptKey: String = ""

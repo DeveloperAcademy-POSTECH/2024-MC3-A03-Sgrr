@@ -90,7 +90,7 @@ extension Font {
     }
     
     static var finalNumber: Font {
-        return sfProRoundedSemiboldFont(size: 12)
+        return sfProRoundedSemiboldFont(size: 17)
     }
     
     static var badgeText: Font {

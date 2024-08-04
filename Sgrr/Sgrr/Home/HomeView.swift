@@ -10,12 +10,11 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var router: Router
-
+    @ObservedObject var router = Router<NavigationPath>()
     
     var body: some View {
         
-        NavigationStack(path: $router.path) {
+        NavigationStack(path: $router.paths) {
           
             ZStack {
                 Color(hex: "FFF9E1")
@@ -30,10 +29,8 @@ struct HomeView: View {
                             .font(.system(size: 34))
                             .fontWeight(.bold)
                    
-                    
-                    
                     Button {
-                        router.push(view: .OrderFormView)
+                        router.push(.OrderFormView)
                         
                     } label: {
                         HStack {
@@ -41,7 +38,18 @@ struct HomeView: View {
                             Image(systemName: "chevron.right")
                         }
                         .padding(.top, 10)
-                        .navigationDestination(for: Router.CakeyViews.self) { view in router.view(for: view)}
+                        
+                        .navigationDestination(for: NavigationPath.self) { path in
+//                            switch path {
+//                            case .HomeView:
+//                                HomeView()
+//                            case .OrderFormView: OrderFormView()
+//                            case .Cake3DView:
+//                                testView(selectedColor: .red)
+//                            case .FinalGuideView: FinalGuideView()
+//                                
+//                            }
+                        }
                     }
                     
                 }
@@ -62,6 +70,5 @@ struct HomeView: View {
 }
 
 #Preview {
-  HomeView()
-        .environmentObject(Router())
+    HomeView()
 }
