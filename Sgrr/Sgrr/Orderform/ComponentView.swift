@@ -68,7 +68,7 @@ struct ComponentView: View {
                                                 limitText(newValue, upper: characterLimit)
                                             }
                                             .onChange(of: elementKeyword) {
-                                                cakeData.cake.elementKey = elementKeyword
+//                                                cakeData.cake.elementKey = elementKeyword
                                                 saveOrder()
                                             }
                                         
