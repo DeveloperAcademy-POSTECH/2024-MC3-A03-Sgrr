@@ -18,7 +18,7 @@ let sampleImages: [UIImage] = [
 
 
 struct CakeCanvasContainer: UIViewRepresentable {
-    var canvasView: PKCanvasView
+    @Binding var canvasView: PKCanvasView
     let picker: PKToolPicker
     
     @Binding var isActive: Bool
@@ -124,9 +124,6 @@ struct PhotoPickerCell: View {
         
         self.canvasView.addSubview(imageView)
     }
-    
-
-
 }
 
 

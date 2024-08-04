@@ -10,14 +10,17 @@ import PencilKit
 
 struct testView: View {
     
-    @State private var cakeImage: CGImage?
+    @Binding var cakeImage: CGImage?
+    
     @Binding var selectedColor: Color
     @State private var showPicker = false
+    @State private var updateTexture = false
+    
     @State private var currentRotation: SIMD3<Float> = SIMD3<Float>(0.0, 0.0, 0.0)
     @State private var currentScale: SIMD3<Float> = SIMD3<Float>(1.0, 1.0, 1.0)
     
     let picker = PKToolPicker()
-    var canvasView = PKCanvasView()
+    @State var canvasView = PKCanvasView()
     
     var body: some View {
         GeometryReader { geometry in
@@ -54,7 +57,7 @@ struct testView: View {
                         CanvasBackgroundView()
                         Spacer().frame(height: 130)
                     }
-                    CakeCanvasContainer(canvasView: canvasView, picker: picker, isActive: $showPicker, cakeImage: $cakeImage)
+                    CakeCanvasContainer(canvasView: $canvasView, picker: picker, isActive: $showPicker, cakeImage: $cakeImage)
                 }
                 .frame(height: geometry.size.height / 1.5)
             }
@@ -69,6 +72,15 @@ struct testView: View {
                 .transition(.move(edge: .bottom))
             }
         }
+        .navigationBarBackButtonHidden(true)
+                .navigationBarItems(leading: Button(action: {
+                   
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color(hex: "#FA5738"))
+                    }
+                })
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack {

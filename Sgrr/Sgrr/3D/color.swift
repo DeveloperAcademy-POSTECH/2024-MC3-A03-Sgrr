@@ -9,6 +9,7 @@ import SwiftUI
 
 struct color: View {
     @State private var selectedColor: Color = .white
+    @State private var cakeImage: CGImage?
         
         var body: some View {
             NavigationView {
@@ -16,12 +17,13 @@ struct color: View {
                     ColorPicker("배경색", selection: $selectedColor)
                         .padding()
                     
-                    NavigationLink(destination: testView(selectedColor: $selectedColor)) {
+                    NavigationLink(destination: testView(cakeImage: $cakeImage, selectedColor: $selectedColor)) {
                         Text("3D")
                     }
                     .padding()
                 }
                 .navigationTitle("케익색 고르기")
+                
             }
         }
 }
