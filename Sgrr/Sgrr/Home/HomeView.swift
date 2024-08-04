@@ -29,8 +29,6 @@ struct HomeView: View {
                             .font(.system(size: 34))
                             .fontWeight(.bold)
                    
-                    
-                    
                     Button {
                         router.push(.OrderFormView)
                         
@@ -42,15 +40,15 @@ struct HomeView: View {
                         .padding(.top, 10)
                         
                         .navigationDestination(for: NavigationPath.self) { path in
-                            switch path {
-                            case .HomeView:
-                                HomeView()
-                            case .OrderFormView: OrderFormView()
-                            case .Cake3DView:
-                                testView()
-                            case .FinalGuideView: FinalGuideView()
-                                
-                            }
+//                            switch path {
+//                            case .HomeView:
+//                                HomeView()
+//                            case .OrderFormView: OrderFormView()
+//                            case .Cake3DView:
+//                                testView(selectedColor: .red)
+//                            case .FinalGuideView: FinalGuideView()
+//                                
+//                            }
                         }
                     }
                     
