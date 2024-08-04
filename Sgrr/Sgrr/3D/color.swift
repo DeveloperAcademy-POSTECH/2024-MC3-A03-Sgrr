@@ -13,15 +13,15 @@ struct color: View {
         var body: some View {
             NavigationView {
                 VStack {
-                    ColorPicker("Pick a color", selection: $selectedColor)
+                    ColorPicker("배경색", selection: $selectedColor)
                         .padding()
                     
                     NavigationLink(destination: testView(selectedColor: $selectedColor)) {
-                        Text("Go to Next View")
+                        Text("3D")
                     }
                     .padding()
                 }
-                .navigationTitle("Color Picker")
+                .navigationTitle("케익색 고르기")
             }
         }
 }

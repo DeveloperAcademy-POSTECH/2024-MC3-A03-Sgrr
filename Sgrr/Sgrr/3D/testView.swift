@@ -24,12 +24,12 @@ struct testView: View {
             VStack (spacing: 0){
                 ARViewContainer(picker: picker, canvasView: canvasView, currentRotation: $currentRotation, currentScale: $currentScale, cakeImage: $cakeImage, isActive: $showPicker, selectedColor: $selectedColor)
                     .edgesIgnoringSafeArea(.all)
-                    /// tap시 원 상태로 복귀
+                /// tap시 원 상태로 복귀
                     .gesture(TapGesture().onEnded {
                         currentRotation = SIMD3<Float>(0, 0, 0)
                         currentScale = SIMD3<Float>(1, 1, 1)
                     })
-                    /// drag시 회전
+                /// drag시 회전
                     .gesture(DragGesture().onChanged { value in
                         /// 화면상 가로 이동(x좌표 변화) - 3D상 Y축 회전
                         /// 화면상 세로 이동(y좌표 변화) - 3D상 X축 회전
@@ -38,7 +38,7 @@ struct testView: View {
                         currentRotation.x += rotationChangeY
                         currentRotation.y += rotationChangeX
                     })
-                    /// pinch시 확대, 축소
+                /// pinch시 확대, 축소
                     .gesture(MagnificationGesture().onChanged { value in
                         let pinchScale = Float(value.magnitude)
                         currentScale = SIMD3<Float>(x: pinchScale, y: pinchScale, z: pinchScale)
@@ -54,7 +54,7 @@ struct testView: View {
                         CanvasBackgroundView()
                         Spacer().frame(height: 130)
                     }
-                    CakeCanvasContainer(canvasView: canvasView, palette: picker, isActive: $showPicker, cakeImage: $cakeImage)
+                    CakeCanvasContainer(canvasView: canvasView, picker: picker, isActive: $showPicker, cakeImage: $cakeImage)
                 }
                 .frame(height: geometry.size.height / 1.5)
             }
@@ -88,8 +88,8 @@ struct testView: View {
                     }
                 }
             }
-        
-    }
+            
+        }
     }
 }
 

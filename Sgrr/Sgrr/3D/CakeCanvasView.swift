@@ -19,48 +19,57 @@ let sampleImages: [UIImage] = [
 
 struct CakeCanvasContainer: UIViewRepresentable {
     var canvasView: PKCanvasView
-    let palette: PKToolPicker
+    let picker: PKToolPicker
     
     @Binding var isActive: Bool
     @Binding var cakeImage: CGImage?
     
     func makeUIView(context: Context) -> PKCanvasView {
-           canvasView.backgroundColor = .clear
-           canvasView.tool = PKInkingTool(.pen, color: .blue, width: 15)
-           canvasView.delegate = context.coordinator
-           return canvasView
-       }
-       
-       func updateUIView(_ uiView: PKCanvasView, context: Context) {
-           palette.setVisible(isActive, forFirstResponder: uiView)
-           uiView.backgroundColor = .clear
-           context.coordinator.updateCakeImage(from: uiView)
-       }
-
-       func makeCoordinator() -> Coordinator {
-           Coordinator(cakeImage: $cakeImage)
-       }
-
-       class Coordinator: NSObject, PKCanvasViewDelegate {
-           @Binding var cakeImage: CGImage?
-
-           init(cakeImage: Binding<CGImage?>) {
-               self._cakeImage = cakeImage
-           }
-
-           func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-               // 캔버스가 업데이트 될 때마다 호출됨
-               DispatchQueue.main.async {
-                   self.updateCakeImage(from: canvasView)
-               }
-           }
-
-           func updateCakeImage(from canvasView: PKCanvasView) {
-               self.cakeImage = canvasView.asImage()
-           }
-       }
+        self.canvasView.tool = PKInkingTool(.pen, color: .black, width: 15)
+        self.canvasView.becomeFirstResponder()
+        canvasView.backgroundColor = .clear
+        
+        canvasView.delegate = context.coordinator
+        return canvasView
+    }
+    
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {
+        picker.setVisible(isActive, forFirstResponder: uiView)
+        //uiView.backgroundColor = .clear
+        picker.addObserver(canvasView)
+        
+        if isActive {
+            context.coordinator.updateCakeImage(from: uiView)
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(cakeImage: $cakeImage)
+    }
+    
+    class Coordinator: NSObject, PKCanvasViewDelegate {
+        @Binding var cakeImage: CGImage?
+        
+        init(cakeImage: Binding<CGImage?>) {
+            self._cakeImage = cakeImage
+        }
+        
+        /// 😨여기 호출 어떻게 이루어지는지 모르겠음
+        func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
+            // 캔버스가 업데이트 될 때마다 호출됨
+            DispatchQueue.main.async {
+                self.updateCakeImage(from: canvasView)
+            }
+        }
+        
+        func updateCakeImage(from canvasView: PKCanvasView) {
+            self.cakeImage = canvasView.asImage()
+        }
+    }
 }
 
+
+// UIImage -> CGImage 변환
 extension UIView {
     func asImage() -> CGImage? {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
@@ -106,15 +115,18 @@ struct PhotoPickerCell: View {
     
     /// 사진 추가
     func addPhoto(_ image: UIImage) {
-            let imageView = DraggableImageView(image: image)
-            imageView.frame = CGRect(x: 0, y: 0, width: 67, height: 67)
-            imageView.contentMode = .scaleAspectFit
-            
-            let canvasCenter = CGPoint(x: canvasView.bounds.midX, y: canvasView.bounds.midY)
-            imageView.center = canvasCenter
-            
-            self.canvasView.addSubview(imageView)
-        }
+        let imageView = DraggableImageView(image: image)
+        imageView.frame = CGRect(x: 0, y: 0, width: 67, height: 67)
+        imageView.contentMode = .scaleAspectFit
+        
+        let canvasCenter = CGPoint(x: canvasView.bounds.midX, y: canvasView.bounds.midY)
+        imageView.center = canvasCenter
+        
+        self.canvasView.addSubview(imageView)
+    }
+    
+
+
 }
 
 
