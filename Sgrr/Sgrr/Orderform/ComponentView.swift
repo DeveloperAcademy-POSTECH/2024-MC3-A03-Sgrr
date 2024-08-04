@@ -6,10 +6,20 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ComponentView: View {
+    private var cakeData = CoredataManager.shared
+
     @State var cakeTopItems: [Int] = []
     @State var cakeSideItems: [Int] = []
+    @State var cakeTopKeyword: [String] = []
+    @State var cakeSideKeyword: [String] = []
+    
+    @State var elementKeyword: String = "" //요소
+    private let characterLimit: Int = 15     //최대 글자 수 제한
+    @FocusState private var isFocused: Bool
+
     // 상단에서 데이터 넣어주고
     // 바인딩해서 데이터를 받아야됨
     // 위 -> 아래 ,ㅓ
@@ -46,7 +56,8 @@ struct ComponentView: View {
                     ForEach(cakeTopItems.indices, id: \.self) { index in
                         HStack {
                             ImageAddView()
-                            TextFieldView()
+                            // 텍스트 필드
+                       
                         }
                         
                     }
@@ -72,7 +83,7 @@ struct ComponentView: View {
                     ForEach(cakeSideItems.indices, id: \.self) { index in
                         HStack {
                             ImageAddView()
-                            TextFieldView()
+                          // 텍스트 필드
                         }
                     }
                     .onDelete(perform: { deleteItem(at: $0, from: &cakeSideItems) })

@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ConceptView: View {
+    
+    private var cakeData = CoredataManager.shared
+    
+    @State private var conceptKeyword: String = "" //컨셉
+    private let characterLimit: Int = 15     //최대 글자 수 제한
+    @FocusState private var isFocused: Bool  //텍스트 필드의 포커스 상태를 관리하는 상태 변수
+
     var body: some View {
 
         VStack (spacing: 0) {
@@ -27,7 +35,34 @@ struct ConceptView: View {
                     HStack {
                         ImageAddView()
                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-//                        TextFieldView()
+                      // 텍스트필드
+                        ZStack {
+                            VStack {
+                                HStack {
+                                    //사용자 입력을 받는 텍스트 필드
+                                    TextField("텍스트를 입력하세요", text: $conceptKeyword)
+                                        .foregroundColor(.black)
+                                    // 텍스트 값이 변경될 때마다 글자 수 제한 함수 호출
+                                        .onReceive(Just(conceptKeyword)) { newValue in
+                                            limitText(newValue, upper: characterLimit)
+                                        }
+                                        .onChange(of: conceptKeyword) {
+                                            cakeData.cake.conceptKey = conceptKeyword
+                                            saveOrder()
+                                        }
+                                    
+                                    // 자동 수정 설정 해제
+                                        .disableAutocorrection(false)
+                                        .focused($isFocused)
+                                }
+                                .padding()
+                                
+                            }
+                            // clear Button 구현
+                            .onAppear {
+                                UITextField.appearance().clearButtonMode = .whileEditing
+                            }
+                        }
                     }
                         
                 }
@@ -37,8 +72,17 @@ struct ConceptView: View {
                 .scrollContentBackground(.hidden)
                 
             }
-
     }
+    private func limitText(_ newValue: String, upper: Int) {
+        if newValue.count > upper {
+            conceptKeyword = String(newValue.prefix(upper))
+        }
+    }
+}
+
+// MARK: - 저장함수
+private func saveOrder() {
+    CoredataManager.shared.saveOrUpdateOrder()
 }
 
 #Preview {
