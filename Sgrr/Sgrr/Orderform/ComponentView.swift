@@ -10,6 +10,10 @@ import SwiftUI
 struct ComponentView: View {
     @State var cakeTopItems: [Int] = []
     @State var cakeSideItems: [Int] = []
+    
+    @State var cakeToptext: [String] = []
+    @State var cakeSidetext: [String] = []
+    
     // 상단에서 데이터 넣어주고
     // 바인딩해서 데이터를 받아야됨
     // 위 -> 아래 ,ㅓ
