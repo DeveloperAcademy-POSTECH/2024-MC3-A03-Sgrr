@@ -7,10 +7,14 @@
 
 import SwiftUI
 import Combine
+import PhotosUI
 
 struct ConceptView: View {
     
     private var cakeData = CoredataManager.shared
+    
+    @State private var conceptImage: UIImage?
+    @State private var photosPickerConceptItem: PhotosPickerItem?
     
     @State private var conceptKeyword: String = "" //컨셉
     private let characterLimit: Int = 15     //최대 글자 수 제한
@@ -33,9 +37,54 @@ struct ConceptView: View {
                 
                 List {
                     HStack {
+                        // 이미지
+                        
                         ImageAddView()
                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                      // 텍스트필드
+                        
+                        PhotosPicker(selection: $photosPickerConceptItem, matching: .images) {
+                            
+                            ZStack {
+                                Rectangle()
+                                    .frame(width: 62, height: 62)
+                                // 이블린 이꺼 둥근 모서리 쓰면 돼!
+                                    .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                    .foregroundColor(.white)
+                //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
+                                Image("ImageIcon")
+                                    .resizable()
+                                    .frame(width: 30, height: 24)
+                                    .scaledToFit()
+                                
+                                if let conceptImage = conceptImage {
+                                    Image(uiImage: conceptImage)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 62, height: 62)
+                                        .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                }
+                             
+                            }
+                            
+                        }
+                        .onChange(of: photosPickerConceptItem) { _, _ in
+                            Task {
+                                if let photosPickerConceptItem,
+                                   let data = try? await photosPickerConceptItem.loadTransferable(type: Data.self) {
+                                    if let image = UIImage(data: data) {
+                                        conceptImage = image
+                                        cakeData.cake.conceptImg = data
+                                        saveOrder()
+                                    }
+                                }
+                               
+                            }
+                        }
+                      
+                        
+                        
+                        
+                        // 텍스트필드
                         ZStack {
                             VStack {
                                 HStack {

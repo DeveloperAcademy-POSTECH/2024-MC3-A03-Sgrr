@@ -56,7 +56,34 @@ struct ComponentView: View {
                     ForEach(cakeTopItems.indices, id: \.self) { index in
                         HStack {
                             ImageAddView()
-                            // 텍스트 필드
+                            // 텍스트필드
+                            ZStack {
+                                VStack {
+                                    HStack {
+                                        //사용자 입력을 받는 텍스트 필드
+                                        TextField("텍스트를 입력하세요", text: $elementKeyword)
+                                            .foregroundColor(.black)
+                                        // 텍스트 값이 변경될 때마다 글자 수 제한 함수 호출
+                                            .onReceive(Just(elementKeyword)) { newValue in
+                                                limitText(newValue, upper: characterLimit)
+                                            }
+                                            .onChange(of: elementKeyword) {
+                                                cakeData.cake.elementKey = elementKeyword
+                                                saveOrder()
+                                            }
+                                        
+                                        // 자동 수정 설정 해제
+                                            .disableAutocorrection(false)
+                                            .focused($isFocused)
+                                    }
+                                    .padding()
+                                    
+                                }
+                                // clear Button 구현
+                                .onAppear {
+                                    UITextField.appearance().clearButtonMode = .whileEditing
+                                }
+                            }
                        
                         }
                         
@@ -119,7 +146,19 @@ struct ComponentView: View {
     private func deleteItem(at offsets: IndexSet, from list: inout [Int]) {
         list.remove(atOffsets: offsets)
     }
+    
+    private func limitText(_ newValue: String, upper: Int) {
+        if newValue.count > upper {
+            elementKeyword = String(newValue.prefix(upper))
+        }
+    }
 }
+
+// MARK: - 저장함수
+private func saveOrder() {
+    CoredataManager.shared.saveOrUpdateOrder()
+}
+
 
 
 #Preview {
