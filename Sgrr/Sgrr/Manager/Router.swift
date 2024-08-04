@@ -11,12 +11,12 @@ import SwiftUI
 
 class Router: ObservableObject{
     @Published var path: NavigationPath = NavigationPath()
-    
+ 
     enum CakeyViews: Hashable{
         case HomeView
         case OrderFormView
         case Cake3DView
-        case FinalGuideView
+        case FinalGuideView(orderForm: OrderForm)
     }
     
     @ViewBuilder func view(for route: CakeyViews) -> some View {
@@ -24,11 +24,11 @@ class Router: ObservableObject{
         case .HomeView:
           HomeView()
         case .OrderFormView:
-          OrderFormView()
+          OrderTest()
         case .Cake3DView:
           testView()
-        case .FinalGuideView:
-           FinalGuideView()
+        case .FinalGuideView(let orderForm):
+            FinalTest(orderForm: orderForm)
         }
     }
     

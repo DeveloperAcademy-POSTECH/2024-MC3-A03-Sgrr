@@ -37,6 +37,9 @@
 		864031A82C5B925400666B91 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031A72C5B925400666B91 /* Extension+Font.swift */; };
 		86D737062C5A887200078D47 /* Cake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D737052C5A887200078D47 /* Cake.swift */; };
 		953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EC5F82C53C6B2002E5876 /* OrderFormView.swift */; };
+		95C3DE672C5FAA3800857E78 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C3DE662C5FAA3800857E78 /* ColorCell.swift */; };
+		95C3DE6B2C5FAA8000857E78 /* OrderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C3DE6A2C5FAA8000857E78 /* OrderTest.swift */; };
+		95C3DE6D2C5FAA9F00857E78 /* FinalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C3DE6C2C5FAA9F00857E78 /* FinalTest.swift */; };
 		95DC46832C5A23FE00AFC976 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46822C5A23FE00AFC976 /* ColorView.swift */; };
 		95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46862C5A462400AFC976 /* ImageAddView.swift */; };
 		95EACC352C58D5CF00F64E8F /* ColorAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EACC342C58D5CF00F64E8F /* ColorAddView.swift */; };
@@ -76,6 +79,9 @@
 		864031A72C5B925400666B91 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
 		86D737052C5A887200078D47 /* Cake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake.swift; sourceTree = "<group>"; };
 		953EC5F82C53C6B2002E5876 /* OrderFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormView.swift; sourceTree = "<group>"; };
+		95C3DE662C5FAA3800857E78 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
+		95C3DE6A2C5FAA8000857E78 /* OrderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTest.swift; sourceTree = "<group>"; };
+		95C3DE6C2C5FAA9F00857E78 /* FinalTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalTest.swift; sourceTree = "<group>"; };
 		95DC46822C5A23FE00AFC976 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
 		95DC46862C5A462400AFC976 /* ImageAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAddView.swift; sourceTree = "<group>"; };
 		95EACC342C58D5CF00F64E8F /* ColorAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorAddView.swift; sourceTree = "<group>"; };
@@ -130,6 +136,7 @@
 			children = (
 				43DB149E2C5EA36200F722D6 /* Component */,
 				43DB14942C5C7AAB00F722D6 /* FinalGuideView.swift */,
+				95C3DE6C2C5FAA9F00857E78 /* FinalTest.swift */,
 			);
 			path = FinalGuideView;
 			sourceTree = "<group>";
@@ -202,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				953EC5F82C53C6B2002E5876 /* OrderFormView.swift */,
+				95C3DE6A2C5FAA8000857E78 /* OrderTest.swift */,
+				95C3DE662C5FAA3800857E78 /* ColorCell.swift */,
 				95DC46822C5A23FE00AFC976 /* ColorView.swift */,
 				95EACC342C58D5CF00F64E8F /* ColorAddView.swift */,
 				95DC46862C5A462400AFC976 /* ImageAddView.swift */,
@@ -310,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95C3DE6D2C5FAA9F00857E78 /* FinalTest.swift in Sources */,
 				95EACC352C58D5CF00F64E8F /* ColorAddView.swift in Sources */,
 				953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */,
 				86034B982C51DAA4006106BC /* ContentView.swift in Sources */,
@@ -327,9 +337,11 @@
 				43DB14A22C5EA3E600F722D6 /* FinalListComponent.swift in Sources */,
 				8640317A2C5B5E5100666B91 /* ComponentView.swift in Sources */,
 				95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */,
+				95C3DE672C5FAA3800857E78 /* ColorCell.swift in Sources */,
 				43DB14952C5C7AAB00F722D6 /* FinalGuideView.swift in Sources */,
 				864031702C5B5C4D00666B91 /* Router.swift in Sources */,
 				43DB14A02C5EA3C600F722D6 /* GuideImageComponent.swift in Sources */,
+				95C3DE6B2C5FAA8000857E78 /* OrderTest.swift in Sources */,
 				860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */,
 				43D756202C57760500D52E06 /* CoredataManager.swift in Sources */,
 				86D737062C5A887200078D47 /* Cake.swift in Sources */,
