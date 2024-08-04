@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct OrderFormView: View {
-    @EnvironmentObject var router: Router<NavigationPath>
+    @EnvironmentObject var router: Router
+
 
     var body: some View {
         
@@ -29,21 +30,15 @@ struct OrderFormView: View {
                     
                 }
                 .scrollTargetBehavior(.paging)
-                .background(Color(hex: "F9F6EB"))
+                .foregroundStyle(.background)
+                .background(Color.bg)
                 
                 Button {
                     // 작성 완료하기
-//                    router.pop(to: .FinalGuideView)
-                   router.push(.FinalGuideView)
-                    //router.pop(to: .FinalGuideView)
-                    
-//                    [home, order, 3D, final]
-//                    [order, 3d]
-//                    [3d, order]
-                    
+                    router.push(view: .FinalGuideView)
                 } label: {
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color(hex: "FA5738"))
+                        .foregroundStyle(.main)
                         .frame(width: 345, height: 50)
                         .overlay() {
                             Text("작성 완료")
@@ -59,13 +54,12 @@ struct OrderFormView: View {
             
             ToolbarItem(placement: .navigationBarLeading) {
                 
-                
                 Button {
-                     //홈으로가기
-                    router.popToRoot()
+                     // 홈으로 가기
+                    router.backToHome()
                 } label: {
                  Image(systemName: "chevron.backward")
-                        .foregroundColor(Color(hex: "FA5738"))
+                        .foregroundStyle(.main)
                         .font(.system(size: 20))
                 }
                
@@ -74,15 +68,13 @@ struct OrderFormView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     // 3D 뷰 이동
-                    router.push(.Cake3DView)
+                    router.push(view: .Cake3DView)
                 } label: {
                  Text("3D")
-                        .foregroundColor(Color(hex: "FA5738"))
+                        .foregroundStyle(.main)
                         .font(.system(size: 20))
                 }
-               
             }
-            
         }
         .navigationBarBackButtonHidden(true)
        

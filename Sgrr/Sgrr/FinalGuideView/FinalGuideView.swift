@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct FinalGuideView: View {
-    @EnvironmentObject var router: Router<NavigationPath>
+//    @EnvironmentObject var router: Router<NavigationPath>
+    @EnvironmentObject var router: Router
 
     var body: some View {
-        NavigationStack {
+//        NavigationStack {
             ZStack {
                 Color.bg
                 
                 // 홈버튼
                 Button(action: {
-                    router.popToRoot()
+//                    router.popToRoot()
+                    router.backToHome()
                 }, label: {
                     Image(systemName: "circle.fill")
                 })
@@ -25,7 +27,7 @@ struct FinalGuideView: View {
                 guideTitle()
                 
             } .ignoresSafeArea()
-        }
+//        }
     }
     
     // MARK: - 디자인가이드 타이틀
