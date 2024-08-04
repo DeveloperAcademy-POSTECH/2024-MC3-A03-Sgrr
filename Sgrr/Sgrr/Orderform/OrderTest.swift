@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OrderFormView: View {
+struct OrderTest: View {
     @EnvironmentObject var router: Router
     private var cakeData = CoredataManager.shared
 
@@ -18,7 +18,6 @@ struct OrderFormView: View {
     ) private var orderForms: FetchedResults<OrderForm>
 
     var body: some View {
-        
         GeometryReader { geo in
             ZStack {
                 ScrollView {
@@ -33,18 +32,12 @@ struct OrderFormView: View {
                             ComponentView()
                         } .frame(height: geo.size.height)
                     }
-                    
                 }
                 .scrollTargetBehavior(.paging)
                 .foregroundStyle(.background)
                 .background(Color.bg)
                 
                 Button {
-                    // 작성 완료하기
-//                    router.push(view: .FinalGuideView)
-                    
-                    
-                    // 타이니 수정 ver
                     
                     if let orderForm = orderForms.last {
                         router.push(view: .FinalGuideView)
@@ -64,33 +57,28 @@ struct OrderFormView: View {
         }
         .toolbarBackground(Color(hex: "F9F6EB"), for: .navigationBar)
         .toolbar {
-            
             ToolbarItem(placement: .navigationBarLeading) {
-                
                 Button {
-                     // 홈으로 가기
                     router.backToHome()
                 } label: {
-                 Image(systemName: "chevron.backward")
+                    Image(systemName: "chevron.backward")
                         .foregroundStyle(.main)
                         .font(.system(size: 20))
                 }
-               
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    // 3D 뷰 이동
                     router.push(view: .Cake3DView)
                 } label: {
-                 Text("3D")
+                    Text("3D")
                         .foregroundStyle(.main)
                         .font(.system(size: 20))
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
-       
+
     }
 }
 
@@ -99,8 +87,6 @@ private func saveOrder() {
     CoredataManager.shared.saveOrUpdateOrder()
 }
 
-
 #Preview {
-    OrderFormView()
+    OrderTest()
 }
-
