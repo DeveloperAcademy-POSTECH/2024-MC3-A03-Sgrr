@@ -13,19 +13,6 @@ struct FinalGuideView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
-    // MARK: - navigationBar Background Color 설정
-//    init() {
-//        UINavigationBar.appearance().backgroundColor = .bg
-//        let navBarAppearance = UINavigationBarAppearance()
-//        // 객체 생성
-//        navBarAppearance.backgroundColor = UIColor.bg
-//        navBarAppearance.shadowColor = .clear
-//        // 객체 속성 변경
-//        UINavigationBar.appearance().standardAppearance = navBarAppearance
-//        UINavigationBar.appearance().compactAppearance = navBarAppearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-//        // 생성한 객체를 각각의 appearance에 할당
-//    }
     
     @FetchRequest(
         entity: OrderForm.entity(),
@@ -59,7 +46,7 @@ struct FinalGuideView: View {
                         FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
                             .padding(.bottom, 22)
                         
-                        FinalListComponent(listNum: 1, isElement: false)
+                        FinalListComponent(listNum: 1, keyword: orderForm.conceptKeyword ?? "", isElement: false)
                             .padding(.bottom, 22)
                         
                         FinalListComponent(orderMenu: "요소", listNum: 5)
