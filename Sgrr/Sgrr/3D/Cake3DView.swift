@@ -8,48 +8,60 @@
 import SwiftUI
 import ARKit
 import RealityKit
-import PencilKit
 
 let defaultMaterial = PhysicallyBasedMaterial()
 
+struct Cake3DView: View {
+    @State private var currentRotation: SIMD3<Float> = SIMD3<Float>(0.0, 0.0, 0.0)
+    @State private var currentScale: SIMD3<Float> = SIMD3<Float>(1.0, 1.0, 1.0)
+    @Binding var cakeImage: CGImage?
+
+    var body: some View {
+        ARViewContainer(currentRotation: $currentRotation, currentScale: $currentScale, cakeImage: $cakeImage)
+            .edgesIgnoringSafeArea(.all)
+            /// tap시 원 상태로 복귀
+            .gesture(TapGesture().onEnded {
+                currentRotation = SIMD3<Float>(0, 0, 0)
+                currentScale = SIMD3<Float>(1, 1, 1)
+            })
+            /// drag시 회전
+            .gesture(DragGesture().onChanged { value in
+                /// 화면상 가로 이동(x좌표 변화) - 3D상 Y축 회전
+                /// 화면상 세로 이동(y좌표 변화) - 3D상 X축 회전
+                let rotationChangeX = Float(value.translation.width) * .pi / 180 * 0.01
+                let rotationChangeY = Float(value.translation.height) * .pi / 180 * 0.01
+                currentRotation.x += rotationChangeY
+                currentRotation.y += rotationChangeX
+            })
+            /// pinch시 확대, 축소
+            .gesture(MagnificationGesture().onChanged { value in
+                let pinchScale = Float(value.magnitude)
+                currentScale = SIMD3<Float>(x: pinchScale, y: pinchScale, z: pinchScale)
+            })
+    }
+}
 
 struct ARViewContainer: UIViewRepresentable {
-    let picker: PKToolPicker
-    let canvasView: PKCanvasView
-    
     @Binding var currentRotation: SIMD3<Float>
     @Binding var currentScale: SIMD3<Float>
     @Binding var cakeImage: CGImage?
-    @Binding var isActive: Bool
-    @Binding var selectedColor: Color
 
     func makeUIView(context: Context) -> ARView {
-        
         let arView = ARView(frame: .zero, cameraMode: .nonAR, automaticallyConfigureSession: true)
         arView.environment.background = .color(UIColor(Color(hex: "FFF9E1")))
         
-        let selectedMaterial = SimpleMaterial(color: UIColor(selectedColor), isMetallic: false)
-        
         /// 케이크
         let cakeModel = try! ModelEntity.loadModel(named: "cakeModel")
-        cakeModel.scale = SIMD3(x: 0.55, y: 0.55, z: 0.55)
+        cakeModel.scale = SIMD3(x: 0.5, y: 0.5, z: 0.5)
         cakeModel.generateCollisionShapes(recursive: true)
-        cakeModel.model?.materials = [selectedMaterial]
-        
-        let cakeDefaultModel = try! ModelEntity.loadModel(named: "cakeModel")
-        cakeDefaultModel.scale = SIMD3(x: 0.549, y: 0.549, z: 0.549)
-        //cakeDefaultModel.generateCollisionShapes(recursive: true)
-        /// 선택색으로 기본색 설정
-        cakeDefaultModel.model?.materials = [selectedMaterial]
-        
+        cakeModel.model?.materials = [defaultMaterial]
         
         let cakeTrayModel = try! ModelEntity.loadModel(named: "cakeTray")
-        cakeTrayModel.scale = SIMD3(x: 0.55, y: 0.55, z: 0.55)
+        cakeTrayModel.scale = SIMD3(x: 0.5, y: 0.5, z: 0.5)
         cakeTrayModel.generateCollisionShapes(recursive: true)
 
         let anchor = AnchorEntity(world: [0, 0, 0])
         anchor.addChild(cakeTrayModel)
-        anchor.addChild(cakeDefaultModel)
         anchor.addChild(cakeModel)
         arView.scene.anchors.append(anchor)
 
@@ -68,18 +80,6 @@ struct ARViewContainer: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: ARView, context: Context) {
-        // PKToolPicker 설정
-        if let window = uiView.window {
-            picker.setVisible(isActive, forFirstResponder: canvasView)
-            picker.addObserver(canvasView)
-            picker.setVisible(true, forFirstResponder: canvasView)
-            canvasView.becomeFirstResponder()
-        }
-        
-        DispatchQueue.main.async {
-            uiView.becomeFirstResponder()
-        }
-        
         guard let anchor = context.coordinator.anchor else { return }
 
         /// 회전 각도 제한
@@ -102,6 +102,7 @@ struct ARViewContainer: UIViewRepresentable {
         Coordinator()
     }
     
+    /// UIKit - SwiftUI 상호작용
     class Coordinator {
         var anchor: AnchorEntity?
         var cakeModel: ModelEntity?
@@ -125,7 +126,6 @@ struct ARViewContainer: UIViewRepresentable {
         }
     }
 }
-
 
 
 
