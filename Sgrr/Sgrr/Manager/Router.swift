@@ -5,44 +5,42 @@
 //  Created by KIM SEOWOO on 7/31/24.
 //
 
+
 import Foundation
+import SwiftUI
 
-final class Router<T: Hashable>: ObservableObject {
-    @Published var paths: [T] = [] // 경로를 닮고 있는 paths
-    
-    // 앞뒤 경로 추가
-    func push(_ path: T) {
-        paths.append(path)
+class Router: ObservableObject{
+    @Published var path: NavigationPath = NavigationPath()
+ 
+    enum CakeyViews: Hashable{
+        case HomeView
+        case OrderFormView
+        case Cake3DView
+        case FinalGuideView
     }
     
-    // 어디로 갈지
-    func pop(to: T) {
-        guard let found = paths.firstIndex(where: {$0 == to }) else {
-            
-            return
+    @ViewBuilder func view(for route: CakeyViews) -> some View {
+        switch route{
+        case .HomeView:
+          HomeView()
+        case .OrderFormView:
+          OrderFormView()
+        case .Cake3DView:
+          testView()
+        case .FinalGuideView:
+            FinalGuideView()
         }
-        
-        print(found)
-        let numToPop = (found..<paths.endIndex).count - 1
-        paths.removeLast(numToPop)
-        
-        
-       
     }
     
-    // 홈으로 돌아가기
-    func popToRoot() {
-        paths.removeAll()
+    func push(view: CakeyViews){
+        path.append(view)
     }
     
+    func pop(){
+        path.removeLast()
+    }
     
-    
-}
-
-
-enum NavigationPath {
-    case HomeView
-    case OrderFormView
-    case Cake3DView
-    case FinalGuideView
+    func backToHome(){
+        self.path = NavigationPath()
+    }
 }

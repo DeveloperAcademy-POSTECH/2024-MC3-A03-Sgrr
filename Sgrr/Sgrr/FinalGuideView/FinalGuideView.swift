@@ -8,27 +8,38 @@
 import SwiftUI
 
 struct FinalGuideView: View {
-    @EnvironmentObject var router: Router<NavigationPath>
+    @EnvironmentObject var router: Router
     @Environment(\.presentationMode) var presentationMode
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     // MARK: - navigationBar Background Color 설정
-    init() {
-        UINavigationBar.appearance().backgroundColor = .bg
-        let navBarAppearance = UINavigationBarAppearance()
-        // 객체 생성
-        navBarAppearance.backgroundColor = UIColor.bg
-        navBarAppearance.shadowColor = .clear
-        // 객체 속성 변경
-        UINavigationBar.appearance().standardAppearance = navBarAppearance
-        UINavigationBar.appearance().compactAppearance = navBarAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-        // 생성한 객체를 각각의 appearance에 할당
+//    init() {
+//        UINavigationBar.appearance().backgroundColor = .bg
+//        let navBarAppearance = UINavigationBarAppearance()
+//        // 객체 생성
+//        navBarAppearance.backgroundColor = UIColor.bg
+//        navBarAppearance.shadowColor = .clear
+//        // 객체 속성 변경
+//        UINavigationBar.appearance().standardAppearance = navBarAppearance
+//        UINavigationBar.appearance().compactAppearance = navBarAppearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+//        // 생성한 객체를 각각의 appearance에 할당
+//    }
+    
+    @FetchRequest(
+        entity: OrderForm.entity(),
+        sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
+    ) private var orderForms: FetchedResults<OrderForm>
+    
+    var orderForm: OrderForm {
+        guard let order = orderForms.last else {
+            return OrderForm()
+        }
+        return order
     }
     
     var body: some View {
-        NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 ZStack {
                     Color.bg
@@ -45,7 +56,7 @@ struct FinalGuideView: View {
                             .padding(.horizontal, 16)
                             .padding(.bottom, 24)
                         
-                        FinalColorComponent()
+                        FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
                             .padding(.bottom, 22)
                         
                         FinalListComponent(listNum: 1, isElement: false)
@@ -84,7 +95,7 @@ struct FinalGuideView: View {
                         }
                         
                         Button(action: {
-                            
+                            router.backToHome()
                         }, label: {
                             Image(systemName: "square.and.pencil")
                                 .foregroundStyle(.main)
@@ -103,7 +114,7 @@ struct FinalGuideView: View {
                     }
                 }
             }
-        }
+        
     }
     
     // MARK: - 디자인가이드 타이틀
