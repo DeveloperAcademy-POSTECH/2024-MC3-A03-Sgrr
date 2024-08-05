@@ -22,6 +22,7 @@
 		43DB14A42C5EBDF400F722D6 /* FinalColorComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14A32C5EBDF400F722D6 /* FinalColorComponent.swift */; };
 		43DB14A82C5F961400F722D6 /* CanvasBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14A72C5F961400F722D6 /* CanvasBG.swift */; };
 		43DB14AA2C5F963100F722D6 /* DraggableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14A92C5F963100F722D6 /* DraggableImage.swift */; };
+		43DB14B02C6132A100F722D6 /* ArrayCapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14AF2C6132A100F722D6 /* ArrayCapacity.swift */; };
 		86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B952C51DAA4006106BC /* SgrrApp.swift */; };
 		86034B982C51DAA4006106BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B972C51DAA4006106BC /* ContentView.swift */; };
 		86034B9A2C51DAA5006106BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86034B992C51DAA5006106BC /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		43DB14A32C5EBDF400F722D6 /* FinalColorComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalColorComponent.swift; sourceTree = "<group>"; };
 		43DB14A72C5F961400F722D6 /* CanvasBG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasBG.swift; sourceTree = "<group>"; };
 		43DB14A92C5F963100F722D6 /* DraggableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableImage.swift; sourceTree = "<group>"; };
+		43DB14AF2C6132A100F722D6 /* ArrayCapacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayCapacity.swift; sourceTree = "<group>"; };
 		86034B922C51DAA4006106BC /* Sgrr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sgrr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86034B952C51DAA4006106BC /* SgrrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SgrrApp.swift; sourceTree = "<group>"; };
 		86034B972C51DAA4006106BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */,
 				86D737052C5A887200078D47 /* Cake.swift */,
+				43DB14AF2C6132A100F722D6 /* ArrayCapacity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				43DB14A82C5F961400F722D6 /* CanvasBG.swift in Sources */,
 				864031A82C5B925400666B91 /* Extension+Font.swift in Sources */,
 				43DB14AA2C5F963100F722D6 /* DraggableImage.swift in Sources */,
+				43DB14B02C6132A100F722D6 /* ArrayCapacity.swift in Sources */,
 				43DB14992C5C85A400F722D6 /* TextFieldView.swift in Sources */,
 				95EACC392C58E3E900F64E8F /* Extension.swift in Sources */,
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,

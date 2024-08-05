@@ -13,6 +13,8 @@ struct ComponentView: View {
 
     @State var cakeTopItems: [Int] = []
     @State var cakeSideItems: [Int] = []
+    
+    
     @State var cakeTopKeyword: [String] = []
     @State var cakeSideKeyword: [String] = []
     

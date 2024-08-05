@@ -13,7 +13,6 @@ struct FinalGuideView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
-    
     @FetchRequest(
         entity: OrderForm.entity(),
         sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
@@ -24,6 +23,14 @@ struct FinalGuideView: View {
             return OrderForm()
         }
         return order
+    }
+    
+    var combinedData: [Data] {
+        var images: [Data] = orderForm.elementImage ?? []
+        if let conceptImage = orderForm.conceptImage {
+            images.insert(conceptImage, at: 0)
+        }
+        return images
     }
     
     var body: some View {
@@ -126,8 +133,8 @@ struct FinalGuideView: View {
     func imageVGrid() -> some View {
         HStack {
             LazyVGrid(columns: columns) {
-                ForEach(1..<7) { imgNum in
-//                    GuideImageComponent(num: imgNum, selectedImage: UIImage(named: "cakeElement_5")!)
+                ForEach(combinedData.indices, id: \.self) { index in
+                    GuideImageComponent(num: index + 1, selectedImage: combinedData[index])
                 }
             }
         }
