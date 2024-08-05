@@ -38,7 +38,6 @@ struct FinalGuideView: View {
                             .padding(.top, -20)
                         
                         // 이미지 6개 컴포넌트
-                        // TODO: 이브한테 여백 물어보기
                         imageVGrid()
                             .padding(.horizontal, 16)
                             .padding(.bottom, 24)
@@ -128,13 +127,13 @@ struct FinalGuideView: View {
         HStack {
             LazyVGrid(columns: columns) {
                 ForEach(1..<7) { imgNum in
-                    GuideImageComponent(num: imgNum, selectedImage: UIImage(named: "cakeElement_5")!)
+//                    GuideImageComponent(num: imgNum, selectedImage: UIImage(named: "cakeElement_5")!)
                 }
             }
         }
     }
 }
 
-#Preview {
-    FinalGuideView()
-}
+//#Preview {
+//    FinalGuideView()
+//}
