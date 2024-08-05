@@ -10,19 +10,22 @@ import SwiftUI
 struct GuideImageComponent: View {
     
     @State var num: Int = 1
-    var selectedImage: UIImage
+    var selectedImage: Data
     
     var body: some View {
         ZStack {
             //둥근 사각형
-            Image(uiImage: selectedImage)
-                .resizable()
-                .frame(width: 112, height: 112)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(.main), lineWidth: 2)
-                        .frame(width: 112, height: 112))
+            if let uiImage = UIImage(data: selectedImage) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .frame(width: 112, height: 112)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.main, lineWidth: 2)
+                                        .frame(width: 112, height: 112)
+                                )
+                        }
             
             // 원형 숫자
             ZStack(alignment: .center) {
@@ -44,9 +47,9 @@ struct GuideImageComponent: View {
     }
 }
 
-#Preview {
-    ZStack {
-        Color.bg
-        GuideImageComponent(selectedImage: UIImage(named: "cakeElement_5")!)
-    } .ignoresSafeArea()
-}
+//#Preview {
+//    ZStack {
+//        Color.bg
+//        GuideImageComponent(selectedImage: UIImage(named: "cakeElement_5")!)
+//    } .ignoresSafeArea()
+//}
