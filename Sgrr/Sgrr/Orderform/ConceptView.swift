@@ -26,11 +26,10 @@ struct ConceptView: View {
                 ZStack {
                     Rectangle()
                         .frame(width:393, height: 95)
-                        .foregroundColor(Color(hex: "FA8C76"))
+                        .foregroundColor(Color.top)
                     Text("컨셉")
-                        .foregroundColor(Color(hex: "FFFCF1"))
-                        .font(.system(size: 34))
-                        .fontWeight(.black)
+                        .foregroundColor(Color.bg)
+                        .font(.orderFormTitle)
                         .padding(.trailing, 280)
                         .padding(.top, 30)
                 }
@@ -66,7 +65,7 @@ struct ConceptView: View {
                                    let data = try? await photosPickerConceptItem.loadTransferable(type: Data.self) {
                                     if let image = UIImage(data: data) {
                                         conceptImage = image
-                                        cakeData.cake.concept.elementImage = data
+                                        cakeData.cake.conceptImg = data
                                         saveOrder()
                                     }
                                 }
@@ -86,7 +85,7 @@ struct ConceptView: View {
                                             limitText(newValue, upper: characterLimit)
                                         }
                                         .onChange(of: conceptKeyword) {
-                                            cakeData.cake.concept.elementKeyword = conceptKeyword
+//                                            cakeData.cake.elementKey = conceptKeyword
                                             saveOrder()
                                         }
                                         .disableAutocorrection(false)

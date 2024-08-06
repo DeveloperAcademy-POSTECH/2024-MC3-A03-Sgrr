@@ -53,7 +53,7 @@ extension Font {
     }
     
     static var colorTitle: Font {
-        return sfProDisplaySemiboldFont(size: 17)
+        return sfProDisplaySemiboldFont(size: 20)
     }
     
     static var hexText: Font {

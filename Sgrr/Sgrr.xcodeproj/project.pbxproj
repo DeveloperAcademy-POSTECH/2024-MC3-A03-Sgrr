@@ -37,13 +37,6 @@
 		8640317A2C5B5E5100666B91 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031792C5B5E5100666B91 /* ComponentView.swift */; };
 		864031A82C5B925400666B91 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031A72C5B925400666B91 /* Extension+Font.swift */; };
 		86D737062C5A887200078D47 /* Cake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D737052C5A887200078D47 /* Cake.swift */; };
-		952E96012C6203E500DA1D74 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E96002C6203E500DA1D74 /* test.swift */; };
-		952E96032C620B6500DA1D74 /* test2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E96022C620B6500DA1D74 /* test2.swift */; };
-		952E96072C62189900DA1D74 /* test3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E96062C62189900DA1D74 /* test3.swift */; };
-		952E96092C62382B00DA1D74 /* TestComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E96082C62382B00DA1D74 /* TestComponentView.swift */; };
-		952E960D2C62386100DA1D74 /* CakeTopImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E960C2C62386100DA1D74 /* CakeTopImageCell.swift */; };
-		952E96172C62589000DA1D74 /* test8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E96162C62589000DA1D74 /* test8.swift */; };
-		952E961B2C62825D00DA1D74 /* TinaComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E961A2C62825D00DA1D74 /* TinaComponentView.swift */; };
 		953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EC5F82C53C6B2002E5876 /* OrderFormView.swift */; };
 		95DC46832C5A23FE00AFC976 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46822C5A23FE00AFC976 /* ColorCell.swift */; };
 		95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46862C5A462400AFC976 /* ImageAddView.swift */; };
@@ -83,13 +76,6 @@
 		864031792C5B5E5100666B91 /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		864031A72C5B925400666B91 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
 		86D737052C5A887200078D47 /* Cake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake.swift; sourceTree = "<group>"; };
-		952E96002C6203E500DA1D74 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
-		952E96022C620B6500DA1D74 /* test2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test2.swift; sourceTree = "<group>"; };
-		952E96062C62189900DA1D74 /* test3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test3.swift; sourceTree = "<group>"; };
-		952E96082C62382B00DA1D74 /* TestComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestComponentView.swift; sourceTree = "<group>"; };
-		952E960C2C62386100DA1D74 /* CakeTopImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeTopImageCell.swift; sourceTree = "<group>"; };
-		952E96162C62589000DA1D74 /* test8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test8.swift; sourceTree = "<group>"; };
-		952E961A2C62825D00DA1D74 /* TinaComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinaComponentView.swift; sourceTree = "<group>"; };
 		953EC5F82C53C6B2002E5876 /* OrderFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormView.swift; sourceTree = "<group>"; };
 		95DC46822C5A23FE00AFC976 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		95DC46862C5A462400AFC976 /* ImageAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAddView.swift; sourceTree = "<group>"; };
@@ -219,14 +205,7 @@
 				95DC46822C5A23FE00AFC976 /* ColorCell.swift */,
 				95DC46862C5A462400AFC976 /* ImageAddView.swift */,
 				864031772C5B5E3200666B91 /* ConceptView.swift */,
-				952E961A2C62825D00DA1D74 /* TinaComponentView.swift */,
 				864031792C5B5E5100666B91 /* ComponentView.swift */,
-				952E96082C62382B00DA1D74 /* TestComponentView.swift */,
-				952E96002C6203E500DA1D74 /* test.swift */,
-				952E96022C620B6500DA1D74 /* test2.swift */,
-				952E960C2C62386100DA1D74 /* CakeTopImageCell.swift */,
-				952E96062C62189900DA1D74 /* test3.swift */,
-				952E96162C62589000DA1D74 /* test8.swift */,
 			);
 			path = Orderform;
 			sourceTree = "<group>";
@@ -337,29 +316,22 @@
 				864031742C5B5CA200666B91 /* HomeView.swift in Sources */,
 				95DC46832C5A23FE00AFC976 /* ColorCell.swift in Sources */,
 				43DB14A82C5F961400F722D6 /* CanvasBG.swift in Sources */,
-				952E960D2C62386100DA1D74 /* CakeTopImageCell.swift in Sources */,
 				864031A82C5B925400666B91 /* Extension+Font.swift in Sources */,
 				43DB14AA2C5F963100F722D6 /* DraggableImage.swift in Sources */,
 				95EACC392C58E3E900F64E8F /* Extension.swift in Sources */,
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
-				952E96092C62382B00DA1D74 /* TestComponentView.swift in Sources */,
 				8640316E2C5B582500666B91 /* testView.swift in Sources */,
 				86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */,
 				43DB14A42C5EBDF400F722D6 /* FinalColorComponent.swift in Sources */,
-				952E96172C62589000DA1D74 /* test8.swift in Sources */,
 				43DB14A22C5EA3E600F722D6 /* FinalListComponent.swift in Sources */,
 				8640317A2C5B5E5100666B91 /* ComponentView.swift in Sources */,
 				95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */,
-				952E96032C620B6500DA1D74 /* test2.swift in Sources */,
-				952E96012C6203E500DA1D74 /* test.swift in Sources */,
 				43DB14952C5C7AAB00F722D6 /* FinalGuideView.swift in Sources */,
 				864031702C5B5C4D00666B91 /* Router.swift in Sources */,
 				43DB14A02C5EA3C600F722D6 /* GuideImageComponent.swift in Sources */,
 				860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */,
 				43D756202C57760500D52E06 /* CoredataManager.swift in Sources */,
-				952E96072C62189900DA1D74 /* test3.swift in Sources */,
-				952E961B2C62825D00DA1D74 /* TinaComponentView.swift in Sources */,
 				86D737062C5A887200078D47 /* Cake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

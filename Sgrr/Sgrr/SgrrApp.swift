@@ -18,7 +18,7 @@ struct SgrrApp: App {
 
     var body: some Scene {
         WindowGroup {
-            test()
+            HomeView()
                 .environment(\.managedObjectContext, managedObject.context)
                 .environment(cake)
                 .environmentObject(router)

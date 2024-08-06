@@ -5,6 +5,7 @@
 //  Created by KIM SEOWOO on 7/31/24.
 //
 
+
 import SwiftUI
 import Combine
 import PhotosUI
@@ -12,29 +13,21 @@ import PhotosUI
 struct ComponentView: View {
     private var cakeData = CoredataManager.shared
     
-    // 이미지
-    @State private var elementImage: UIImage?
-    @State private var photosPickerComponentItem: PhotosPickerItem?
+    @State private var referenceImage: UIImage?
+    @State private var photosPickerItem: PhotosPickerItem?
     
-    @State var cakeTopItems: [Int] = []
-    @State var cakeSideItems: [Int] = []
+    @State var inputElementImage: Data = Data()
+    
+    // 이미지
+    @State var cakeTopItems: [Int] = [0]
+    @State var cakeSideItems: [Int] = [0]
    
     // 키워드
-    @State var cakeTopKeyword: String = "" 
-    // 각각의 텍스트 필드 만들기 -> array의 string 타입으로
-    // + 될 때 마다 어떤 형태로 만들어야 개수에 상관없이 textfield에 대응할 수 있을까
-    
-    @State var cakeTopKeywordList: [String] = []
-    @State var cakeSideKeyword: String = ""
-    @State var cakeSideKeywordList: [String] = []
-    
-    @State var elementKeyword: String = "" //textfield 요소
-    
+    @State var cakeTopKeywords: [String] = [""]
+    @State var cakeSideKeywords: [String] = [""]
 
-    
     private let characterLimit: Int = 15     //최대 글자 수 제한
     @FocusState private var isFocused: Bool
-
 
     var body: some View {
         VStack {
@@ -56,8 +49,7 @@ struct ComponentView: View {
                         .foregroundColor(Color(hex: "FA5738"))
                     Spacer()
                     Button {
-//                        addItem(in: &cakeTopItems)
-                        cakeTopItems = addItem(to: cakeTopItems)
+                        addItem(to: &cakeTopItems, keywords: &cakeTopKeywords)
                     } label: {
                         Image(systemName: "plus")
                             .foregroundColor(Color(hex: "FA5738"))
@@ -66,24 +58,55 @@ struct ComponentView: View {
                 }) {
                     ForEach(cakeTopItems.indices, id: \.self) { index in
                         HStack {
-//                            ImageAddView(text: "ㅁㄴㅇㄹ")
+                            PhotosPicker(selection: $photosPickerItem, matching: .images) {
+                                
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: 62, height: 62)
+                                    // 이블린 이꺼 둥근 모서리 쓰면 돼!
+                                        .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                        .foregroundColor(.white)
+                    //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
+                                    Image("ImageIcon")
+                                        .resizable()
+                                        .frame(width: 30, height: 24)
+                                        .scaledToFit()
+                                    
+                                    if let referenceImage = referenceImage {
+                                        Image(uiImage: referenceImage)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 62, height: 62)
+                                            .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                    }
+                                 
+                                }
+                                
+                            }
+                            .onChange(of: photosPickerItem) { _, _ in
+                                Task {
+                                    if let photosPickerItem,
+                                       let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
+                                        if let image = UIImage(data: data) {
+                                            referenceImage = image
+                                        }
+                                    }
+                                }
+                            }
                             
                             // 텍스트필드
                             ZStack {
                                 VStack {
                                     HStack {
                                         //사용자 입력을 받는 텍스트 필드
-                                        TextField("텍스트를 입력하세요", text: $cakeTopKeyword)
+                                        TextField("텍스트를 입력하세요", text: $cakeTopKeywords[index])
                                             .foregroundColor(.black)
                                         // 텍스트 값이 변경될 때마다 글자 수 제한 함수 호출
-                                            .onReceive(Just(cakeTopKeyword)) { newValue in
-                                                limitText(newValue, upper: characterLimit)
+                                            .onReceive(Just(cakeTopKeywords[index])) { newValue in
+                                                limitText(newValue, in: &cakeTopKeywords, at: index, upper: characterLimit)
                                             }
-                                            .onChange(of: cakeTopKeyword) {
-                                                // cakeTopKeyword를 list에 넣기
-                                                // 할당을 새로 시킨다
-                                                
-//                                                cakeData.cake.elementKey = cakeTopKeyword
+                                            .onChange(of: cakeTopKeywords[index]) {
+//                                                cakeData.cake.elementTopKey = cakeTopKeywords
                                                 saveOrder()
                                             }
                                         
@@ -104,7 +127,7 @@ struct ComponentView: View {
                         
                     }
                    
-                    .onDelete(perform: { deleteItem(at: $0, from: &cakeTopItems) })
+                    .onDelete(perform: { deleteItem(at: $0, from: &cakeTopItems, keywords: &cakeTopKeywords) })
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
                 .listRowSeparator(.hidden)
@@ -114,8 +137,7 @@ struct ComponentView: View {
                         .foregroundColor(Color(hex: "FA5738"))
                     Spacer()
                     Button {
-//                        addItem(in: &cakeSideItems)
-                        cakeSideItems = addItem(to: cakeSideItems)
+                        addItem(to: &cakeSideItems, keywords: &cakeSideKeywords)
                     } label: {
                         Image(systemName: "plus")
                             .foregroundColor(Color(hex: "FA5738"))
@@ -124,19 +146,62 @@ struct ComponentView: View {
                 }) {
                     ForEach(cakeSideItems.indices, id: \.self) { index in
                         HStack {
-//                            ImageAddView()
-                          // 텍스트 필드
-//                            TextFieldView()
+                            PhotosPicker(selection: $photosPickerItem, matching: .images) {
+                                
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: 62, height: 62)
+                                    // 이블린 이꺼 둥근 모서리 쓰면 돼!
+                                        .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                        .foregroundColor(.white)
+                    //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
+                                    Image("ImageIcon")
+                                        .resizable()
+                                        .frame(width: 30, height: 24)
+                                        .scaledToFit()
+                                    
+                                    if let referenceImage = referenceImage {
+                                        Image(uiImage: referenceImage)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 62, height: 62)
+                                            .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                    }
+                                 
+                                }
+                                
+                            }
+                            .onChange(of: photosPickerItem) { _, _ in
+                                Task {
+                                    if let photosPickerItem,
+                                       let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
+                                        if let image = UIImage(data: data) {
+                                            referenceImage = image
+                                        }
+                                    }
+                                }
+                            }
+                            // 텍스트 필드
+                            TextField("텍스트를 입력하세요", text: $cakeSideKeywords[index])
+                                .foregroundColor(.black)
+                                .onReceive(Just(cakeSideKeywords[index])) { newValue in
+                                    limitText(newValue, in: &cakeSideKeywords, at: index, upper: characterLimit)
+                                }
+                                .onChange(of: cakeSideKeywords[index]) {
+//                                    cakeData.cake.elementSideKey = cakeSideKeywords
+                                    saveOrder()
+                                }
+                                .disableAutocorrection(false)
+                                .focused($isFocused)
                         }
                     }
-                    .onDelete(perform: { deleteItem(at: $0, from: &cakeSideItems) })
+                    .onDelete(perform: { deleteItem(at: $0, from: &cakeSideItems, keywords: &cakeSideKeywords) })
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
                 .listRowSeparator(.hidden)
             }
             .listStyle(SidebarListStyle())
             .listRowBackground(Color.clear)
-//            .listRowInsets(EdgeInsets())
             .background(Color.clear)
             .scrollContentBackground(.hidden)
         }
@@ -146,26 +211,20 @@ struct ComponentView: View {
         cakeTopItems.count + cakeSideItems.count
     }
     
-//    private func addItem(in list: inout [Int]) {
-//        guard totalItems < 5 else { return }
-//        list.append(list.count)
-//    }
-    
-    private func addItem(to list: [Int]) -> [Int] {
-            guard list.count < 5 else { return list }
-            var newList = list
-            newList.append(newList.count)
-            return newList
-        }
-    
-    
-    private func deleteItem(at offsets: IndexSet, from list: inout [Int]) {
-        list.remove(atOffsets: offsets)
+    private func addItem(to list: inout [Int], keywords: inout [String]) {
+        guard totalItems < 5 else { return }
+        list.append(list.count)
+        keywords.append("") // Add a new empty string to the keywords array
     }
     
-    private func limitText(_ newValue: String, upper: Int) {
+    private func deleteItem(at offsets: IndexSet, from list: inout [Int], keywords: inout [String]) {
+        list.remove(atOffsets: offsets)
+        keywords.remove(atOffsets: offsets)
+    }
+    
+    private func limitText(_ newValue: String, in array: inout [String], at index: Int, upper: Int) {
         if newValue.count > upper {
-            cakeTopKeyword = String(newValue.prefix(upper))
+            array[index] = String(newValue.prefix(upper))
         }
     }
 }
@@ -175,8 +234,8 @@ private func saveOrder() {
     CoredataManager.shared.saveOrUpdateOrder()
 }
 
-
-
 #Preview {
     ComponentView()
 }
+
+

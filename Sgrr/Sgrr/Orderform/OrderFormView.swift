@@ -62,12 +62,16 @@ struct OrderFormView: View {
                         .overlay() {
                             Text("작성 완료")
                                 .foregroundColor(.white)
-                                .fontWeight(.bold)
+                                .font(.completeText)
                         }
+                        .padding(.bottom, 20)
+                        .shadow(color: Color(hex: "FA5738"), radius: 2, x: 0, y: 4)
+                       
+
                 }
             }
         }
-        .toolbarBackground(Color(hex: "F9F6EB"), for: .navigationBar)
+        .toolbarBackground(Color(.bg), for: .navigationBar)
         .toolbar {
             
             ToolbarItem(placement: .navigationBarLeading) {

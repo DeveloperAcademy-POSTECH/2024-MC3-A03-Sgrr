@@ -11,57 +11,62 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var router: Router
-
+    
     
     var body: some View {
         
         NavigationStack(path: $router.path) {
-          
+            
             ZStack {
-                Color(hex: "FFF9E1")
-                VStack(alignment: .leading) {
+                Color(.bg)
+                Image("homeViewBG")
+                    .frame(width: 393, height: 852)
+                
+                VStack {
+                    HStack {
+                        VStack (alignment: .leading) {
+                            
+                            Text("나만의 특별한")
+                                .font(.koreanLargeTitle)
+                            Text("Cakey")
+                                .font(.englishLargeTitle)
+                            
+                        }
+                        Spacer()
+                    }
+                    .padding(.leading, 17)
+                    .padding(.top, 106)
+                    .foregroundStyle(.main)
                     
-                   
-                        Text("나만의 특별한")
-                            .font(.system(size: 34))
-                            .fontWeight(.bold)
-                            .padding(.top, 50)
-                        Text("Cakey")
-                            .font(.system(size: 34))
-                            .fontWeight(.bold)
-                   
-                    
+                    Spacer()
                     
                     Button {
                         router.push(view: .OrderFormView)
                         
                     } label: {
                         HStack {
-                            Text("작성하러 가기")
-                            Image(systemName: "chevron.right")
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundStyle(.main)
+                                .frame(width: 345, height: 50)
+                                .overlay() {
+                                    Text("주문서 작성하기")
+                                        .font(.completeText)
+                                        .foregroundStyle(.white)
+                                }
+                                .padding(.bottom, 56)
+                                .navigationDestination(for: Router.CakeyViews.self) { view in router.view(for: view)}
                         }
-                        .padding(.top, 10)
-                        .navigationDestination(for: Router.CakeyViews.self) { view in router.view(for: view)}
                     }
-                    
                 }
-                .padding(.trailing, 150)
-                .foregroundColor(Color(hex: "FA5738"))
             }
             .ignoresSafeArea()
-           
-        
-               
+            .environmentObject(router)
+            
         }
-       
-        .environmentObject(router)
-        
-       
-       
     }
 }
 
-//#Preview {
-//  HomeView()
-//        .environmentObject(Router(colorData: <#ColorData#>))
-//}
+#Preview {
+    HomeView()
+        .environmentObject(Router())
+}
