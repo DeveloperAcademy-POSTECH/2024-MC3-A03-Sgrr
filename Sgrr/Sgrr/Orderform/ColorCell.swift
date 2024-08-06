@@ -83,6 +83,7 @@ struct ColorCell: View {
                                     Text("레터링")
                                         .font(.colorTitle)
                                         .padding(.leading, 16)
+                                        .foregroundColor(.black)
                                     Spacer()
                                 }
                                 Circle()
