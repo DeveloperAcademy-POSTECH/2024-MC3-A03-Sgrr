@@ -23,7 +23,6 @@
 		43DB14A82C5F961400F722D6 /* CanvasBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14A72C5F961400F722D6 /* CanvasBG.swift */; };
 		43DB14AA2C5F963100F722D6 /* DraggableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14A92C5F963100F722D6 /* DraggableImage.swift */; };
 		86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B952C51DAA4006106BC /* SgrrApp.swift */; };
-		86034B982C51DAA4006106BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034B972C51DAA4006106BC /* ContentView.swift */; };
 		86034B9A2C51DAA5006106BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86034B992C51DAA5006106BC /* Assets.xcassets */; };
 		86034B9D2C51DAA5006106BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86034B9C2C51DAA5006106BC /* Preview Assets.xcassets */; };
 		86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86034BA02C51DAA5006106BC /* Sgrr.xcdatamodeld */; };
@@ -42,6 +41,8 @@
 		95DC46832C5A23FE00AFC976 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46822C5A23FE00AFC976 /* ColorCell.swift */; };
 		95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46862C5A462400AFC976 /* ImageAddView.swift */; };
 		95EACC392C58E3E900F64E8F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EACC382C58E3E900F64E8F /* Extension.swift */; };
+		A86B9E6B2C61541A00DB8F42 /* Extention+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B9E6A2C61541A00DB8F42 /* Extention+View.swift */; };
+		A86B9E6D2C61582F00DB8F42 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B9E6C2C61582F00DB8F42 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +64,6 @@
 		43DB14A92C5F963100F722D6 /* DraggableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableImage.swift; sourceTree = "<group>"; };
 		86034B922C51DAA4006106BC /* Sgrr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sgrr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86034B952C51DAA4006106BC /* SgrrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SgrrApp.swift; sourceTree = "<group>"; };
-		86034B972C51DAA4006106BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		86034B992C51DAA5006106BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86034B9C2C51DAA5006106BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		86034BA12C51DAA5006106BC /* Sgrr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sgrr.xcdatamodel; sourceTree = "<group>"; };
@@ -82,6 +82,8 @@
 		95DC46822C5A23FE00AFC976 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		95DC46862C5A462400AFC976 /* ImageAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAddView.swift; sourceTree = "<group>"; };
 		95EACC382C58E3E900F64E8F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		A86B9E6A2C61541A00DB8F42 /* Extention+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+View.swift"; sourceTree = "<group>"; };
+		A86B9E6C2C61582F00DB8F42 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +171,7 @@
 				43DB14902C5C688C00F722D6 /* Info.plist */,
 				43DB14812C5C639200F722D6 /* Font */,
 				86034B952C51DAA4006106BC /* SgrrApp.swift */,
-				86034B972C51DAA4006106BC /* ContentView.swift */,
+				A86B9E6C2C61582F00DB8F42 /* ContentView.swift */,
 				864031722C5B5C8A00666B91 /* Home */,
 				864031752C5B5D6300666B91 /* Orderform */,
 				86D737042C5A84BD00078D47 /* 3D */,
@@ -218,6 +220,7 @@
 			children = (
 				95EACC382C58E3E900F64E8F /* Extension.swift */,
 				864031A72C5B925400666B91 /* Extension+Font.swift */,
+				A86B9E6A2C61541A00DB8F42 /* Extention+View.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -314,11 +317,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */,
-				86034B982C51DAA4006106BC /* ContentView.swift in Sources */,
+				A86B9E6D2C61582F00DB8F42 /* ContentView.swift in Sources */,
 				864031782C5B5E3200666B91 /* ConceptView.swift in Sources */,
 				864031742C5B5CA200666B91 /* HomeView.swift in Sources */,
 				95DC46832C5A23FE00AFC976 /* ColorCell.swift in Sources */,
 				43DB14A82C5F961400F722D6 /* CanvasBG.swift in Sources */,
+				A86B9E6B2C61541A00DB8F42 /* Extention+View.swift in Sources */,
 				864031A82C5B925400666B91 /* Extension+Font.swift in Sources */,
 				43DB14AA2C5F963100F722D6 /* DraggableImage.swift in Sources */,
 				43DB14992C5C85A400F722D6 /* TextFieldView.swift in Sources */,
@@ -474,6 +478,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sgrr/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지 저장을 위해 갤러리를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -504,6 +509,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sgrr/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지 저장을 위해 갤러리를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

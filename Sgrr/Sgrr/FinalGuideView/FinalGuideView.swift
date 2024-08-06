@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import Photos
 
 struct FinalGuideView: View {
     @EnvironmentObject var router: Router
     @Environment(\.presentationMode) var presentationMode
+    
+    @State private var screenshotImage: UIImage?
+    @State private var showingAlert = false
+    
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -27,80 +32,87 @@ struct FinalGuideView: View {
     }
     
     var body: some View {
-            ScrollView(.vertical, showsIndicators: false) {
-                ZStack {
-                    Color.bg
-                        .ignoresSafeArea()
+        ScrollView(.vertical, showsIndicators: false) {
+            ZStack {
+                Color.bg
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 0) {
+                    guideTitle()
+                        .padding(.bottom, 20)
+                        .padding(.top, -20)
                     
-                    VStack(spacing: 0) {
-                        guideTitle()
-                            .padding(.bottom, 20)
-                            .padding(.top, -20)
-                        
-                        // 이미지 6개 컴포넌트
-                        // TODO: 이브한테 여백 물어보기
-                        imageVGrid()
-                            .padding(.horizontal, 16)
-                            .padding(.bottom, 24)
-                        
-                        FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
-                            .padding(.bottom, 22)
-                        
-                        FinalListComponent(listNum: 1, keyword: orderForm.conceptKeyword ?? "", isElement: false)
-                            .padding(.bottom, 22)
-                        
-                        FinalListComponent(orderMenu: "요소", listNum: 5)
-                        
-                        Spacer()
-                        
-                    } .padding(.bottom, -11)
+                    // 이미지 6개 컴포넌트
+                    // TODO: 이브한테 여백 물어보기
+                    imageVGrid()
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 24)
                     
-                }
+                    FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
+                        .padding(.bottom, 22)
+                    
+                    FinalListComponent(listNum: 1, keyword: orderForm.conceptKeyword ?? "", isElement: false)
+                        .padding(.bottom, 22)
+                    
+                    FinalListComponent(orderMenu: "요소", listNum: 5)
+                    
+                    Spacer()
+                    
+                } .padding(.bottom, -11)
+                
             }
-            .background(Color.bg)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack(spacing: 5) {
-                        Menu {
-                            Button(action: {
-                                // 이미지 저장 액션
-                            }) {
-                                Text("이미지 저장")
-                                Image(systemName: "square.and.arrow.down")
-                            }
-                            
-                            Button(action: {
-                                // 공유 액션
-                            }) {
-                                Text("공유")
-                                Image(systemName: "square.and.arrow.up")
-                            }
-                        } label: {
-                            Image(systemName: "ellipsis.circle")
+        }
+        .background(Color.bg)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack(spacing: 5) {
+                  
+                    if let image = screenshotImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
+                    }
+                    
+                    Button(
+                        action: {
+                            share()
+                        },
+                        label: {
+                            Image(systemName: "square.and.arrow.up")
                                 .foregroundStyle(.main)
                         }
-                        
-                        Button(action: {
+                    )
+                        .padding(.bottom, 3.5)
+                        .alert(isPresented: $showingAlert) {
+                            Alert(title: Text("Saved"), message: Text("Screenshot saved to Photos"), dismissButton: .default(Text("OK")))
+                        }
+                    
+                    Button(
+                        action: {
                             router.backToHome()
-                        }, label: {
+                        },
+                        label: {
                             Image(systemName: "square.and.pencil")
                                 .foregroundStyle(.main)
-                        }) .padding(.bottom, 3.5)
-                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        HStack {
-                            Image(systemName: "chevron.left")
-                                .foregroundStyle(.main)
                         }
+                    )
+                    .padding(.bottom, 3.5)
+                }
+            }
+            
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .foregroundStyle(.main)
                     }
                 }
             }
+        }
         
     }
     
@@ -133,8 +145,65 @@ struct FinalGuideView: View {
             }
         }
     }
+    private func screenShot() {
+        let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
+        UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
+        
+        PHPhotoLibrary.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                DispatchQueue.main.async {
+                    showingAlert = true
+                }
+            case .denied, .restricted, .notDetermined, .limited:
+                break
+            @unknown default:
+                break
+            }
+        }
+    }
+    
+    private func share() {
+        let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
+        let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
+        
+        if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
+            rootViewController.present(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
+//    권한 체크
+    private func checkPhotoPermission(completion: @escaping (Bool) -> Void) {
+           var status: PHAuthorizationStatus = .notDetermined
+           if #available(iOS 14, *) {
+               status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
+           } else {
+               status = PHPhotoLibrary.authorizationStatus()
+           }
+    
+           if status == .notDetermined {
+               PHPhotoLibrary.requestAuthorization { newStatus in
+                   completion(newStatus == .denied)
+               }
+           } else {
+               completion(status == .denied)
+           }
+       }
+    
+}
+
+struct PreviewContainer<Content: View>: View {
+    @StateObject var router = Router()
+    @ViewBuilder var content: Content
+    
+    var body: some View {
+        content
+            .environmentObject(router)
+    }
 }
 
 #Preview {
-    FinalGuideView()
+    PreviewContainer {
+        FinalGuideView()
+    }
 }

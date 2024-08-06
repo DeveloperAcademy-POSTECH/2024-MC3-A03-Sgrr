@@ -2,8 +2,9 @@
 //  ContentView.swift
 //  Sgrr
 //
-//  Created by dora on 7/25/24.
+//  Created by Evelyn Hong on 8/6/24.
 //
+
 
 import SwiftUI
 import CoreData
