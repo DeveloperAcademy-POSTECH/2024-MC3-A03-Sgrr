@@ -57,8 +57,10 @@ struct FinalConceptKeywordComponent: View {
                         .padding(.trailing, 8)
                         
                         // 키워드
-                        Text("\(orderForm.conceptKeyword)")
-                            .font(.finalTextList)
+                        if let conceptKeyword = orderForm.conceptKeyword {
+                            Text(conceptKeyword)
+                                .font(.finalTextList)
+                        }
 
                         Spacer()
                     }
@@ -71,7 +73,7 @@ struct FinalConceptKeywordComponent: View {
 //#Preview {
 //    ZStack {
 //        Color.bg
-//        
+//
 //        FinalConceptKeywordComponent()
 //    } .ignoresSafeArea()
 //}

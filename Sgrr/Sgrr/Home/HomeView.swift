@@ -61,7 +61,7 @@ struct HomeView: View {
     }
 }
 
-//#Preview {
-//  HomeView()
-//        .environmentObject(Router(colorData: <#ColorData#>))
-//}
+#Preview {
+  HomeView()
+        .environmentObject(Router())
+}

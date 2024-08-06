@@ -55,7 +55,7 @@ struct FinalGuideView: View {
                         FinalConceptKeywordComponent()
                             .padding(.bottom, 22)
                         
-                        FinalElementKeywordComponent(orderMenu: "요소",  startFromSecond: true)
+                        FinalElementKeywordComponent()
                         
                         Spacer()
                         

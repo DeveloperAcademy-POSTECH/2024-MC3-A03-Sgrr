@@ -7,6 +7,13 @@ import PhotosUI
 struct ComponentView: View {
     private var cakeData = CoredataManager.shared
     
+    @State private var referenceTopImage: UIImage?
+    @State private var referenceSideImage: UIImage?
+    @State private var photosPickerTopItem: PhotosPickerItem?
+    @State private var photosPickerSideItem: PhotosPickerItem?
+    
+    @State var inputElementImage: Data = Data()
+    
     // 이미지
     @State var cakeTopItems: [Int] = [0]
     @State var cakeSideItems: [Int] = [0]
@@ -47,7 +54,43 @@ struct ComponentView: View {
                 }) {
                     ForEach(cakeTopItems.indices, id: \.self) { index in
                         HStack {
-                            ImageAddView()
+                            PhotosPicker(selection: $photosPickerTopItem, matching: .images) {
+                                
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: 62, height: 62)
+                                    // 이블린 이꺼 둥근 모서리 쓰면 돼!
+                                        .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                        .foregroundColor(.white)
+                    //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
+                                    Image("ImageIcon")
+                                        .resizable()
+                                        .frame(width: 30, height: 24)
+                                        .scaledToFit()
+                                    
+                                    if let referenceImage = referenceTopImage {
+                                        Image(uiImage: referenceImage)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 62, height: 62)
+                                            .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                    }
+                                 
+                                }
+                                
+                            }
+                            .onChange(of: photosPickerTopItem) { _, _ in
+                                Task {
+                                    if let photosPickerTopItem,
+                                       let data = try? await photosPickerTopItem.loadTransferable(type: Data.self) {
+                                        if let image = UIImage(data: data) {
+                                            referenceTopImage = image
+                                            inputElementImage = data
+                                            cakeData.cake.elementImg.append(inputElementImage)
+                                        }
+                                    }
+                                }
+                            }
                             
                             // 텍스트필드
                             ZStack {
@@ -101,7 +144,43 @@ struct ComponentView: View {
                 }) {
                     ForEach(cakeSideItems.indices, id: \.self) { index in
                         HStack {
-                            ImageAddView()
+                            PhotosPicker(selection: $photosPickerSideItem, matching: .images) {
+                                
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: 62, height: 62)
+                                    // 이블린 이꺼 둥근 모서리 쓰면 돼!
+                                        .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                        .foregroundColor(.white)
+                    //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
+                                    Image("ImageIcon")
+                                        .resizable()
+                                        .frame(width: 30, height: 24)
+                                        .scaledToFit()
+                                    
+                                    if let referenceImage = referenceSideImage {
+                                        Image(uiImage: referenceImage)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 62, height: 62)
+                                            .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                    }
+                                 
+                                }
+                                
+                            }
+                            .onChange(of: photosPickerSideItem) { _, _ in
+                                Task {
+                                    if let photosPickerSideItem,
+                                       let data = try? await photosPickerSideItem.loadTransferable(type: Data.self) {
+                                        if let image = UIImage(data: data) {
+                                            referenceTopImage = image
+                                            inputElementImage = data
+                                            cakeData.cake.elementImg.append(inputElementImage)
+                                        }
+                                    }
+                                }
+                            }
                             // 텍스트 필드
                             TextField("텍스트를 입력하세요", text: $cakeSideKeywords[index])
                                 .foregroundColor(.black)

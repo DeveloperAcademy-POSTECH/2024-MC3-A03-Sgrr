@@ -20,30 +20,36 @@ struct FinalElementKeywordComponent: View {
         return order
     }
     
-    @State var orderMenu: String = "컨셉"
-    @State var place: String = "옆면"
-    @State var isElement: Bool = true
-    var startFromSecond: Bool = false
-
     
-    var combineKeyword: [String] {
-        var keywords: [String] = orderForm.elementTopKeyword ?? []
-        if let conceptKeyword = orderForm.conceptKeyword {
-            keywords.insert(conceptKeyword, at: 0)
+    var topKeyword: [String] {
+        if let keyword = orderForm.elementTopKeyword {
+            return keyword
         }
-        
-        if isElement && startFromSecond && keywords.count >= 1 {
-                    keywords.removeFirst()
-                }
-        
-        return keywords
+        return []
     }
+    
+    var sideKeyword: [String] {
+        if let keyword = orderForm.elementSideKeyword {
+            return keyword
+        }
+        return []
+    }
+    
+    
+//    var combineKeyword: [String: [String]] {
+//        var keywords: [String : [String]] = [:]
+//        let topKeywords: [String : [String]] = ["윗면" : orderForm.elementTopKeyword ?? []]
+//        let sideKeywords: [String : [String]] = ["옆면" : orderForm.elementSideKeyword ?? []]
+//
+//
+//        return keywords
+//    }
     
     var body: some View {
         VStack(spacing: 0) {
             // MARK: - 컨셉, divider
             VStack(alignment: .leading, spacing: 0) {
-                Text("\(orderMenu)")
+                Text("요소")
                     .font(.finalFormTitle)
                     .foregroundStyle(.main)
                     .padding(.bottom, 5)
@@ -57,7 +63,7 @@ struct FinalElementKeywordComponent: View {
             
             // MARK: - 리스트 내용
             VStack(spacing: 11) {
-                ForEach(Array(combineKeyword.enumerated()), id: \.element) { (index, keyword) in
+                ForEach(Array(topKeyword.enumerated()), id: \.element) { (index, keyword) in
                     HStack(spacing: 0) {
                         // 숫자 넘버
                         ZStack(alignment: .center) {
@@ -68,33 +74,72 @@ struct FinalElementKeywordComponent: View {
                                     Circle()
                                         .stroke(Color(.main), lineWidth: 2)
                                         .frame(width: 18))
-                            
-                            Text("\(isElement ? index+2 : index+1)")
+
+                            Text("\(index+2)")
                                 .font(.custom("SFProRounded-Semibold", size: 13))
                                 .foregroundStyle(.main)
                         }
                         .padding(.leading, 35)
                         .padding(.trailing, 8)
-                        
+
                         // 키워드
                         Text("\(keyword)")
                             .font(.finalTextList)
-                        
-                        
+
+
                         Spacer()
-                        
-                        // 옆면, 윗co면 뱃지
+
+                        // 옆면, 윗면 뱃지
                         ZStack {
                             RoundedRectangle(cornerRadius: 6)
                                 .frame(width: 29, height: 18)
-                                .foregroundStyle(place == "옆면" ? .round : .top)
-                            
-                            Text("\(place)")
+                                .foregroundStyle(.top)
+
+                            Text("앞면")
                                 .font(.badgeText)
-                                .foregroundStyle(place == "옆면" ? .main : .bg)
+                                .foregroundStyle(.bg)
                         }
                         .padding(.trailing ,24)
-                        .opacity(isElement ? 100 : 0)
+                    }
+                }
+                
+                ForEach(Array(sideKeyword.enumerated()), id: \.element) { (index, keyword) in
+                    HStack(spacing: 0) {
+                        // 숫자 넘버
+                        ZStack(alignment: .center) {
+                            Circle()
+                                .frame(width: 18)
+                                .foregroundStyle(.clear)
+                                .overlay (
+                                    Circle()
+                                        .stroke(Color(.main), lineWidth: 2)
+                                        .frame(width: 18))
+
+                            Text("\(index+2+topKeyword.count)")
+                                .font(.custom("SFProRounded-Semibold", size: 13))
+                                .foregroundStyle(.main)
+                        }
+                        .padding(.leading, 35)
+                        .padding(.trailing, 8)
+
+                        // 키워드
+                        Text("\(keyword)")
+                            .font(.finalTextList)
+
+
+                        Spacer()
+
+                        // 옆면, 윗면 뱃지
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 6)
+                                .frame(width: 29, height: 18)
+                                .foregroundStyle(.round)
+
+                            Text("옆면")
+                                .font(.badgeText)
+                                .foregroundStyle(.main)
+                        }
+                        .padding(.trailing ,24)
                     }
                 }
             }
@@ -105,7 +150,7 @@ struct FinalElementKeywordComponent: View {
 //#Preview {
 //    ZStack {
 //        Color.bg
-//        
+//
 //        FinalListComponent()
 //    } .ignoresSafeArea()
 //}
