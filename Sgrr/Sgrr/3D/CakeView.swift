@@ -66,7 +66,7 @@ struct CakeView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack (spacing: 0){
-                Cake3DContainer(picker: picker, canvasView: canvasView, currentRotation: $currentRotation, currentScale: $currentScale, cakeImage: $cakeImage, isActive: $showPicker, selectedColor: Color(hex: orderForm.colorBackground ?? ""))
+                Cake3DContainer(picker: picker, canvasView: canvasView, currentRotation: $currentRotation, currentScale: $currentScale, cakeImage: $cakeImage, isActive: $showPicker, selectedColor: Color(hex: orderForm.colorBackground ?? "#FFFFFF"))
                     .edgesIgnoringSafeArea(.all)
                 /// tap시 원 상태로 복귀
                     .gesture(TapGesture().onEnded {
