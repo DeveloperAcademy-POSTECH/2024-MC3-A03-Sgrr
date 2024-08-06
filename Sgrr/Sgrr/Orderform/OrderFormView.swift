@@ -6,16 +6,17 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct OrderFormView: View {
     @EnvironmentObject var router: Router
     private var cakeData = CoredataManager.shared
-
     
     @FetchRequest(
         entity: OrderForm.entity(),
         sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
     ) private var orderForms: FetchedResults<OrderForm>
+    
 
     var body: some View {
         
@@ -46,12 +47,6 @@ struct OrderFormView: View {
                 .background(Color.bg)
                 
                 Button {
-                    // 작성 완료하기
-//                    router.push(view: .FinalGuideView)
-                    
-                    
-                    // 타이니 수정 ver
-                    
                     if let orderForm = orderForms.last {
                         router.push(view: .FinalGuideView)
                     }
@@ -109,7 +104,7 @@ private func saveOrder() {
 }
 
 
-#Preview {
-    OrderFormView()
-}
+//#Preview {
+//    OrderFormView()
+//}
 

@@ -1,9 +1,4 @@
-//
-//  ComponentView.swift
-//  Sgrr
-//
-//  Created by KIM SEOWOO on 7/31/24.
-//
+
 
 
 import SwiftUI
@@ -12,12 +7,13 @@ import PhotosUI
 
 struct ComponentView: View {
     private var cakeData = CoredataManager.shared
-    
+ 
     @State private var referenceImage: UIImage?
     @State private var photosPickerItem: PhotosPickerItem?
     
     @State var inputElementImage: Data = Data()
     
+
     // 이미지
     @State var cakeTopItems: [Int] = [0]
     @State var cakeSideItems: [Int] = [0]
@@ -58,6 +54,7 @@ struct ComponentView: View {
                 }) {
                     ForEach(cakeTopItems.indices, id: \.self) { index in
                         HStack {
+
                             PhotosPicker(selection: $photosPickerItem, matching: .images) {
                                 
                                 ZStack {
@@ -106,7 +103,8 @@ struct ComponentView: View {
                                                 limitText(newValue, in: &cakeTopKeywords, at: index, upper: characterLimit)
                                             }
                                             .onChange(of: cakeTopKeywords[index]) {
-//                                                cakeData.cake.elementTopKey = cakeTopKeywords
+
+                                                cakeData.cake.elementTopKey = cakeTopKeywords
                                                 saveOrder()
                                             }
                                         
@@ -181,6 +179,7 @@ struct ComponentView: View {
                                     }
                                 }
                             }
+
                             // 텍스트 필드
                             TextField("텍스트를 입력하세요", text: $cakeSideKeywords[index])
                                 .foregroundColor(.black)
@@ -188,7 +187,9 @@ struct ComponentView: View {
                                     limitText(newValue, in: &cakeSideKeywords, at: index, upper: characterLimit)
                                 }
                                 .onChange(of: cakeSideKeywords[index]) {
-//                                    cakeData.cake.elementSideKey = cakeSideKeywords
+
+                                    cakeData.cake.elementSideKey = cakeSideKeywords
+
                                     saveOrder()
                                 }
                                 .disableAutocorrection(false)

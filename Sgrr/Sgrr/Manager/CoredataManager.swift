@@ -60,7 +60,8 @@ extension CoredataManager {
                 orderForm.colorLettering = cake.colorLetter
                 orderForm.conceptKeyword = cake.conceptKey
                 orderForm.conceptImage = cake.conceptImg
-                orderForm.elementKeyword = cake.elementKey
+                orderForm.elementTopKeyword = cake.elementTopKey
+                orderForm.elementSideKeyword = cake.elementSideKey
                 orderForm.elementImage = cake.elementImg
                 
                 // 저장된 데이터 확인을 위한 로그

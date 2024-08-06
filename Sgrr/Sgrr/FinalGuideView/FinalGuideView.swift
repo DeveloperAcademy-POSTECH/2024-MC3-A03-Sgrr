@@ -13,7 +13,6 @@ struct FinalGuideView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
-    
     @FetchRequest(
         entity: OrderForm.entity(),
         sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
@@ -24,6 +23,14 @@ struct FinalGuideView: View {
             return OrderForm()
         }
         return order
+    }
+    
+    var combinedImage: [Data] {
+        var images: [Data] = orderForm.elementImage ?? []
+        if let conceptImage = orderForm.conceptImage {
+            images.insert(conceptImage, at: 0)
+        }
+        return images
     }
     
     var body: some View {
@@ -38,7 +45,6 @@ struct FinalGuideView: View {
                             .padding(.top, -20)
                         
                         // 이미지 6개 컴포넌트
-                        // TODO: 이브한테 여백 물어보기
                         imageVGrid()
                             .padding(.horizontal, 16)
                             .padding(.bottom, 24)
@@ -46,10 +52,10 @@ struct FinalGuideView: View {
                         FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
                             .padding(.bottom, 22)
                         
-                        FinalListComponent(listNum: 1, keyword: orderForm.conceptKeyword ?? "", isElement: false)
+                        FinalConceptKeywordComponent()
                             .padding(.bottom, 22)
                         
-                        FinalListComponent(orderMenu: "요소", listNum: 5)
+                        FinalElementKeywordComponent(orderMenu: "요소",  startFromSecond: true)
                         
                         Spacer()
                         
@@ -127,14 +133,14 @@ struct FinalGuideView: View {
     func imageVGrid() -> some View {
         HStack {
             LazyVGrid(columns: columns) {
-                ForEach(1..<7) { imgNum in
-                    GuideImageComponent(num: imgNum, selectedImage: UIImage(named: "cakeElement_5")!)
+                ForEach(combinedImage.indices, id: \.self) { index in
+                    GuideImageComponent(num: index + 1, selectedImage: combinedImage[index])
                 }
             }
         }
     }
 }
 
-#Preview {
-    FinalGuideView()
-}
+//#Preview {
+//    FinalGuideView()
+//}
