@@ -11,7 +11,6 @@ struct ColorCell: View {
     
     private var cakeData = CoredataManager.shared
 
-    
     @State var selectedBGColor: Color = .white
     @State var selectedLetteringColor: Color = .white
     @State var bgColorToString: String = ""
@@ -21,7 +20,7 @@ struct ColorCell: View {
             VStack {
                 ZStack {
                     Rectangle()
-                        .frame(width:393, height: 95)
+                        .frame(width:393, height: 95) // 여백이랑 패딩 고정하기
                         .foregroundColor(Color(hex: "FA5738"))
                     Text("컬러")
                         .foregroundColor(Color(hex: "FFFCF1"))
@@ -46,6 +45,7 @@ struct ColorCell: View {
                                             .font(.system(size: 20))
                                             .fontWeight(.bold)
                                             .padding(.leading, 16)
+                                            .foregroundColor(.black)
                                         Spacer()
                                     }
                                     Circle()
@@ -84,6 +84,7 @@ struct ColorCell: View {
                                             .font(.system(size: 20))
                                             .fontWeight(.bold)
                                             .padding(.leading, 16)
+                                            .foregroundColor(.black)
                                         Spacer()
                                     }
                                     Circle()

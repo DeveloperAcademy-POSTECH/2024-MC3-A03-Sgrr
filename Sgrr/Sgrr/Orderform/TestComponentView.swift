@@ -1,4 +1,11 @@
 //
+//  TestComponentView.swift
+//  Sgrr
+//
+//  Created by KIM SEOWOO on 8/6/24.
+//
+
+//
 //  ConceptView.swift
 //  Sgrr
 //
@@ -9,14 +16,21 @@ import SwiftUI
 import Combine
 import PhotosUI
 
-struct ConceptView: View {
+struct TestComponentView: View {
     
     private var cakeData = CoredataManager.shared
     
-    @State private var conceptImage: UIImage?
-    @State private var photosPickerConceptItem: PhotosPickerItem?
+    @State private var cakeTopImage: UIImage?
+    @State private var photosPickerCakeTopItem: PhotosPickerItem?
     
-    @State private var conceptKeyword: String = "" //컨셉
+    
+    // 텍스트필드
+    @State var cakeTopItems: [String: String] = ["앞면":""]
+    @State var cakeSideItems: [String: String] = ["옆면":""]
+    
+    @State var cakeTopKeyword: String = ""
+    @State var cakeSideKeyword: String = ""
+    
     private let characterLimit: Int = 15     //최대 글자 수 제한
     @FocusState private var isFocused: Bool  //텍스트 필드의 포커스 상태를 관리하는 상태 변수
 
@@ -27,7 +41,7 @@ struct ConceptView: View {
                     Rectangle()
                         .frame(width:393, height: 95)
                         .foregroundColor(Color(hex: "FA8C76"))
-                    Text("컨셉")
+                    Text("요소")
                         .foregroundColor(Color(hex: "FFFCF1"))
                         .font(.system(size: 34))
                         .fontWeight(.black)
@@ -36,37 +50,40 @@ struct ConceptView: View {
                 }
                 
                 List {
+                    
                     HStack {
-                        
-                        // MARK: 포토피커
-                        PhotosPicker(selection: $photosPickerConceptItem, matching: .images) {
+                        // MARK: 케이크 윗면 PhotoPicker
+                        PhotosPicker(selection: $photosPickerCakeTopItem, matching: .images) {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 62, height: 62)
                                     .cornerRadius(10, corners: [.topLeft, .bottomLeft])
                                     .foregroundColor(.white)
-                //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
+            
                                 Image("ImageIcon")
                                     .resizable()
                                     .frame(width: 30, height: 24)
                                     .scaledToFit()
                                 
-                                if let conceptImage = conceptImage {
-                                    Image(uiImage: conceptImage)
+                                if let cakeTopImage = cakeTopImage {
+                                    Image(uiImage: cakeTopImage)
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 62, height: 62)
                                         .cornerRadius(10, corners: [.topLeft, .bottomLeft])
                                 }
+                             
                             }
+                            
                         }
-                        .onChange(of: photosPickerConceptItem) { _, _ in
+                        
+                        .onChange(of: photosPickerCakeTopItem) { _, _ in
                             Task {
-                                if let photosPickerConceptItem,
-                                   let data = try? await photosPickerConceptItem.loadTransferable(type: Data.self) {
+                                if let photosPickerCakeTopItem,
+                                   let data = try? await photosPickerCakeTopItem.loadTransferable(type: Data.self) {
                                     if let image = UIImage(data: data) {
-                                        conceptImage = image
-                                        cakeData.cake.concept.elementImage = data
+                                        cakeTopImage = image
+//                                        cakeData.cake.elementImg = data
                                         saveOrder()
                                     }
                                 }
@@ -75,18 +92,18 @@ struct ConceptView: View {
                         }
                       
                         
-                        // MARK: 텍스트 필드
+                        // MARK: 케이크 윗면 TextField
                         ZStack {
                             VStack {
                                 HStack {
-                                 
-                                    TextField("텍스트를 입력하세요", text: $conceptKeyword)
+                                    TextField("텍스트를 입력하세요", text: $cakeTopKeyword)
                                         .foregroundColor(.black)
-                                        .onReceive(Just(conceptKeyword)) { newValue in
-                                            limitText(newValue, upper: characterLimit)
+                                        .onReceive(Just(cakeTopKeyword)) { newValue in
+                                            limitCakeTopKeyword(newValue, upper: characterLimit)
                                         }
-                                        .onChange(of: conceptKeyword) {
-                                            cakeData.cake.concept.elementKeyword = conceptKeyword
+                                        .onChange(of: cakeTopKeyword) { newValue in
+                                            cakeTopItems["앞면"] = newValue
+//                                            cakeData.cake.elementKey = cakeTopKeyword
                                             saveOrder()
                                         }
                                         .disableAutocorrection(false)
@@ -110,9 +127,9 @@ struct ConceptView: View {
                 
             }
     }
-    private func limitText(_ newValue: String, upper: Int) {
+    private func limitCakeTopKeyword(_ newValue: String, upper: Int) {
         if newValue.count > upper {
-            conceptKeyword = String(newValue.prefix(upper))
+            cakeTopKeyword = String(newValue.prefix(upper))
         }
     }
 }
@@ -120,5 +137,9 @@ struct ConceptView: View {
 // MARK: - 저장함수
 private func saveOrder() {
     CoredataManager.shared.saveOrUpdateOrder()
+}
+
+#Preview {
+   TestComponentView()
 }
 

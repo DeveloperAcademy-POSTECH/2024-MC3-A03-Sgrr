@@ -1,22 +1,26 @@
 //
-//  ConceptView.swift
+//  test2.swift
 //  Sgrr
 //
-//  Created by KIM SEOWOO on 7/31/24.
+//  Created by KIM SEOWOO on 8/6/24.
 //
+
+// 티나의 도전!
+
 
 import SwiftUI
 import Combine
 import PhotosUI
 
-struct ConceptView: View {
+struct test2: View {
     
     private var cakeData = CoredataManager.shared
     
     @State private var conceptImage: UIImage?
     @State private var photosPickerConceptItem: PhotosPickerItem?
     
-    @State private var conceptKeyword: String = "" //컨셉
+    @State private var cakeTopKeyword: String = "" //컨셉
+    @State private var cakeTopKeywordList: [String] = [""]
     private let characterLimit: Int = 15     //최대 글자 수 제한
     @FocusState private var isFocused: Bool  //텍스트 필드의 포커스 상태를 관리하는 상태 변수
 
@@ -39,54 +43,20 @@ struct ConceptView: View {
                     HStack {
                         
                         // MARK: 포토피커
-                        PhotosPicker(selection: $photosPickerConceptItem, matching: .images) {
-                            ZStack {
-                                Rectangle()
-                                    .frame(width: 62, height: 62)
-                                    .cornerRadius(10, corners: [.topLeft, .bottomLeft])
-                                    .foregroundColor(.white)
-                //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
-                                Image("ImageIcon")
-                                    .resizable()
-                                    .frame(width: 30, height: 24)
-                                    .scaledToFit()
-                                
-                                if let conceptImage = conceptImage {
-                                    Image(uiImage: conceptImage)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 62, height: 62)
-                                        .cornerRadius(10, corners: [.topLeft, .bottomLeft])
-                                }
-                            }
-                        }
-                        .onChange(of: photosPickerConceptItem) { _, _ in
-                            Task {
-                                if let photosPickerConceptItem,
-                                   let data = try? await photosPickerConceptItem.loadTransferable(type: Data.self) {
-                                    if let image = UIImage(data: data) {
-                                        conceptImage = image
-                                        cakeData.cake.concept.elementImage = data
-                                        saveOrder()
-                                    }
-                                }
-                               
-                            }
-                        }
+//                        CakeTopImageCell(text: <#T##String#>)
                       
                         
                         // MARK: 텍스트 필드
                         ZStack {
                             VStack {
                                 HStack {
-                                 
-                                    TextField("텍스트를 입력하세요", text: $conceptKeyword)
+                                    TextField("텍스트를 입력하세요", text: $cakeTopKeyword)
                                         .foregroundColor(.black)
-                                        .onReceive(Just(conceptKeyword)) { newValue in
+                                        .onReceive(Just(cakeTopKeyword)) { newValue in
                                             limitText(newValue, upper: characterLimit)
                                         }
-                                        .onChange(of: conceptKeyword) {
-                                            cakeData.cake.concept.elementKeyword = conceptKeyword
+                                        .onChange(of: cakeTopKeyword) {
+//                                            cakeData.cake.elementKey = cakeTopKeyword
                                             saveOrder()
                                         }
                                         .disableAutocorrection(false)
@@ -112,7 +82,7 @@ struct ConceptView: View {
     }
     private func limitText(_ newValue: String, upper: Int) {
         if newValue.count > upper {
-            conceptKeyword = String(newValue.prefix(upper))
+            cakeTopKeyword = String(newValue.prefix(upper))
         }
     }
 }
@@ -120,5 +90,9 @@ struct ConceptView: View {
 // MARK: - 저장함수
 private func saveOrder() {
     CoredataManager.shared.saveOrUpdateOrder()
+}
+
+#Preview {
+    test2()
 }
 

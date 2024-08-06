@@ -20,22 +20,28 @@ struct OrderFormView: View {
     var body: some View {
         
         GeometryReader { geo in
-            ZStack {
+            let safeAreaTopHeight = geo.safeAreaInsets.top
+            let safeAreaHeight = geo.safeAreaInsets.bottom
+            
+            ZStack(alignment: .bottom) {
                 ScrollView {
-                    LazyVStack {
-                        VStack {
-                            ColorCell()
-                        } .frame(height: geo.size.height)
-                        VStack {
-                            ConceptView()
-                        } .frame(height: geo.size.height)
-                        VStack {
-                            ComponentView()
-                        } .frame(height: geo.size.height)
+                    LazyVStack(spacing: 0) {
+                        ColorCell()
+                            .ignoresSafeArea(edges: .bottom)
+                            .frame(height: geo.size.height + safeAreaHeight)
+                        
+                        ConceptView()
+                            .ignoresSafeArea(edges: .bottom)
+                            .frame(height: geo.size.height + safeAreaHeight)
+                        
+                        ComponentView()
+                            .ignoresSafeArea(edges: .bottom)
+                            .frame(height: geo.size.height + safeAreaHeight)
                     }
-                    
+                    .scrollTargetLayout()
                 }
                 .scrollTargetBehavior(.paging)
+                .ignoresSafeArea(edges: .bottom)
                 .foregroundStyle(.background)
                 .background(Color.bg)
                 
@@ -59,7 +65,6 @@ struct OrderFormView: View {
                                 .fontWeight(.bold)
                         }
                 }
-                .padding(.top, 680)
             }
         }
         .toolbarBackground(Color(hex: "F9F6EB"), for: .navigationBar)
