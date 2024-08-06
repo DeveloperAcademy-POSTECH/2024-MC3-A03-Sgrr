@@ -19,4 +19,6 @@ class Cake {
     var elementTopKey: [String] = []
     var elementSideKey: [String] = []
     var elementImg: [Data] = []
+    
 }
+

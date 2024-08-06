@@ -1,12 +1,19 @@
 
 
+
 import SwiftUI
 import Combine
 import PhotosUI
 
 struct ComponentView: View {
     private var cakeData = CoredataManager.shared
+ 
+    @State private var referenceImage: UIImage?
+    @State private var photosPickerItem: PhotosPickerItem?
     
+    @State var inputElementImage: Data = Data()
+    
+
     // 이미지
     @State var cakeTopItems: [Int] = [0]
     @State var cakeSideItems: [Int] = [0]
@@ -47,7 +54,42 @@ struct ComponentView: View {
                 }) {
                     ForEach(cakeTopItems.indices, id: \.self) { index in
                         HStack {
-                            ImageAddView()
+
+                            PhotosPicker(selection: $photosPickerItem, matching: .images) {
+                                
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: 62, height: 62)
+                                    // 이블린 이꺼 둥근 모서리 쓰면 돼!
+                                        .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                        .foregroundColor(.white)
+                    //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
+                                    Image("ImageIcon")
+                                        .resizable()
+                                        .frame(width: 30, height: 24)
+                                        .scaledToFit()
+                                    
+                                    if let referenceImage = referenceImage {
+                                        Image(uiImage: referenceImage)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 62, height: 62)
+                                            .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                    }
+                                 
+                                }
+                                
+                            }
+                            .onChange(of: photosPickerItem) { _, _ in
+                                Task {
+                                    if let photosPickerItem,
+                                       let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
+                                        if let image = UIImage(data: data) {
+                                            referenceImage = image
+                                        }
+                                    }
+                                }
+                            }
                             
                             // 텍스트필드
                             ZStack {
@@ -61,6 +103,7 @@ struct ComponentView: View {
                                                 limitText(newValue, in: &cakeTopKeywords, at: index, upper: characterLimit)
                                             }
                                             .onChange(of: cakeTopKeywords[index]) {
+
                                                 cakeData.cake.elementTopKey = cakeTopKeywords
                                                 saveOrder()
                                             }
@@ -101,7 +144,42 @@ struct ComponentView: View {
                 }) {
                     ForEach(cakeSideItems.indices, id: \.self) { index in
                         HStack {
-                            ImageAddView()
+                            PhotosPicker(selection: $photosPickerItem, matching: .images) {
+                                
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: 62, height: 62)
+                                    // 이블린 이꺼 둥근 모서리 쓰면 돼!
+                                        .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                        .foregroundColor(.white)
+                    //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
+                                    Image("ImageIcon")
+                                        .resizable()
+                                        .frame(width: 30, height: 24)
+                                        .scaledToFit()
+                                    
+                                    if let referenceImage = referenceImage {
+                                        Image(uiImage: referenceImage)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 62, height: 62)
+                                            .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                                    }
+                                 
+                                }
+                                
+                            }
+                            .onChange(of: photosPickerItem) { _, _ in
+                                Task {
+                                    if let photosPickerItem,
+                                       let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
+                                        if let image = UIImage(data: data) {
+                                            referenceImage = image
+                                        }
+                                    }
+                                }
+                            }
+
                             // 텍스트 필드
                             TextField("텍스트를 입력하세요", text: $cakeSideKeywords[index])
                                 .foregroundColor(.black)
@@ -109,7 +187,9 @@ struct ComponentView: View {
                                     limitText(newValue, in: &cakeSideKeywords, at: index, upper: characterLimit)
                                 }
                                 .onChange(of: cakeSideKeywords[index]) {
+
                                     cakeData.cake.elementSideKey = cakeSideKeywords
+
                                     saveOrder()
                                 }
                                 .disableAutocorrection(false)
@@ -158,4 +238,5 @@ private func saveOrder() {
 #Preview {
     ComponentView()
 }
+
 

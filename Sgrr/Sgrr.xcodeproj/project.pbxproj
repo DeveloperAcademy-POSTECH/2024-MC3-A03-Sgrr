@@ -17,7 +17,6 @@
 		43DB148D2C5C643A00F722D6 /* SFProRounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB148C2C5C643A00F722D6 /* SFProRounded-Semibold.otf */; };
 		43DB14922C5C6A8700F722D6 /* JCfg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB14912C5C6A8700F722D6 /* JCfg.ttf */; };
 		43DB14952C5C7AAB00F722D6 /* FinalGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14942C5C7AAB00F722D6 /* FinalGuideView.swift */; };
-		43DB14992C5C85A400F722D6 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14982C5C85A400F722D6 /* TextFieldView.swift */; };
 		43DB14A02C5EA3C600F722D6 /* GuideImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB149F2C5EA3C600F722D6 /* GuideImageComponent.swift */; };
 		43DB14A22C5EA3E600F722D6 /* FinalElementKeywordComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14A12C5EA3E600F722D6 /* FinalElementKeywordComponent.swift */; };
 		43DB14A42C5EBDF400F722D6 /* FinalColorComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB14A32C5EBDF400F722D6 /* FinalColorComponent.swift */; };
@@ -57,7 +56,6 @@
 		43DB14902C5C688C00F722D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		43DB14912C5C6A8700F722D6 /* JCfg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JCfg.ttf; sourceTree = "<group>"; };
 		43DB14942C5C7AAB00F722D6 /* FinalGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalGuideView.swift; sourceTree = "<group>"; };
-		43DB14982C5C85A400F722D6 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		43DB149F2C5EA3C600F722D6 /* GuideImageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideImageComponent.swift; sourceTree = "<group>"; };
 		43DB14A12C5EA3E600F722D6 /* FinalElementKeywordComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalElementKeywordComponent.swift; sourceTree = "<group>"; };
 		43DB14A32C5EBDF400F722D6 /* FinalColorComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalColorComponent.swift; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				95DC46862C5A462400AFC976 /* ImageAddView.swift */,
 				864031772C5B5E3200666B91 /* ConceptView.swift */,
 				864031792C5B5E5100666B91 /* ComponentView.swift */,
-				43DB14982C5C85A400F722D6 /* TextFieldView.swift */,
 			);
 			path = Orderform;
 			sourceTree = "<group>";
@@ -324,7 +321,6 @@
 				43DB14A82C5F961400F722D6 /* CanvasBG.swift in Sources */,
 				864031A82C5B925400666B91 /* Extension+Font.swift in Sources */,
 				43DB14AA2C5F963100F722D6 /* DraggableImage.swift in Sources */,
-				43DB14992C5C85A400F722D6 /* TextFieldView.swift in Sources */,
 				95EACC392C58E3E900F64E8F /* Extension.swift in Sources */,
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
@@ -474,7 +470,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sgrr/Preview Content\"";
-				DEVELOPMENT_TEAM = C8GTUY85R5;
+				DEVELOPMENT_TEAM = L72ZFX76S7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sgrr/Info.plist;
@@ -504,7 +500,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sgrr/Preview Content\"";
-				DEVELOPMENT_TEAM = C8GTUY85R5;
+				DEVELOPMENT_TEAM = L72ZFX76S7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sgrr/Info.plist;
