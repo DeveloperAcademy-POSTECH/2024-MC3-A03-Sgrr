@@ -32,7 +32,7 @@
 		860C87E92C535D4C00D9FC24 /* cakeTray.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E72C535D4C00D9FC24 /* cakeTray.usdz */; };
 		860C87EA2C535D4C00D9FC24 /* cakeModel.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E82C535D4C00D9FC24 /* cakeModel.usdz */; };
 		860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860C880D2C58C74B00D9FC24 /* CakeCanvasView.swift */; };
-		8640316E2C5B582500666B91 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640316D2C5B582500666B91 /* testView.swift */; };
+		8640316E2C5B582500666B91 /* CakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640316D2C5B582500666B91 /* CakeView.swift */; };
 		864031702C5B5C4D00666B91 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640316F2C5B5C4D00666B91 /* Router.swift */; };
 		864031742C5B5CA200666B91 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031732C5B5CA200666B91 /* HomeView.swift */; };
 		864031782C5B5E3200666B91 /* ConceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031772C5B5E3200666B91 /* ConceptView.swift */; };
@@ -73,7 +73,7 @@
 		860C87E72C535D4C00D9FC24 /* cakeTray.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeTray.usdz; path = ../../../cakeScene/cakeTray.usdz; sourceTree = "<group>"; };
 		860C87E82C535D4C00D9FC24 /* cakeModel.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeModel.usdz; path = ../../../cakeScene/cakeModel.usdz; sourceTree = "<group>"; };
 		860C880D2C58C74B00D9FC24 /* CakeCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeCanvasView.swift; sourceTree = "<group>"; };
-		8640316D2C5B582500666B91 /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
+		8640316D2C5B582500666B91 /* CakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeView.swift; sourceTree = "<group>"; };
 		8640316F2C5B5C4D00666B91 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		864031732C5B5CA200666B91 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		864031772C5B5E3200666B91 /* ConceptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptView.swift; sourceTree = "<group>"; };
@@ -228,9 +228,9 @@
 		86D737042C5A84BD00078D47 /* 3D */ = {
 			isa = PBXGroup;
 			children = (
+				8640316D2C5B582500666B91 /* CakeView.swift */,
 				86034BA92C5234CB006106BC /* Cake3DView.swift */,
 				860C880D2C58C74B00D9FC24 /* CakeCanvasView.swift */,
-				8640316D2C5B582500666B91 /* testView.swift */,
 				43DB14A72C5F961400F722D6 /* CanvasBG.swift */,
 				43DB14A92C5F963100F722D6 /* DraggableImage.swift */,
 			);
@@ -328,7 +328,7 @@
 				95EACC392C58E3E900F64E8F /* Extension.swift in Sources */,
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
-				8640316E2C5B582500666B91 /* testView.swift in Sources */,
+				8640316E2C5B582500666B91 /* CakeView.swift in Sources */,
 				86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */,
 				43DB14A42C5EBDF400F722D6 /* FinalColorComponent.swift in Sources */,
 				43DB14A22C5EA3E600F722D6 /* FinalElementKeywordComponent.swift in Sources */,
@@ -488,7 +488,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dora.Sgrr;
+				PRODUCT_BUNDLE_IDENTIFIER = .com.sgrr.cakey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -518,7 +518,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dora.Sgrr;
+				PRODUCT_BUNDLE_IDENTIFIER = .com.sgrr.cakey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
