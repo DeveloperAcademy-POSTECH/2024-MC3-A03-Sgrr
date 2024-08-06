@@ -1,31 +1,22 @@
-//
-//  ComponentView.swift
-//  Sgrr
-//
-//  Created by KIM SEOWOO on 7/31/24.
-//
+
 
 import SwiftUI
 import Combine
+import PhotosUI
 
 struct ComponentView: View {
     private var cakeData = CoredataManager.shared
+    
+    // 이미지
+    @State var cakeTopItems: [Int] = [0]
+    @State var cakeSideItems: [Int] = [0]
+   
+    // 키워드
+    @State var cakeTopKeywords: [String] = [""]
+    @State var cakeSideKeywords: [String] = [""]
 
-    @State var cakeTopItems: [Int] = []
-    @State var cakeSideItems: [Int] = []
-    
-    
-    @State var cakeTopKeyword: [String] = []
-    @State var cakeSideKeyword: [String] = []
-    
-    @State var elementKeyword: String = "" //요소
     private let characterLimit: Int = 15     //최대 글자 수 제한
     @FocusState private var isFocused: Bool
-
-    // 상단에서 데이터 넣어주고
-    // 바인딩해서 데이터를 받아야됨
-    // 위 -> 아래 ,ㅓ
-    
 
     var body: some View {
         VStack {
@@ -47,8 +38,7 @@ struct ComponentView: View {
                         .foregroundColor(Color(hex: "FA5738"))
                     Spacer()
                     Button {
-//                        addItem(in: &cakeTopItems)
-                        cakeTopItems = addItem(to: cakeTopItems)
+                        addItem(to: &cakeTopItems, keywords: &cakeTopKeywords)
                     } label: {
                         Image(systemName: "plus")
                             .foregroundColor(Color(hex: "FA5738"))
@@ -58,19 +48,20 @@ struct ComponentView: View {
                     ForEach(cakeTopItems.indices, id: \.self) { index in
                         HStack {
                             ImageAddView()
+                            
                             // 텍스트필드
                             ZStack {
                                 VStack {
                                     HStack {
                                         //사용자 입력을 받는 텍스트 필드
-                                        TextField("텍스트를 입력하세요", text: $elementKeyword)
+                                        TextField("텍스트를 입력하세요", text: $cakeTopKeywords[index])
                                             .foregroundColor(.black)
                                         // 텍스트 값이 변경될 때마다 글자 수 제한 함수 호출
-                                            .onReceive(Just(elementKeyword)) { newValue in
-                                                limitText(newValue, upper: characterLimit)
+                                            .onReceive(Just(cakeTopKeywords[index])) { newValue in
+                                                limitText(newValue, in: &cakeTopKeywords, at: index, upper: characterLimit)
                                             }
-                                            .onChange(of: elementKeyword) {
-//                                                cakeData.cake.elementKey = elementKeyword
+                                            .onChange(of: cakeTopKeywords[index]) {
+                                                cakeData.cake.elementTopKey = cakeTopKeywords
                                                 saveOrder()
                                             }
                                         
@@ -91,7 +82,7 @@ struct ComponentView: View {
                         
                     }
                    
-                    .onDelete(perform: { deleteItem(at: $0, from: &cakeTopItems) })
+                    .onDelete(perform: { deleteItem(at: $0, from: &cakeTopItems, keywords: &cakeTopKeywords) })
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
                 .listRowSeparator(.hidden)
@@ -101,8 +92,7 @@ struct ComponentView: View {
                         .foregroundColor(Color(hex: "FA5738"))
                     Spacer()
                     Button {
-//                        addItem(in: &cakeSideItems)
-                        cakeSideItems = addItem(to: cakeSideItems)
+                        addItem(to: &cakeSideItems, keywords: &cakeSideKeywords)
                     } label: {
                         Image(systemName: "plus")
                             .foregroundColor(Color(hex: "FA5738"))
@@ -112,18 +102,28 @@ struct ComponentView: View {
                     ForEach(cakeSideItems.indices, id: \.self) { index in
                         HStack {
                             ImageAddView()
-                          // 텍스트 필드
+                            // 텍스트 필드
+                            TextField("텍스트를 입력하세요", text: $cakeSideKeywords[index])
+                                .foregroundColor(.black)
+                                .onReceive(Just(cakeSideKeywords[index])) { newValue in
+                                    limitText(newValue, in: &cakeSideKeywords, at: index, upper: characterLimit)
+                                }
+                                .onChange(of: cakeSideKeywords[index]) {
+                                    cakeData.cake.elementSideKey = cakeSideKeywords
+                                    saveOrder()
+                                }
+                                .disableAutocorrection(false)
+                                .focused($isFocused)
                         }
                     }
-                    .onDelete(perform: { deleteItem(at: $0, from: &cakeSideItems) })
+                    .onDelete(perform: { deleteItem(at: $0, from: &cakeSideItems, keywords: &cakeSideKeywords) })
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
                 .listRowSeparator(.hidden)
             }
             .listStyle(SidebarListStyle())
             .listRowBackground(Color.clear)
-//            .listRowInsets(EdgeInsets())
-            .background(Color.yellow)
+            .background(Color.clear)
             .scrollContentBackground(.hidden)
         }
     }
@@ -132,26 +132,20 @@ struct ComponentView: View {
         cakeTopItems.count + cakeSideItems.count
     }
     
-//    private func addItem(in list: inout [Int]) {
-//        guard totalItems < 5 else { return }
-//        list.append(list.count)
-//    }
-    
-    private func addItem(to list: [Int]) -> [Int] {
-            guard list.count < 5 else { return list }
-            var newList = list
-            newList.append(newList.count)
-            return newList
-        }
-    
-    
-    private func deleteItem(at offsets: IndexSet, from list: inout [Int]) {
-        list.remove(atOffsets: offsets)
+    private func addItem(to list: inout [Int], keywords: inout [String]) {
+        guard totalItems < 5 else { return }
+        list.append(list.count)
+        keywords.append("") // Add a new empty string to the keywords array
     }
     
-    private func limitText(_ newValue: String, upper: Int) {
+    private func deleteItem(at offsets: IndexSet, from list: inout [Int], keywords: inout [String]) {
+        list.remove(atOffsets: offsets)
+        keywords.remove(atOffsets: offsets)
+    }
+    
+    private func limitText(_ newValue: String, in array: inout [String], at index: Int, upper: Int) {
         if newValue.count > upper {
-            elementKeyword = String(newValue.prefix(upper))
+            array[index] = String(newValue.prefix(upper))
         }
     }
 }
@@ -161,8 +155,7 @@ private func saveOrder() {
     CoredataManager.shared.saveOrUpdateOrder()
 }
 
-
-
 #Preview {
     ComponentView()
 }
+

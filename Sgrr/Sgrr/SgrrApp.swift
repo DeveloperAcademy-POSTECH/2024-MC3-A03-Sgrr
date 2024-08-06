@@ -11,7 +11,6 @@ import Observation
 @main
 struct SgrrApp: App {
     @State private var cake = Cake()
-    @State private var arrayCapacity = ArrayCapacity()
     let managedObject = CoredataManager.shared
     
     @StateObject var router = Router()
@@ -22,7 +21,6 @@ struct SgrrApp: App {
             HomeView()
                 .environment(\.managedObjectContext, managedObject.context)
                 .environment(cake)
-                .environment(arrayCapacity)
                 .environmentObject(router)
         }
     }
