@@ -94,14 +94,6 @@ private func saveOrder() {
     CoredataManager.shared.saveOrUpdateOrder()
 }
 
-// MARK: - 배열 첫번째 추가 함수
-private func combineImage(array: [Data], value: Data) -> [Data] {
-    var array = array
-        array.reserveCapacity(array.count + 1)
-        array.insert(value, at: 0)
-        return array
-}
-
 
 //#Preview {
 //    OrderFormView()

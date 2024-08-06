@@ -1,13 +1,13 @@
 //
-//  FinalKeywordListComponent.swift
+//  FinalConceptKeywordComponent.swift
 //  Sgrr
 //
-//  Created by Lee Wonsun on 8/4/24.
+//  Created by Lee Wonsun on 8/6/24.
 //
 
 import SwiftUI
 
-struct FinalListComponent: View {
+struct FinalConceptKeywordComponent: View {
     @FetchRequest(
         entity: OrderForm.entity(),
         sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
@@ -20,30 +20,11 @@ struct FinalListComponent: View {
         return order
     }
     
-    @State var orderMenu: String = "컨셉"
-    @State var place: String = "옆면"
-    @State var isElement: Bool = true
-    var startFromSecond: Bool = false
-
-    
-    var combineKeyword: [String] {
-        var keywords: [String] = orderForm.elementKeyword ?? []
-        if let conceptKeyword = orderForm.conceptKeyword {
-            keywords.insert(conceptKeyword, at: 0)
-        }
-        
-        if isElement && startFromSecond && keywords.count >= 1 {
-                    keywords.removeFirst()
-                }
-        
-        return keywords
-    }
-    
     var body: some View {
         VStack(spacing: 0) {
             // MARK: - 컨셉, divider
             VStack(alignment: .leading, spacing: 0) {
-                Text("\(orderMenu)")
+                Text("컨셉")
                     .font(.finalFormTitle)
                     .foregroundStyle(.main)
                     .padding(.bottom, 5)
@@ -57,7 +38,6 @@ struct FinalListComponent: View {
             
             // MARK: - 리스트 내용
             VStack(spacing: 11) {
-                ForEach(Array(combineKeyword.enumerated()), id: \.element) { (index, keyword) in
                     HStack(spacing: 0) {
                         // 숫자 넘버
                         ZStack(alignment: .center) {
@@ -69,7 +49,7 @@ struct FinalListComponent: View {
                                         .stroke(Color(.main), lineWidth: 2)
                                         .frame(width: 18))
                             
-                            Text("\(isElement ? index+2 : index+1)")
+                            Text("1")
                                 .font(.custom("SFProRounded-Semibold", size: 13))
                                 .foregroundStyle(.main)
                         }
@@ -77,35 +57,21 @@ struct FinalListComponent: View {
                         .padding(.trailing, 8)
                         
                         // 키워드
-                        Text("\(keyword)")
+                        Text("\(orderForm.conceptKeyword)")
                             .font(.finalTextList)
-                        
-                        
+
                         Spacer()
-                        
-                        // 옆면, 윗co면 뱃지
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 6)
-                                .frame(width: 29, height: 18)
-                                .foregroundStyle(place == "옆면" ? .round : .top)
-                            
-                            Text("\(place)")
-                                .font(.badgeText)
-                                .foregroundStyle(place == "옆면" ? .main : .bg)
-                        }
-                        .padding(.trailing ,24)
-                        .opacity(isElement ? 100 : 0)
                     }
-                }
+                
             }
         }
     }
 }
 
-#Preview {
-    ZStack {
-        Color.bg
-        
-        FinalListComponent()
-    } .ignoresSafeArea()
-}
+//#Preview {
+//    ZStack {
+//        Color.bg
+//        
+//        FinalConceptKeywordComponent()
+//    } .ignoresSafeArea()
+//}

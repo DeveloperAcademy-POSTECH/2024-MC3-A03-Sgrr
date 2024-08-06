@@ -52,10 +52,10 @@ struct FinalGuideView: View {
                         FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
                             .padding(.bottom, 22)
                         
-                        FinalListComponent(isElement: false)
+                        FinalConceptKeywordComponent()
                             .padding(.bottom, 22)
                         
-                        FinalListComponent(orderMenu: "요소",  startFromSecond: true)
+                        FinalElementKeywordComponent(orderMenu: "요소",  startFromSecond: true)
                         
                         Spacer()
                         
