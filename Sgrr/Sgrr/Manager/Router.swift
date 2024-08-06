@@ -26,7 +26,7 @@ class Router: ObservableObject{
         case .OrderFormView:
             OrderFormView()
         case .Cake3DView:
-//            testView()
+//            CakeView()
             OrderFormView()
         case .FinalGuideView:
             FinalGuideView()

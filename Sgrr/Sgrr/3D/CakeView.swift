@@ -8,7 +8,7 @@
 import SwiftUI
 import PencilKit
 
-struct testView: View {
+struct CakeView: View {
     
     @Binding var cakeImage: CGImage?
     
@@ -106,7 +106,7 @@ struct testView: View {
 }
 
 //#Preview {
-//    //testView(selectedColor: .yellow)
+//    //CakeView(selectedColor: .yellow)
 //}
 
 

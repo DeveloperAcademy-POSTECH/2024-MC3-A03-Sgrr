@@ -30,11 +30,10 @@ struct ComponentView: View {
             ZStack {
                 Rectangle()
                     .frame(width: 393, height: 95)
-                    .foregroundColor(Color(hex: "FAC0B5"))
+                    .foregroundStyle(.round)
                 Text("요소")
-                    .foregroundColor(Color(hex: "FFFCF1"))
-                    .font(.system(size: 34))
-                    .fontWeight(.black)
+                    .foregroundStyle(.bg)
+                    .font(.orderFormTitle)
                     .padding(.trailing, 280)
                     .padding(.top, 30)
             }
@@ -42,13 +41,16 @@ struct ComponentView: View {
             List {
                 Section(header: HStack {
                     Text("케이크 윗면")
-                        .foregroundColor(Color(hex: "FA5738"))
+                        .font(.elementListTitle)
+                        .foregroundStyle(.main)
+
                     Spacer()
                     Button {
                         addItem(to: &cakeTopItems, keywords: &cakeTopKeywords)
                     } label: {
                         Image(systemName: "plus")
-                            .foregroundColor(Color(hex: "FA5738"))
+                            .foregroundStyle(.main)
+                           
                     }
                     .disabled(totalItems >= 5)
                 }) {
@@ -60,10 +62,9 @@ struct ComponentView: View {
                                 ZStack {
                                     Rectangle()
                                         .frame(width: 62, height: 62)
-                                    // 이블린 이꺼 둥근 모서리 쓰면 돼!
                                         .cornerRadius(10, corners: [.topLeft, .bottomLeft])
                                         .foregroundColor(.white)
-                    //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
+                                
                                     Image("ImageIcon")
                                         .resizable()
                                         .frame(width: 30, height: 24)
@@ -132,13 +133,15 @@ struct ComponentView: View {
                 
                 Section(header: HStack {
                     Text("케이크 옆면")
-                        .foregroundColor(Color(hex: "FA5738"))
+                        .font(.elementListTitle)
+                        .foregroundStyle(.main)
+                       
                     Spacer()
                     Button {
                         addItem(to: &cakeSideItems, keywords: &cakeSideKeywords)
                     } label: {
                         Image(systemName: "plus")
-                            .foregroundColor(Color(hex: "FA5738"))
+                            .foregroundStyle(.main)
                     }
                     .disabled(totalItems >= 5)
                 }) {
