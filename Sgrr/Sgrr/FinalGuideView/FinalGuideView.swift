@@ -25,7 +25,7 @@ struct FinalGuideView: View {
         return order
     }
     
-    var combinedData: [Data] {
+    var combinedImage: [Data] {
         var images: [Data] = orderForm.elementImage ?? []
         if let conceptImage = orderForm.conceptImage {
             images.insert(conceptImage, at: 0)
@@ -52,10 +52,10 @@ struct FinalGuideView: View {
                         FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
                             .padding(.bottom, 22)
                         
-                        FinalListComponent(listNum: 1, keyword: orderForm.conceptKeyword ?? "", isElement: false)
+                        FinalListComponent(isElement: false)
                             .padding(.bottom, 22)
                         
-                        FinalListComponent(orderMenu: "요소", listNum: 5)
+                        FinalListComponent(orderMenu: "요소",  startFromSecond: true)
                         
                         Spacer()
                         
@@ -133,8 +133,8 @@ struct FinalGuideView: View {
     func imageVGrid() -> some View {
         HStack {
             LazyVGrid(columns: columns) {
-                ForEach(combinedData.indices, id: \.self) { index in
-                    GuideImageComponent(num: index + 1, selectedImage: combinedData[index])
+                ForEach(combinedImage.indices, id: \.self) { index in
+                    GuideImageComponent(num: index + 1, selectedImage: combinedImage[index])
                 }
             }
         }
