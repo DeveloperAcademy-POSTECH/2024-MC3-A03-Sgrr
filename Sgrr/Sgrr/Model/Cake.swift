@@ -16,6 +16,9 @@ class Cake {
     var colorLetter: String = ""
     var conceptKey: String = ""
     var conceptImg: Data = Data()
-    var elementKey: [String] = []
+    var elementTopKey: [String] = []
+    var elementSideKey: [String] = []
     var elementImg: [Data] = []
+    
 }
+

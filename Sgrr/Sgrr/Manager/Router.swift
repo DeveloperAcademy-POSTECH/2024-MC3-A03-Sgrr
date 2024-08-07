@@ -11,7 +11,7 @@ import SwiftUI
 
 class Router: ObservableObject{
     @Published var path: NavigationPath = NavigationPath()
- 
+    
     enum CakeyViews: Hashable{
         case HomeView
         case OrderFormView
@@ -24,9 +24,9 @@ class Router: ObservableObject{
         case .HomeView:
           HomeView()
         case .OrderFormView:
-          OrderFormView()
-        case .Cake3DView:
             OrderFormView()
+        case .Cake3DView:
+            CakeView()
         case .FinalGuideView:
             FinalGuideView()
         }

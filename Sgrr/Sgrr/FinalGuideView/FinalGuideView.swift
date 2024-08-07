@@ -18,7 +18,6 @@ struct FinalGuideView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
-    
     @FetchRequest(
         entity: OrderForm.entity(),
         sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
@@ -29,6 +28,14 @@ struct FinalGuideView: View {
             return OrderForm()
         }
         return order
+    }
+    
+    var combinedImage: [Data] {
+        var images: [Data] = orderForm.elementImage ?? []
+        if let conceptImage = orderForm.conceptImage {
+            images.insert(conceptImage, at: 0)
+        }
+        return images
     }
     
     var body: some View {
@@ -42,11 +49,29 @@ struct FinalGuideView: View {
                         .padding(.bottom, 20)
                         .padding(.top, -20)
                     
-                    // 이미지 6개 컴포넌트
-                    // TODO: 이브한테 여백 물어보기
-                    imageVGrid()
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 24)
+
+                    VStack(spacing: 0) {
+                        guideTitle()
+                            .padding(.bottom, 20)
+                            .padding(.top, -20)
+                        
+                        // 이미지 6개 컴포넌트
+                        imageVGrid()
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 24)
+                        
+                        FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
+                            .padding(.bottom, 22)
+                        
+                        FinalConceptKeywordComponent()
+                            .padding(.bottom, 22)
+                        
+                        FinalElementKeywordComponent(orderMenu: "요소",  startFromSecond: true)
+                        
+                        Spacer()
+                        
+                    } .padding(.bottom, -11)
+
                     
                     FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
                         .padding(.bottom, 22)
@@ -139,8 +164,8 @@ struct FinalGuideView: View {
     func imageVGrid() -> some View {
         HStack {
             LazyVGrid(columns: columns) {
-                ForEach(1..<7) { imgNum in
-                    GuideImageComponent(num: imgNum, selectedImage: UIImage(named: "cakeElement_5")!)
+                ForEach(combinedImage.indices, id: \.self) { index in
+                    GuideImageComponent(num: index + 1, selectedImage: combinedImage[index])
                 }
             }
         }
@@ -201,6 +226,7 @@ struct PreviewContainer<Content: View>: View {
             .environmentObject(router)
     }
 }
+
 
 #Preview {
     PreviewContainer {

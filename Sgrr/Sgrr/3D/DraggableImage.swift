@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 import PencilKit
 
-class DraggableImageView: UIImageView {
+class DraggableImage: UIImageView {
     
     var originalPosition: CGPoint?
 

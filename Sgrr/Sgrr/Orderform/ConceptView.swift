@@ -26,28 +26,22 @@ struct ConceptView: View {
                 ZStack {
                     Rectangle()
                         .frame(width:393, height: 95)
-                        .foregroundColor(Color(hex: "FA8C76"))
+                        .foregroundColor(Color.top)
                     Text("컨셉")
-                        .foregroundColor(Color(hex: "FFFCF1"))
-                        .font(.system(size: 34))
-                        .fontWeight(.black)
+                        .foregroundColor(Color.bg)
+                        .font(.orderFormTitle)
                         .padding(.trailing, 280)
                         .padding(.top, 30)
                 }
                 
                 List {
                     HStack {
-                        // 이미지
                         
-//                        ImageAddView()
-//                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-//                        
+                        // MARK: 포토피커
                         PhotosPicker(selection: $photosPickerConceptItem, matching: .images) {
-                            
                             ZStack {
                                 Rectangle()
                                     .frame(width: 62, height: 62)
-                                // 이블린 이꺼 둥근 모서리 쓰면 돼!
                                     .cornerRadius(10, corners: [.topLeft, .bottomLeft])
                                     .foregroundColor(.white)
                 //                    .border(width: 0.5, edges: [.trailing], color: Color(hex: "D9D9D9"))
@@ -63,11 +57,8 @@ struct ConceptView: View {
                                         .frame(width: 62, height: 62)
                                         .cornerRadius(10, corners: [.topLeft, .bottomLeft])
                                 }
-                             
                             }
-                            
                         }
-                        
                         .onChange(of: photosPickerConceptItem) { _, _ in
                             Task {
                                 if let photosPickerConceptItem,
@@ -83,30 +74,26 @@ struct ConceptView: View {
                         }
                       
                         
-                        // 텍스트필드
+                        // MARK: 텍스트 필드
                         ZStack {
                             VStack {
                                 HStack {
-                                    //사용자 입력을 받는 텍스트 필드
+                                 
                                     TextField("텍스트를 입력하세요", text: $conceptKeyword)
                                         .foregroundColor(.black)
-                                    // 텍스트 값이 변경될 때마다 글자 수 제한 함수 호출
                                         .onReceive(Just(conceptKeyword)) { newValue in
                                             limitText(newValue, upper: characterLimit)
                                         }
                                         .onChange(of: conceptKeyword) {
-                                            cakeData.cake.conceptKey = conceptKeyword
+//                                            cakeData.cake.elementKey = conceptKeyword
                                             saveOrder()
                                         }
-                                    
-                                    // 자동 수정 설정 해제
                                         .disableAutocorrection(false)
                                         .focused($isFocused)
                                 }
                                 .padding()
                                 
                             }
-                            // clear Button 구현
                             .onAppear {
                                 UITextField.appearance().clearButtonMode = .whileEditing
                             }
@@ -134,6 +121,3 @@ private func saveOrder() {
     CoredataManager.shared.saveOrUpdateOrder()
 }
 
-#Preview {
-    ConceptView()
-}

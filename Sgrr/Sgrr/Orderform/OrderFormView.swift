@@ -6,46 +6,47 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct OrderFormView: View {
     @EnvironmentObject var router: Router
     private var cakeData = CoredataManager.shared
-
     
     @FetchRequest(
         entity: OrderForm.entity(),
         sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
     ) private var orderForms: FetchedResults<OrderForm>
+    
 
     var body: some View {
         
         GeometryReader { geo in
-            ZStack {
+            let safeAreaTopHeight = geo.safeAreaInsets.top
+            let safeAreaHeight = geo.safeAreaInsets.bottom
+            
+            ZStack(alignment: .bottom) {
                 ScrollView {
-                    LazyVStack {
-                        VStack {
-                            ColorCell()
-                        } .frame(height: geo.size.height)
-                        VStack {
-                            ConceptView()
-                        } .frame(height: geo.size.height)
-                        VStack {
-                            ComponentView()
-                        } .frame(height: geo.size.height)
+                    LazyVStack(spacing: 0) {
+                        ColorCell()
+                            .ignoresSafeArea(edges: .bottom)
+                            .frame(height: geo.size.height + safeAreaHeight)
+                        
+                        ConceptView()
+                            .ignoresSafeArea(edges: .bottom)
+                            .frame(height: geo.size.height + safeAreaHeight)
+                        
+                        ComponentView()
+                            .ignoresSafeArea(edges: .bottom)
+                            .frame(height: geo.size.height + safeAreaHeight)
                     }
-                    
+                    .scrollTargetLayout()
                 }
                 .scrollTargetBehavior(.paging)
+                .ignoresSafeArea(edges: .bottom)
                 .foregroundStyle(.background)
                 .background(Color.bg)
                 
                 Button {
-                    // 작성 완료하기
-//                    router.push(view: .FinalGuideView)
-                    
-                    
-                    // 타이니 수정 ver
-                    
                     if let orderForm = orderForms.last {
                         router.push(view: .FinalGuideView)
                     }
@@ -56,13 +57,16 @@ struct OrderFormView: View {
                         .overlay() {
                             Text("작성 완료")
                                 .foregroundColor(.white)
-                                .fontWeight(.bold)
+                                .font(.completeText)
                         }
+                        .padding(.bottom, 20)
+                        .shadow(color: Color(hex: "FA5738"), radius: 2, x: 0, y: 4)
+                       
+
                 }
-                .padding(.top, 680)
             }
         }
-        .toolbarBackground(Color(hex: "F9F6EB"), for: .navigationBar)
+        .toolbarBackground(Color(.bg), for: .navigationBar)
         .toolbar {
             
             ToolbarItem(placement: .navigationBarLeading) {
@@ -100,7 +104,7 @@ private func saveOrder() {
 }
 
 
-#Preview {
-    OrderFormView()
-}
+//#Preview {
+//    OrderFormView()
+//}
 
