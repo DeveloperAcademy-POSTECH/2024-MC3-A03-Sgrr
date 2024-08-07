@@ -1,24 +1,20 @@
+////
+////  ImageAddView.swift
+////  Sgrr
+////
+////  Created by KIM SEOWOO on 7/31/24.
+////
 //
-//  ImageAddView.swift
-//  Sgrr
+//import SwiftUI
+//import PhotosUI
 //
-//  Created by KIM SEOWOO on 7/31/24.
 //
-
-import SwiftUI
-import PhotosUI
-
-struct ImageAddView: View {
-    @Binding var text: String?
-    var body: some View {
-        Text(text ?? "요소 키워드를 작성해주세요.")
-    }
-}
-
+//
 //struct ImageAddView: View {
+//    
 //    var imageIndex: Int
 //    @Binding var cakeTopImages: [UIImage]
-//    //    @Binding var cakeSideImages: [UIImage]
+//   
 //    @State private var photosPickerItem: PhotosPickerItem?
 //    
 //    var body: some View {
@@ -62,7 +58,3 @@ struct ImageAddView: View {
 //    }
 //}
 //
-//
-////#Preview {
-////    ImageAddView()
-////}

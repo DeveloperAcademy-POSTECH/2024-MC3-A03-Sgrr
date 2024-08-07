@@ -8,21 +8,19 @@
 import SwiftUI
 import PencilKit
 
-let sampleImages: [UIImage] = [
-    UIImage(systemName: "star.fill")!,
-    UIImage(systemName: "heart.fill")!,
-    UIImage(systemName: "sun.and.horizon.fill")!,
-    UIImage(systemName: "sunglasses.fill")!,
-    UIImage(systemName: "paperplane.fill")!
-]
-
-
 struct CakeCanvasContainer: UIViewRepresentable {
+    
+    /// PKCanvas관련
     @Binding var canvasView: PKCanvasView
     let picker: PKToolPicker
-    
     @Binding var isActive: Bool
+    
+    /// Material 만들 이미지 관련
     @Binding var cakeImage: CGImage?
+    
+    /// 요소 이미지 불러오기 위한 주문서 모델
+    var orderFrom: OrderForm
+    
     
     func makeUIView(context: Context) -> PKCanvasView {
         self.canvasView.tool = PKInkingTool(.pen, color: .black, width: 15)
@@ -38,9 +36,9 @@ struct CakeCanvasContainer: UIViewRepresentable {
         //uiView.backgroundColor = .clear
         picker.addObserver(canvasView)
         
-        if isActive {
+        //if isActive {
             context.coordinator.updateCakeImage(from: uiView)
-        }
+        //}
     }
     
     func makeCoordinator() -> Coordinator {
@@ -63,14 +61,16 @@ struct CakeCanvasContainer: UIViewRepresentable {
         }
         
         func updateCakeImage(from canvasView: PKCanvasView) {
-            self.cakeImage = canvasView.asImage()
+            DispatchQueue.main.async {
+                self.cakeImage = canvasView.asImage()
+            }
         }
     }
 }
 
-
 // UIImage -> CGImage 변환
 extension UIView {
+    
     func asImage() -> CGImage? {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         let uiImage = renderer.image { rendererContext in
@@ -115,14 +115,14 @@ struct PhotoPickerCell: View {
     
     /// 사진 추가
     func addPhoto(_ image: UIImage) {
-        let imageView = DraggableImageView(image: image)
-        imageView.frame = CGRect(x: 0, y: 0, width: 67, height: 67)
-        imageView.contentMode = .scaleAspectFit
+        let image = DraggableImage(image: image)
+        image.frame = CGRect(x: 0, y: 0, width: 67, height: 67)
+        image.contentMode = .scaleAspectFit
         
         let canvasCenter = CGPoint(x: canvasView.bounds.midX, y: canvasView.bounds.midY)
-        imageView.center = canvasCenter
+        image.center = canvasCenter
         
-        self.canvasView.addSubview(imageView)
+        self.canvasView.addSubview(image)
     }
 }
 

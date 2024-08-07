@@ -35,13 +35,15 @@
 		864031702C5B5C4D00666B91 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640316F2C5B5C4D00666B91 /* Router.swift */; };
 		864031742C5B5CA200666B91 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031732C5B5CA200666B91 /* HomeView.swift */; };
 		864031782C5B5E3200666B91 /* ConceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031772C5B5E3200666B91 /* ConceptView.swift */; };
-		8640317A2C5B5E5100666B91 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031792C5B5E5100666B91 /* ComponentView.swift */; };
+		8640317A2C5B5E5100666B91 /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031792C5B5E5100666B91 /* ElementView.swift */; };
 		864031A82C5B925400666B91 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031A72C5B925400666B91 /* Extension+Font.swift */; };
 		86D737062C5A887200078D47 /* Cake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D737052C5A887200078D47 /* Cake.swift */; };
 		953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EC5F82C53C6B2002E5876 /* OrderFormView.swift */; };
 		95DC46832C5A23FE00AFC976 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46822C5A23FE00AFC976 /* ColorCell.swift */; };
 		95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46862C5A462400AFC976 /* ImageAddView.swift */; };
 		95EACC392C58E3E900F64E8F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EACC382C58E3E900F64E8F /* Extension.swift */; };
+		95EEC50D2C634E9F0043C23D /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEC50C2C634E9F0043C23D /* ImageCell.swift */; };
+		95EEC50F2C635D290043C23D /* TextfieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEC50E2C635D290043C23D /* TextfieldCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,13 +77,15 @@
 		8640316F2C5B5C4D00666B91 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		864031732C5B5CA200666B91 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		864031772C5B5E3200666B91 /* ConceptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptView.swift; sourceTree = "<group>"; };
-		864031792C5B5E5100666B91 /* ComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
+		864031792C5B5E5100666B91 /* ElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementView.swift; sourceTree = "<group>"; };
 		864031A72C5B925400666B91 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
 		86D737052C5A887200078D47 /* Cake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake.swift; sourceTree = "<group>"; };
 		953EC5F82C53C6B2002E5876 /* OrderFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormView.swift; sourceTree = "<group>"; };
 		95DC46822C5A23FE00AFC976 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		95DC46862C5A462400AFC976 /* ImageAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAddView.swift; sourceTree = "<group>"; };
 		95EACC382C58E3E900F64E8F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		95EEC50C2C634E9F0043C23D /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		95EEC50E2C635D290043C23D /* TextfieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,9 +210,11 @@
 			children = (
 				953EC5F82C53C6B2002E5876 /* OrderFormView.swift */,
 				95DC46822C5A23FE00AFC976 /* ColorCell.swift */,
+				95EEC50E2C635D290043C23D /* TextfieldCell.swift */,
 				95DC46862C5A462400AFC976 /* ImageAddView.swift */,
+				95EEC50C2C634E9F0043C23D /* ImageCell.swift */,
 				864031772C5B5E3200666B91 /* ConceptView.swift */,
-				864031792C5B5E5100666B91 /* ComponentView.swift */,
+				864031792C5B5E5100666B91 /* ElementView.swift */,
 			);
 			path = Orderform;
 			sourceTree = "<group>";
@@ -320,15 +326,17 @@
 				95DC46832C5A23FE00AFC976 /* ColorCell.swift in Sources */,
 				43DB14A82C5F961400F722D6 /* CanvasBG.swift in Sources */,
 				864031A82C5B925400666B91 /* Extension+Font.swift in Sources */,
+				95EEC50F2C635D290043C23D /* TextfieldCell.swift in Sources */,
 				43DB14AA2C5F963100F722D6 /* DraggableImage.swift in Sources */,
 				95EACC392C58E3E900F64E8F /* Extension.swift in Sources */,
+				95EEC50D2C634E9F0043C23D /* ImageCell.swift in Sources */,
 				86034BAA2C5234CB006106BC /* Cake3DView.swift in Sources */,
 				86034B962C51DAA4006106BC /* SgrrApp.swift in Sources */,
 				8640316E2C5B582500666B91 /* CakeView.swift in Sources */,
 				86034BA22C51DAA5006106BC /* Sgrr.xcdatamodeld in Sources */,
 				43DB14A42C5EBDF400F722D6 /* FinalColorComponent.swift in Sources */,
 				43DB14A22C5EA3E600F722D6 /* FinalElementKeywordComponent.swift in Sources */,
-				8640317A2C5B5E5100666B91 /* ComponentView.swift in Sources */,
+				8640317A2C5B5E5100666B91 /* ElementView.swift in Sources */,
 				95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */,
 				43DB14952C5C7AAB00F722D6 /* FinalGuideView.swift in Sources */,
 				864031702C5B5C4D00666B91 /* Router.swift in Sources */,
