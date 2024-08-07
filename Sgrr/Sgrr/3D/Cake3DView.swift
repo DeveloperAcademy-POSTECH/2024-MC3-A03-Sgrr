@@ -12,7 +12,7 @@ import PencilKit
 
 let defaultMaterial = PhysicallyBasedMaterial()
 
-struct ARViewContainer: UIViewRepresentable {
+struct Cake3DContainer: UIViewRepresentable {
     let picker: PKToolPicker
     let canvasView: PKCanvasView
     
@@ -24,7 +24,7 @@ struct ARViewContainer: UIViewRepresentable {
     @Binding var isActive: Bool
     
     ///배경색 선택
-    @Binding var selectedColor: Color
+    var selectedColor: Color
     
     func makeUIView(context: Context) -> ARView {
         
@@ -91,8 +91,10 @@ struct ARViewContainer: UIViewRepresentable {
         anchor.transform.scale = SIMD3<Float>(repeating: clampedScale)
         
         if let newImage = cakeImage {
-            context.coordinator.updateCakeTexture(cgImage: newImage)
-        }
+               DispatchQueue.main.async {
+                   context.coordinator.updateCakeTexture(cgImage: newImage)
+               }
+           }
     }
     
     func makeCoordinator() -> Coordinator {
