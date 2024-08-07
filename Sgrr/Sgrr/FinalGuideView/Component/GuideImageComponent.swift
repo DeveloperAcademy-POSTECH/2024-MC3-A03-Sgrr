@@ -10,7 +10,7 @@ import SwiftUI
 struct GuideImageComponent: View {
     
     @State var num: Int = 1
-    var selectedImage: Data
+    @State var selectedImage: Data
     
     var body: some View {
         ZStack {

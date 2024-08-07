@@ -11,10 +11,11 @@ import PhotosUI
 
 struct ConceptView: View {
     
-    private var cakeData = CoredataManager.shared
     
     @State private var conceptImage: UIImage?
     @State private var photosPickerConceptItem: PhotosPickerItem?
+    @Binding var conceptImageToData: Data
+    @Binding var conceptBindingKeyword: String
     
     @State private var conceptKeyword: String = "" //컨셉
     private let characterLimit: Int = 15     //최대 글자 수 제한
@@ -65,8 +66,7 @@ struct ConceptView: View {
                                    let data = try? await photosPickerConceptItem.loadTransferable(type: Data.self) {
                                     if let image = UIImage(data: data) {
                                         conceptImage = image
-                                        cakeData.cake.conceptImg = data
-                                        saveOrder()
+                                        conceptImageToData = data
                                     }
                                 }
                                
@@ -85,8 +85,7 @@ struct ConceptView: View {
                                             limitText(newValue, upper: characterLimit)
                                         }
                                         .onChange(of: conceptKeyword) {
-//                                            cakeData.cake.elementKey = conceptKeyword
-                                            saveOrder()
+                                            conceptBindingKeyword = conceptKeyword
                                         }
                                         .disableAutocorrection(false)
                                         .focused($isFocused)
@@ -115,8 +114,4 @@ struct ConceptView: View {
     }
 }
 
-// MARK: - 저장함수
-private func saveOrder() {
-    CoredataManager.shared.saveOrUpdateOrder()
-}
 

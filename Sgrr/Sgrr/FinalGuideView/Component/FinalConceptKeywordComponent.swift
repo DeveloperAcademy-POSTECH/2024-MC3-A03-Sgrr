@@ -8,17 +8,8 @@
 import SwiftUI
 
 struct FinalConceptKeywordComponent: View {
-    @FetchRequest(
-        entity: OrderForm.entity(),
-        sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
-    ) private var orderForms: FetchedResults<OrderForm>
     
-    var orderForm: OrderForm {
-        guard let order = orderForms.last else {
-            return OrderForm()
-        }
-        return order
-    }
+    @State var finalConceptKeyword: String = ""
     
     var body: some View {
         VStack(spacing: 0) {
@@ -57,7 +48,7 @@ struct FinalConceptKeywordComponent: View {
                         .padding(.trailing, 8)
                         
                         // 키워드
-                        Text("\(orderForm.conceptKeyword)")
+                        Text(finalConceptKeyword)
                             .font(.finalTextList)
 
                         Spacer()
@@ -68,10 +59,3 @@ struct FinalConceptKeywordComponent: View {
     }
 }
 
-//#Preview {
-//    ZStack {
-//        Color.bg
-//        
-//        FinalConceptKeywordComponent()
-//    } .ignoresSafeArea()
-//}

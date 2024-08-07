@@ -11,7 +11,7 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var router: Router
-    
+    let coredataManager = CoredataManager.shared
     
     var body: some View {
         

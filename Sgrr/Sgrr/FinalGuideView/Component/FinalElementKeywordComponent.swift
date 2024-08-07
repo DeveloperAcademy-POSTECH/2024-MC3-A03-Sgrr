@@ -8,42 +8,16 @@
 import SwiftUI
 
 struct FinalElementKeywordComponent: View {
-    @FetchRequest(
-        entity: OrderForm.entity(),
-        sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
-    ) private var orderForms: FetchedResults<OrderForm>
     
-    var orderForm: OrderForm {
-        guard let order = orderForms.last else {
-            return OrderForm()
-        }
-        return order
-    }
+    @State var isSide: Bool = true
+    @State var finalKeyword: [String] = []
     
-    @State var orderMenu: String = "컨셉"
-    @State var place: String = "옆면"
-    @State var isElement: Bool = true
-    var startFromSecond: Bool = false
-
-    
-    var combineKeyword: [String] {
-        var keywords: [String] = orderForm.elementTopKeyword ?? []
-        if let conceptKeyword = orderForm.conceptKeyword {
-            keywords.insert(conceptKeyword, at: 0)
-        }
-        
-        if isElement && startFromSecond && keywords.count >= 1 {
-                    keywords.removeFirst()
-                }
-        
-        return keywords
-    }
     
     var body: some View {
         VStack(spacing: 0) {
             // MARK: - 컨셉, divider
             VStack(alignment: .leading, spacing: 0) {
-                Text("\(orderMenu)")
+                Text("컨셉")
                     .font(.finalFormTitle)
                     .foregroundStyle(.main)
                     .padding(.bottom, 5)
@@ -57,7 +31,8 @@ struct FinalElementKeywordComponent: View {
             
             // MARK: - 리스트 내용
             VStack(spacing: 11) {
-                ForEach(Array(combineKeyword.enumerated()), id: \.element) { (index, keyword) in
+                ForEach(finalKeyword.indices, id: \.self) { index in
+                    let keyword = finalKeyword[index]
                     HStack(spacing: 0) {
                         // 숫자 넘버
                         ZStack(alignment: .center) {
@@ -69,7 +44,7 @@ struct FinalElementKeywordComponent: View {
                                         .stroke(Color(.main), lineWidth: 2)
                                         .frame(width: 18))
                             
-                            Text("\(isElement ? index+2 : index+1)")
+                            Text("\(index+2)")
                                 .font(.custom("SFProRounded-Semibold", size: 13))
                                 .foregroundStyle(.main)
                         }
@@ -87,25 +62,47 @@ struct FinalElementKeywordComponent: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 6)
                                 .frame(width: 29, height: 18)
-                                .foregroundStyle(place == "옆면" ? .round : .top)
+                                .foregroundStyle(isSide ? .round : .top)
                             
-                            Text("\(place)")
+                            Text("\(isSide ? "옆면" : "윗면")")
                                 .font(.badgeText)
-                                .foregroundStyle(place == "옆면" ? .main : .bg)
+                                .foregroundStyle(isSide ? .main : .bg)
                         }
                         .padding(.trailing ,24)
-                        .opacity(isElement ? 100 : 0)
                     }
                 }
             }
         }
+        .onAppear {
+            fetchKeywords()
+        }
+    }
+    
+    func fetchKeywords() {
+        let coreDataManager = CoredataManager.shared
+        let orders = coreDataManager.getAllOrders()
+        var keywords: [String] = []
+        
+        if let order = orders.last {
+                for element in order.cakeElement {
+                    keywords.append(element.elementKeyword)
+                }
+                
+                if let firstElement = order.cakeElement.first {
+                    isSide = firstElement.cakeDirection == .side
+                }
+            }
+        
+        finalKeyword = keywords
     }
 }
+
+
 
 //#Preview {
 //    ZStack {
 //        Color.bg
-//        
+//
 //        FinalListComponent()
 //    } .ignoresSafeArea()
 //}
