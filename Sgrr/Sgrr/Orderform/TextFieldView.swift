@@ -11,7 +11,7 @@ import Combine
 
 struct TextFieldView: View {
     
-    private var cakeData = CoredataManager.shared
+//    private var cakeData = CoredataManager.shared
 
 
     //사용자 입력을 저장하는 상태 변수

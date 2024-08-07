@@ -13,6 +13,8 @@ struct FinalColorComponent: View {
     @State var selectedLetter: String = "FF5733"
     // TODO: 티나 헥스코드 어떻게 보여줬는지 물어보기
     
+  
+    
     var body: some View {
         VStack {
             // MARK: - 컨셉, divider

@@ -13,25 +13,8 @@ struct FinalGuideView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
-    @FetchRequest(
-        entity: OrderForm.entity(),
-        sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
-    ) private var orderForms: FetchedResults<OrderForm>
-    
-    var orderForm: OrderForm {
-        guard let order = orderForms.last else {
-            return OrderForm()
-        }
-        return order
-    }
-    
-    var combinedImage: [Data] {
-        var images: [Data] = orderForm.elementImage ?? []
-        if let conceptImage = orderForm.conceptImage {
-            images.insert(conceptImage, at: 0)
-        }
-        return images
-    }
+    let coredataManager = NewCoredataManager.shared
+    @State var cakes: [Cake] = []
     
     var body: some View {
             ScrollView(.vertical, showsIndicators: false) {
@@ -49,13 +32,16 @@ struct FinalGuideView: View {
                             .padding(.horizontal, 16)
                             .padding(.bottom, 24)
                         
-                        FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
-                            .padding(.bottom, 22)
+                        if let cake = cakes.first {
+                            FinalColorComponent(selectedBg: cake.colorBG, selectedLetter: cake.colorLetter)
+                                .padding(.bottom, 22)
+                        }
                         
-                        FinalConceptKeywordComponent()
-                            .padding(.bottom, 22)
                         
-                        FinalElementKeywordComponent()
+//                        FinalConceptKeywordComponent()
+//                            .padding(.bottom, 22)
+//                        
+//                        FinalElementKeywordComponent()
                         
                         Spacer()
                         
@@ -107,6 +93,9 @@ struct FinalGuideView: View {
                     }
                 }
             }
+            .onAppear {
+                cakes = coredataManager.getAllOrders()
+            }
         
     }
     
@@ -132,11 +121,11 @@ struct FinalGuideView: View {
     @ViewBuilder
     func imageVGrid() -> some View {
         HStack {
-            LazyVGrid(columns: columns) {
-                ForEach(combinedImage.indices, id: \.self) { index in
-                    GuideImageComponent(num: index + 1, selectedImage: combinedImage[index])
-                }
-            }
+//            LazyVGrid(columns: columns) {
+//                ForEach(combinedImage.indices, id: \.self) { index in
+//                    GuideImageComponent(num: index + 1, selectedImage: combinedImage[index])
+//                }
+//            }
         }
     }
 }

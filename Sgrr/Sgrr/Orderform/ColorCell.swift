@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct ColorCell: View {
-    
-    private var cakeData = CoredataManager.shared
+
 
     
-    @State var selectedBGColor: Color = .white
-    @State var selectedLetteringColor: Color = .white
-    @State var bgColorToString: String = ""
-    @State var letteringColorToString: String = ""
+    @Binding var selectedBGColor: Color
+    @Binding var selectedLetteringColor: Color
+    @Binding var bgColorToString: String
+    @Binding var letteringColorToString: String
 
     var body: some View {
             VStack {
@@ -60,8 +59,8 @@ struct ColorCell: View {
                                                 guard let hex = selectedBGColor.toHex() else {
                                                     return
                                                 }
-                                                cakeData.cake.colorBG = hex
-                                                saveOrder()
+                                                bgColorToString = hex
+//                                                saveOrder()
                                                 print("hello")
                                             }
                                         
@@ -98,8 +97,9 @@ struct ColorCell: View {
                                                 guard let hex = selectedLetteringColor.toHex() else {
                                                     return
                                                 }
-                                                cakeData.cake.colorLetter = hex
-                                                saveOrder()
+                                                letteringColorToString = hex
+//                                                cakeData.cake.colorLetter = hex
+//                                                saveOrder()
                                                 print("hello")
                                             }
                                         
@@ -119,10 +119,7 @@ struct ColorCell: View {
     }
 }
 
-// MARK: - 저장함수
-private func saveOrder() {
-    CoredataManager.shared.saveOrUpdateOrder()
-}
+
 
 //#Preview {
 //   ColorCell()

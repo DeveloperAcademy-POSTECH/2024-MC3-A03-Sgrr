@@ -10,13 +10,13 @@ import CoreData
 
 struct OrderFormView: View {
     @EnvironmentObject var router: Router
-    private var cakeData = CoredataManager.shared
     
-    @FetchRequest(
-        entity: OrderForm.entity(),
-        sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
-    ) private var orderForms: FetchedResults<OrderForm>
+    let coredataManager = NewCoredataManager.shared
     
+    @State var selectedBGColor: Color = .white
+    @State var selectedLetteringColor: Color = .white
+    @State var bgColorToString: String = ""
+    @State var letteringColorToString: String = ""
 
     var body: some View {
         
@@ -25,7 +25,7 @@ struct OrderFormView: View {
                 ScrollView {
                     LazyVStack {
                         VStack {
-                            ColorCell()
+                            ColorCell(selectedBGColor: $selectedBGColor, selectedLetteringColor: $selectedLetteringColor, bgColorToString: $bgColorToString, letteringColorToString: $letteringColorToString)
                         } .frame(height: geo.size.height)
                         VStack {
                             ConceptView()
@@ -41,9 +41,9 @@ struct OrderFormView: View {
                 .background(Color.bg)
                 
                 Button {
-                    if let orderForm = orderForms.last {
+                    let cake = Cake(id: UUID(), colorBG: bgColorToString, colorLetter: letteringColorToString, conceptKey: "", conceptImg: Data(), cakeElement: [])
+                    coredataManager.createOrderFormEntity(cake: cake)
                         router.push(view: .FinalGuideView)
-                    }
                 } label: {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundStyle(.main)
@@ -89,10 +89,7 @@ struct OrderFormView: View {
     }
 }
 
-// MARK: - 저장함수
-private func saveOrder() {
-    CoredataManager.shared.saveOrUpdateOrder()
-}
+
 
 
 //#Preview {

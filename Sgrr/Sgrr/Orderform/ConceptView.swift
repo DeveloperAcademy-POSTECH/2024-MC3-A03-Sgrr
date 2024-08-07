@@ -11,7 +11,7 @@ import PhotosUI
 
 struct ConceptView: View {
     
-    private var cakeData = CoredataManager.shared
+//    private var cakeData = CoredataManager.shared
     
     @State private var conceptImage: UIImage?
     @State private var photosPickerConceptItem: PhotosPickerItem?
@@ -74,8 +74,8 @@ struct ConceptView: View {
                                    let data = try? await photosPickerConceptItem.loadTransferable(type: Data.self) {
                                     if let image = UIImage(data: data) {
                                         conceptImage = image
-                                        cakeData.cake.conceptImg = data
-                                        saveOrder()
+//                                        cakeData.cake.conceptImg = data
+//                                        saveOrder()
                                     }
                                 }
                                
@@ -95,8 +95,8 @@ struct ConceptView: View {
                                             limitText(newValue, upper: characterLimit)
                                         }
                                         .onChange(of: conceptKeyword) {
-                                            cakeData.cake.conceptKey = conceptKeyword
-                                            saveOrder()
+//                                            cakeData.cake.conceptKey = conceptKeyword
+//                                            saveOrder()
                                         }
                                     
                                     // 자동 수정 설정 해제
@@ -129,10 +129,7 @@ struct ConceptView: View {
     }
 }
 
-// MARK: - 저장함수
-private func saveOrder() {
-    CoredataManager.shared.saveOrUpdateOrder()
-}
+
 
 #Preview {
     ConceptView()

@@ -4,8 +4,20 @@ import SwiftUI
 import Combine
 import PhotosUI
 
+enum CakeDesignSide {
+    case top
+    case side
+}
+
+struct CakeKeyword: Identifiable {
+    var id: UUID = UUID()
+    var image: UIImage?
+    var designSide: CakeDesignSide
+    var keyword: String
+}
+
 struct ComponentView: View {
-    private var cakeData = CoredataManager.shared
+//    private var cakeData = CoredataManager.shared
     
     @State private var referenceTopImage: UIImage?
     @State private var referenceSideImage: UIImage?
@@ -21,6 +33,11 @@ struct ComponentView: View {
     // 키워드
     @State var cakeTopKeywords: [String] = [""]
     @State var cakeSideKeywords: [String] = [""]
+    
+    // Hi Austin
+    @State private var cakeKeywordList: [CakeKeyword] = [
+        CakeKeyword(image: nil, designSide: .top, keyword: "default")
+    ]
 
     private let characterLimit: Int = 15     //최대 글자 수 제한
     @FocusState private var isFocused: Bool
@@ -37,6 +54,45 @@ struct ComponentView: View {
                     .fontWeight(.black)
                     .padding(.trailing, 280)
                     .padding(.top, 30)
+            }
+            
+            // Hi Austin 2
+            List {
+                Section {
+                    ForEach($cakeKeywordList.filter { $0.wrappedValue.designSide == .top }) { $cakeKeyword in
+                        HStack {
+                            AustinImageAddView(cakeKeyword: $cakeKeyword)
+                            Text(cakeKeyword.keyword)
+                        }
+                    }
+                } header: {
+                    HStack {
+                        Text("케이크 윗면")
+                        Spacer()
+                        Button {
+                            let newCake = CakeKeyword(image: nil, designSide: .top, keyword: "")
+                            cakeKeywordList.append(newCake)
+                        } label: {
+                            Text("+")
+                        }
+                    }
+                }
+                Section {
+                    ForEach(cakeKeywordList.filter { $0.designSide == .side }) { cakeKeyword in
+                        Text(cakeKeyword.keyword)
+                    }
+                } header: {
+                    HStack {
+                        Text("케이크 옆면")
+                        Spacer()
+                        Button {
+                            let newCake = CakeKeyword(image: nil, designSide: .side, keyword: "")
+                            cakeKeywordList.append(newCake)
+                        } label: {
+                            Text("+")
+                        }
+                    }
+                }
             }
             
             List {
@@ -86,7 +142,7 @@ struct ComponentView: View {
                                         if let image = UIImage(data: data) {
                                             referenceTopImage = image
                                             inputElementImage = data
-                                            cakeData.cake.elementImg.append(inputElementImage)
+//                                            cakeData.cake.elementImg.append(inputElementImage)
                                         }
                                     }
                                 }
@@ -104,8 +160,8 @@ struct ComponentView: View {
                                                 limitText(newValue, in: &cakeTopKeywords, at: index, upper: characterLimit)
                                             }
                                             .onChange(of: cakeTopKeywords[index]) {
-                                                cakeData.cake.elementTopKey = cakeTopKeywords
-                                                saveOrder()
+//                                                cakeData.cake.elementTopKey = cakeTopKeywords
+//                                                saveOrder()
                                             }
                                         
                                         // 자동 수정 설정 해제
@@ -176,7 +232,7 @@ struct ComponentView: View {
                                         if let image = UIImage(data: data) {
                                             referenceTopImage = image
                                             inputElementImage = data
-                                            cakeData.cake.elementImg.append(inputElementImage)
+//                                            cakeData.cake.elementImg.append(inputElementImage)
                                         }
                                     }
                                 }
@@ -188,8 +244,8 @@ struct ComponentView: View {
                                     limitText(newValue, in: &cakeSideKeywords, at: index, upper: characterLimit)
                                 }
                                 .onChange(of: cakeSideKeywords[index]) {
-                                    cakeData.cake.elementSideKey = cakeSideKeywords
-                                    saveOrder()
+//                                    cakeData.cake.elementSideKey = cakeSideKeywords
+//                                    saveOrder()
                                 }
                                 .disableAutocorrection(false)
                                 .focused($isFocused)
@@ -229,10 +285,6 @@ struct ComponentView: View {
     }
 }
 
-// MARK: - 저장함수
-private func saveOrder() {
-    CoredataManager.shared.saveOrUpdateOrder()
-}
 
 #Preview {
     ComponentView()

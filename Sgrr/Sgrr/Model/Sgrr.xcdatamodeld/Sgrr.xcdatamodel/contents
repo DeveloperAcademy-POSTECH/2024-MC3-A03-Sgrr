@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23B2073" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="OrderForm" representedClassName="OrderForm" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23B2073" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CakeElementEntity" representedClassName="CakeElementEntity" syncable="YES">
+        <attribute name="elementImages" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Data]"/>
+        <attribute name="elementKeywords" optional="YES" attributeType="String" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="isSide" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="OrderFormEntity" representedClassName="OrderFormEntity" syncable="YES">
         <attribute name="colorBackground" optional="YES" attributeType="String"/>
         <attribute name="colorLettering" optional="YES" attributeType="String"/>
         <attribute name="conceptImage" optional="YES" attributeType="Binary"/>
         <attribute name="conceptKeyword" optional="YES" attributeType="String"/>
-        <attribute name="elementImage" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Data]"/>
-        <attribute name="elementSideKeyword" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
-        <attribute name="elementTopKeyword" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="cakeElements" toMany="YES" minCount="1" maxCount="5" deletionRule="Nullify" destinationEntity="CakeElementEntity"/>
     </entity>
 </model>
