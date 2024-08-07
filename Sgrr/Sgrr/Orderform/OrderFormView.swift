@@ -21,7 +21,6 @@ struct OrderFormView: View {
     var body: some View {
         
         GeometryReader { geo in
-            let safeAreaTopHeight = geo.safeAreaInsets.top
             let safeAreaHeight = geo.safeAreaInsets.bottom
             
             ZStack(alignment: .bottom) {
