@@ -39,15 +39,11 @@
 		86D737062C5A887200078D47 /* Cake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D737052C5A887200078D47 /* Cake.swift */; };
 		953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EC5F82C53C6B2002E5876 /* OrderFormView.swift */; };
 		95DC46832C5A23FE00AFC976 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46822C5A23FE00AFC976 /* ColorCell.swift */; };
-		95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC46862C5A462400AFC976 /* ImageAddView.swift */; };
 		95EACC392C58E3E900F64E8F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EACC382C58E3E900F64E8F /* Extension.swift */; };
-
 		95EEC50D2C634E9F0043C23D /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEC50C2C634E9F0043C23D /* ImageCell.swift */; };
 		95EEC50F2C635D290043C23D /* TextfieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEC50E2C635D290043C23D /* TextfieldCell.swift */; };
-
 		A86B9E6B2C61541A00DB8F42 /* Extention+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B9E6A2C61541A00DB8F42 /* Extention+View.swift */; };
 		A86B9E6D2C61582F00DB8F42 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B9E6C2C61582F00DB8F42 /* ContentView.swift */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,15 +81,11 @@
 		86D737052C5A887200078D47 /* Cake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake.swift; sourceTree = "<group>"; };
 		953EC5F82C53C6B2002E5876 /* OrderFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFormView.swift; sourceTree = "<group>"; };
 		95DC46822C5A23FE00AFC976 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
-		95DC46862C5A462400AFC976 /* ImageAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAddView.swift; sourceTree = "<group>"; };
 		95EACC382C58E3E900F64E8F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-
 		95EEC50C2C634E9F0043C23D /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		95EEC50E2C635D290043C23D /* TextfieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldCell.swift; sourceTree = "<group>"; };
-
 		A86B9E6A2C61541A00DB8F42 /* Extention+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+View.swift"; sourceTree = "<group>"; };
 		A86B9E6C2C61582F00DB8F42 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,11 +210,10 @@
 			children = (
 				953EC5F82C53C6B2002E5876 /* OrderFormView.swift */,
 				95DC46822C5A23FE00AFC976 /* ColorCell.swift */,
-				95EEC50E2C635D290043C23D /* TextfieldCell.swift */,
-				95DC46862C5A462400AFC976 /* ImageAddView.swift */,
-				95EEC50C2C634E9F0043C23D /* ImageCell.swift */,
 				864031772C5B5E3200666B91 /* ConceptView.swift */,
 				864031792C5B5E5100666B91 /* ElementView.swift */,
+				95EEC50E2C635D290043C23D /* TextfieldCell.swift */,
+				95EEC50C2C634E9F0043C23D /* ImageCell.swift */,
 			);
 			path = Orderform;
 			sourceTree = "<group>";
@@ -347,7 +338,6 @@
 				43DB14A42C5EBDF400F722D6 /* FinalColorComponent.swift in Sources */,
 				43DB14A22C5EA3E600F722D6 /* FinalElementKeywordComponent.swift in Sources */,
 				8640317A2C5B5E5100666B91 /* ElementView.swift in Sources */,
-				95DC46872C5A462400AFC976 /* ImageAddView.swift in Sources */,
 				43DB14952C5C7AAB00F722D6 /* FinalGuideView.swift in Sources */,
 				864031702C5B5C4D00666B91 /* Router.swift in Sources */,
 				43DB14A02C5EA3C600F722D6 /* GuideImageComponent.swift in Sources */,
