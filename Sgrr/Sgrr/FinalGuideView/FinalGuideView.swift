@@ -71,20 +71,6 @@ struct FinalGuideView: View {
                         Spacer()
                         
                     } .padding(.bottom, -11)
-
-                    
-                    FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
-                        .padding(.bottom, 22)
-                    
-                    FinalListComponent(listNum: 1, keyword: orderForm.conceptKeyword ?? "", isElement: false)
-                        .padding(.bottom, 22)
-                    
-                    FinalListComponent(orderMenu: "요소", listNum: 5)
-                    
-                    Spacer()
-                    
-                } .padding(.bottom, -11)
-                
             }
         }
         .background(Color.bg)
