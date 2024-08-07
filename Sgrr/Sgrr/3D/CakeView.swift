@@ -5,13 +5,14 @@
 //  Created by dora on 7/31/24.
 //
 
+
 import SwiftUI
 import PencilKit
 
 struct CakeView: View {
     @EnvironmentObject var router: Router
     @Environment(\.presentationMode) var presentationMode
-    
+
     @FetchRequest(
         entity: OrderForm.entity(),
         sortDescriptors: []
@@ -27,7 +28,7 @@ struct CakeView: View {
     var sampleImages: [UIImage] {
         var images: [UIImage] = []
 
-        // Safely unwrap and iterate over the optional array `elementImage`
+        //Safely unwrap and iterate over the optional array `elementImage`
         if let imageDataArray = orderForm.elementImage {
             for imageData in imageDataArray {
                 if let image = UIImage(data: imageData) {
@@ -42,7 +43,11 @@ struct CakeView: View {
             UIImage(systemName: "heart.fill")!,
             UIImage(systemName: "sun.and.horizon.fill")!,
             UIImage(systemName: "sunglasses.fill")!,
-            //UIImage(systemName: "paperplane.fill")!
+            UIImage(systemName: "paperplane.fill")!
+//            UIImage(named: "Strawberry")!,
+//            UIImage(named: "cloud")!,
+//            UIImage(named: "wings")!,
+//            UIImage(named: "파티시엘")!
         ]
 
         images.append(contentsOf: defaultImages)
@@ -51,6 +56,7 @@ struct CakeView: View {
 
     
     
+
     @State var cakeImage: CGImage?
     
     //@Binding var selectedColor: Color

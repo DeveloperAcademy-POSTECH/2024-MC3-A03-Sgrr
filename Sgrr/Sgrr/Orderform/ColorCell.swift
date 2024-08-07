@@ -68,6 +68,7 @@ struct ColorCell: View {
                                         .font(.hexText)
                                         .foregroundStyle(Color.gray)
                                 }
+                                .padding(.top, 10)
                                 
                             }
                         }
@@ -107,13 +108,14 @@ struct ColorCell: View {
                                         .font(.hexText)
                                         .foregroundStyle(Color.gray)
                                 }
+                                .padding(.top, 10)
                                 
                             }
                         }
                 }
-                .padding(.trailing, 22)
-                .padding(.leading, 22)
-                .padding(.top, 22)
+                .padding(.trailing, 26)
+                .padding(.leading, 26)
+                .padding(.top, 16)
                 Spacer()
             }
         }

@@ -35,7 +35,7 @@ struct OrderFormView: View {
                             .ignoresSafeArea(edges: .bottom)
                             .frame(height: geo.size.height + safeAreaHeight)
                         
-                        ComponentView()
+                        ElementView()
                             .ignoresSafeArea(edges: .bottom)
                             .frame(height: geo.size.height + safeAreaHeight)
                     }
