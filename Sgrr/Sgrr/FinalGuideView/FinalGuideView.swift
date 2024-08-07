@@ -5,6 +5,7 @@
 //  Created by Lee Wonsun on 8/1/24.
 //
 
+
 import SwiftUI
 import Photos
 
@@ -14,7 +15,6 @@ struct FinalGuideView: View {
     
     @State private var screenshotImage: UIImage?
     @State private var showingAlert = false
-    
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -39,17 +39,11 @@ struct FinalGuideView: View {
     }
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            ZStack {
-                Color.bg
-                    .ignoresSafeArea()
-                
-                VStack(spacing: 0) {
-                    guideTitle()
-                        .padding(.bottom, 20)
-                        .padding(.top, -20)
+            ScrollView(.vertical, showsIndicators: false) {
+                ZStack {
+                    Color.bg
+                        .ignoresSafeArea()
                     
-
                     VStack(spacing: 0) {
                         guideTitle()
                             .padding(.bottom, 20)
@@ -66,64 +60,64 @@ struct FinalGuideView: View {
                         FinalConceptKeywordComponent()
                             .padding(.bottom, 22)
                         
-                        FinalElementKeywordComponent(orderMenu: "요소",  startFromSecond: true)
+                        FinalElementKeywordComponent()
                         
                         Spacer()
                         
                     } .padding(.bottom, -11)
+                    
+                }
             }
-        }
-        .background(Color.bg)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                HStack(spacing: 5) {
-                  
-                    if let image = screenshotImage {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200, height: 200)
-                    }
-                    
-                    Button(
-                        action: {
-                            share()
-                        },
-                        label: {
-                            Image(systemName: "square.and.arrow.up")
-                                .foregroundStyle(.main)
-                        }
-                    )
-                        .padding(.bottom, 3.5)
-                        .alert(isPresented: $showingAlert) {
-                            Alert(title: Text("Saved"), message: Text("Screenshot saved to Photos"), dismissButton: .default(Text("OK")))
-                        }
-                    
-                    Button(
-                        action: {
+            .background(Color.bg)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack(spacing: 5) {
+                        
+                        if let image = screenshotImage {
+                                           Image(uiImage: image)
+                                               .resizable()
+                                               .scaledToFit()
+                                               .frame(width: 200, height: 200)
+                                       }
+                                       
+                                       Button(
+                                           action: {
+                                               share()
+                                           },
+                                           label: {
+                                               Image(systemName: "square.and.arrow.up")
+                                                   .foregroundStyle(.main)
+                                           }
+                                       )
+                                           .padding(.bottom, 3.5)
+                                           .alert(isPresented: $showingAlert) {
+                                               Alert(title: Text("Saved"), message: Text("Screenshot saved to Photos"), dismissButton: .default(Text("OK")))
+                                           }
+
+                        
+                        
+                        
+                        Button(action: {
                             router.backToHome()
-                        },
-                        label: {
+                        }, label: {
                             Image(systemName: "square.and.pencil")
                                 .foregroundStyle(.main)
-                        }
-                    )
-                    .padding(.bottom, 3.5)
+                        }) .padding(.bottom, 3.5)
+                    }
                 }
-            }
-            
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    HStack {
-                        Image(systemName: "chevron.left")
-                            .foregroundStyle(.main)
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack {
+                            Image(systemName: "chevron.left")
+                                .foregroundStyle(.main)
+                        }
                     }
                 }
             }
-        }
         
     }
     
@@ -156,66 +150,55 @@ struct FinalGuideView: View {
             }
         }
     }
+    
     private func screenShot() {
-        let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
-        UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
-        
-        PHPhotoLibrary.requestAuthorization { status in
-            switch status {
-            case .authorized:
-                DispatchQueue.main.async {
-                    showingAlert = true
+            let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
+            UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
+            
+            PHPhotoLibrary.requestAuthorization { status in
+                switch status {
+                case .authorized:
+                    DispatchQueue.main.async {
+                        showingAlert = true
+                    }
+                case .denied, .restricted, .notDetermined, .limited:
+                    break
+                @unknown default:
+                    break
                 }
-            case .denied, .restricted, .notDetermined, .limited:
-                break
-            @unknown default:
-                break
             }
         }
-    }
-    
-    private func share() {
-        let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
-        let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
-        
-        if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
-            rootViewController.present(activityViewController, animated: true, completion: nil)
+
+
+
+        private func share() {
+            let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
+            let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
+            
+            if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
+                rootViewController.present(activityViewController, animated: true, completion: nil)
+            }
         }
-    }
-    
-//    권한 체크
-    private func checkPhotoPermission(completion: @escaping (Bool) -> Void) {
-           var status: PHAuthorizationStatus = .notDetermined
-           if #available(iOS 14, *) {
-               status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
-           } else {
-               status = PHPhotoLibrary.authorizationStatus()
-           }
-    
-           if status == .notDetermined {
-               PHPhotoLibrary.requestAuthorization { newStatus in
-                   completion(newStatus == .denied)
+
+
+
+
+
+        private func checkPhotoPermission(completion: @escaping (Bool) -> Void) {
+               var status: PHAuthorizationStatus = .notDetermined
+               if #available(iOS 14, *) {
+                   status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
+               } else {
+                   status = PHPhotoLibrary.authorizationStatus()
                }
-           } else {
-               completion(status == .denied)
+        
+               if status == .notDetermined {
+                   PHPhotoLibrary.requestAuthorization { newStatus in
+                       completion(newStatus == .denied)
+                   }
+               } else {
+                   completion(status == .denied)
+               }
            }
-       }
     
-}
-
-struct PreviewContainer<Content: View>: View {
-    @StateObject var router = Router()
-    @ViewBuilder var content: Content
-    
-    var body: some View {
-        content
-            .environmentObject(router)
-    }
-}
-
-
-#Preview {
-    PreviewContainer {
-        FinalGuideView()
-    }
 }
