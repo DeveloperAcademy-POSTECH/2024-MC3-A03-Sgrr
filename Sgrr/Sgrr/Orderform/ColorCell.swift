@@ -9,12 +9,10 @@ import SwiftUI
 
 struct ColorCell: View {
     
-    private var cakeData = CoredataManager.shared
-    
     @State var selectedBGColor: Color = .white
     @State var selectedLetteringColor: Color = .white
-    @State var bgColorToString: String = ""
-    @State var letteringColorToString: String = ""
+    @Binding var bgColorToString: String
+    @Binding var letteringColorToString: String
     
     var body: some View {
         VStack {
@@ -59,9 +57,8 @@ struct ColorCell: View {
                                             guard let hex = selectedBGColor.toHex() else {
                                                 return
                                             }
-                                            cakeData.cake.colorBG = hex
-                                            saveOrder()
-                                            print("hello")
+                                            bgColorToString = hex
+                                            print("changeColor")
                                         }
                                     
                                     Text("#\(selectedBGColor.toHex() ?? "N/A")")
@@ -99,9 +96,8 @@ struct ColorCell: View {
                                             guard let hex = selectedLetteringColor.toHex() else {
                                                 return
                                             }
-                                            cakeData.cake.colorLetter = hex
-                                            saveOrder()
-                                            
+                                            letteringColorToString = hex
+                                            print("changeColor")
                                         }
                                     
                                     Text("#\(selectedLetteringColor.toHex() ?? "N/A")")
@@ -122,12 +118,8 @@ struct ColorCell: View {
     }
 }
 
-// MARK: - 저장함수
-private func saveOrder() {
-    CoredataManager.shared.saveOrUpdateOrder()
-}
 
-#Preview {
-    ColorCell()
-}
+//#Preview {
+//    ColorCell()
+//}
 

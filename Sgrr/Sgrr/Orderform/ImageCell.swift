@@ -29,7 +29,7 @@ struct ImageCell: View {
                     .frame(width: 30, height: 24)
                     .scaledToFit()
                 
-                if let referenceImage = cakeElement.elementimage {
+                if let referenceImage = cakeElement.photoPickerImage {
                     Image(uiImage: referenceImage)
                         .resizable()
                         .scaledToFill()
@@ -43,7 +43,8 @@ struct ImageCell: View {
                 if let photosPickerElementItem,
                    let data = try? await photosPickerElementItem.loadTransferable(type: Data.self) {
                     if let image = UIImage(data: data) {
-                        cakeElement.elementimage = image
+                        cakeElement.photoPickerImage = image
+                        cakeElement.elementImage = data
                     }
                 }
                
@@ -52,8 +53,8 @@ struct ImageCell: View {
     }
 }
 
-#Preview {
-    ImageCell(cakeElement: .constant(CakeElement(cakeDirection: .top, elementKeyword: "100")))
-}
+//#Preview {
+//    ImageCell(cakeElement: .constant(CakeElement(cakeDirection: .top, elementKeyword: "100")))
+//}
 
 

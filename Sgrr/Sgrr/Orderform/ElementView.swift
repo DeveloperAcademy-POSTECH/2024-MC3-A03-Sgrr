@@ -5,25 +5,19 @@ import SwiftUI
 import Combine
 import PhotosUI
 
-// 케이크 윗면, 옆면
-enum CakeDirection {
-    case top
-    case side
-}
-
-struct CakeElement: Identifiable {
-    var id: UUID = UUID()
-    var elementimage: UIImage?
-    var cakeDirection: CakeDirection
-    var elementKeyword: String
-}
 
 struct ElementView: View {
     
-    @State private var cakeElementList: [CakeElement] = [
-        .init(cakeDirection: .top, elementKeyword: ""),
-        .init(cakeDirection: .side, elementKeyword: "")
-    ]
+    @Binding var cakeElementList: [CakeElement]
+    
+    private var isPlusButtonDisabled: Bool {
+             return cakeElementList.count >= 5
+         }
+       
+       private func onDelete(at offsets: IndexSet) {
+            cakeElementList.remove(atOffsets: offsets)
+        }
+       
     
     var body: some View {
         VStack (spacing: 0) {
@@ -47,6 +41,7 @@ struct ElementView: View {
                             TextfieldCell(direction: .top, cakeElement: $cakeElement)
                         }
                     }
+                    .onDelete(perform: onDelete)
                 } header: {
                     HStack {
                         Text("케이크 윗면")
@@ -55,7 +50,7 @@ struct ElementView: View {
                         
                         Spacer()
                         Button {
-                            let newElementList = CakeElement(elementimage: nil, cakeDirection: .top, elementKeyword: "")
+                            let newElementList = CakeElement(id: UUID(), elementKeyword: "", photoPickerImage: nil, cakeDirection: .top)
                             cakeElementList.append(newElementList)
                         } label: {
                             Image(systemName: "plus")
@@ -63,6 +58,7 @@ struct ElementView: View {
                                 .font(.system(size: 13))
                         }
                     }
+                    .disabled(isPlusButtonDisabled)
                 }
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 
@@ -73,6 +69,7 @@ struct ElementView: View {
                             TextfieldCell(direction: .side, cakeElement: $cakeElement)
                         }
                     }
+                    .onDelete(perform: onDelete)
                 } header: {
                     HStack {
                         Text("케이크 옆면")
@@ -80,7 +77,7 @@ struct ElementView: View {
                             .foregroundStyle(.gray)
                         Spacer()
                         Button {
-                            let newElementList = CakeElement(elementimage: nil, cakeDirection: .side, elementKeyword: "")
+                            let newElementList = CakeElement(id: UUID(), elementKeyword: "", photoPickerImage: nil, cakeDirection: .side)
                             cakeElementList.append(newElementList)
                         } label: {
                             Image(systemName: "plus")
@@ -88,6 +85,7 @@ struct ElementView: View {
                                 .font(.system(size: 13))
                         }
                     }
+                    .disabled(isPlusButtonDisabled)
                 }
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
@@ -101,13 +99,9 @@ struct ElementView: View {
     
 }
 
-// MARK: - 저장함수
-private func saveOrder() {
-    CoredataManager.shared.saveOrUpdateOrder()
-}
-
-#Preview {
-    ElementView()
-}
+//
+//#Preview {
+//    ElementView()
+//}
 
 

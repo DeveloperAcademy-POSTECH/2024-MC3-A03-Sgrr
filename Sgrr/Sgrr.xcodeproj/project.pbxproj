@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		431DD74B2C63CEFE00DE1AA5 /* CoredataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431DD74A2C63CEFE00DE1AA5 /* CoredataManager.swift */; };
+		431DD7502C63CF6800DE1AA5 /* OrderFormEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431DD74C2C63CF6800DE1AA5 /* OrderFormEntity+CoreDataClass.swift */; };
+		431DD7512C63CF6800DE1AA5 /* OrderFormEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431DD74D2C63CF6800DE1AA5 /* OrderFormEntity+CoreDataProperties.swift */; };
+		431DD7522C63CF6800DE1AA5 /* CakeElementEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431DD74E2C63CF6800DE1AA5 /* CakeElementEntity+CoreDataClass.swift */; };
+		431DD7532C63CF6800DE1AA5 /* CakeElementEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431DD74F2C63CF6800DE1AA5 /* CakeElementEntity+CoreDataProperties.swift */; };
 		43D4330E2C6210F70021DBEB /* FinalConceptKeywordComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D4330D2C6210F70021DBEB /* FinalConceptKeywordComponent.swift */; };
-		43D756202C57760500D52E06 /* CoredataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D7561F2C57760500D52E06 /* CoredataManager.swift */; };
+		43D756202C57760500D52E06 /* PreviousCoredataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D7561F2C57760500D52E06 /* PreviousCoredataManager.swift */; };
 		43DB14832C5C63E100F722D6 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB14822C5C63E100F722D6 /* GmarketSansMedium.otf */; };
 		43DB14882C5C642300F722D6 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB14842C5C642300F722D6 /* SFProDisplay-Medium.otf */; };
 		43DB14892C5C642300F722D6 /* SFProDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB14852C5C642300F722D6 /* SFProDisplay-Semibold.otf */; };
@@ -43,12 +48,16 @@
 		95EEC50D2C634E9F0043C23D /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEC50C2C634E9F0043C23D /* ImageCell.swift */; };
 		95EEC50F2C635D290043C23D /* TextfieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EEC50E2C635D290043C23D /* TextfieldCell.swift */; };
 		A86B9E6B2C61541A00DB8F42 /* Extention+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B9E6A2C61541A00DB8F42 /* Extention+View.swift */; };
-		A86B9E6D2C61582F00DB8F42 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86B9E6C2C61582F00DB8F42 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		431DD74A2C63CEFE00DE1AA5 /* CoredataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoredataManager.swift; sourceTree = "<group>"; };
+		431DD74C2C63CF6800DE1AA5 /* OrderFormEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderFormEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		431DD74D2C63CF6800DE1AA5 /* OrderFormEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderFormEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		431DD74E2C63CF6800DE1AA5 /* CakeElementEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CakeElementEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		431DD74F2C63CF6800DE1AA5 /* CakeElementEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CakeElementEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		43D4330D2C6210F70021DBEB /* FinalConceptKeywordComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalConceptKeywordComponent.swift; sourceTree = "<group>"; };
-		43D7561F2C57760500D52E06 /* CoredataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoredataManager.swift; sourceTree = "<group>"; };
+		43D7561F2C57760500D52E06 /* PreviousCoredataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousCoredataManager.swift; sourceTree = "<group>"; };
 		43DB14822C5C63E100F722D6 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
 		43DB14842C5C642300F722D6 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
 		43DB14852C5C642300F722D6 /* SFProDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.otf"; sourceTree = "<group>"; };
@@ -85,7 +94,6 @@
 		95EEC50C2C634E9F0043C23D /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		95EEC50E2C635D290043C23D /* TextfieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldCell.swift; sourceTree = "<group>"; };
 		A86B9E6A2C61541A00DB8F42 /* Extention+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention+View.swift"; sourceTree = "<group>"; };
-		A86B9E6C2C61582F00DB8F42 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +119,8 @@
 		43D7561E2C57730400D52E06 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				43D7561F2C57760500D52E06 /* CoredataManager.swift */,
+				43D7561F2C57760500D52E06 /* PreviousCoredataManager.swift */,
+				431DD74A2C63CEFE00DE1AA5 /* CoredataManager.swift */,
 				8640316F2C5B5C4D00666B91 /* Router.swift */,
 			);
 			path = Manager;
@@ -154,6 +163,10 @@
 		86034B892C51DAA4006106BC = {
 			isa = PBXGroup;
 			children = (
+				431DD74C2C63CF6800DE1AA5 /* OrderFormEntity+CoreDataClass.swift */,
+				431DD74D2C63CF6800DE1AA5 /* OrderFormEntity+CoreDataProperties.swift */,
+				431DD74E2C63CF6800DE1AA5 /* CakeElementEntity+CoreDataClass.swift */,
+				431DD74F2C63CF6800DE1AA5 /* CakeElementEntity+CoreDataProperties.swift */,
 				86034B942C51DAA4006106BC /* Sgrr */,
 				86034B932C51DAA4006106BC /* Products */,
 			);
@@ -174,7 +187,6 @@
 				43DB14902C5C688C00F722D6 /* Info.plist */,
 				43DB14812C5C639200F722D6 /* Font */,
 				86034B952C51DAA4006106BC /* SgrrApp.swift */,
-				A86B9E6C2C61582F00DB8F42 /* ContentView.swift */,
 				864031722C5B5C8A00666B91 /* Home */,
 				864031752C5B5D6300666B91 /* Orderform */,
 				86D737042C5A84BD00078D47 /* 3D */,
@@ -319,13 +331,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				431DD7502C63CF6800DE1AA5 /* OrderFormEntity+CoreDataClass.swift in Sources */,
+				431DD7512C63CF6800DE1AA5 /* OrderFormEntity+CoreDataProperties.swift in Sources */,
+				431DD7522C63CF6800DE1AA5 /* CakeElementEntity+CoreDataClass.swift in Sources */,
+				431DD7532C63CF6800DE1AA5 /* CakeElementEntity+CoreDataProperties.swift in Sources */,
 				953EC5F92C53C6B2002E5876 /* OrderFormView.swift in Sources */,
-				A86B9E6D2C61582F00DB8F42 /* ContentView.swift in Sources */,
 				864031782C5B5E3200666B91 /* ConceptView.swift in Sources */,
 				864031742C5B5CA200666B91 /* HomeView.swift in Sources */,
 				95DC46832C5A23FE00AFC976 /* ColorCell.swift in Sources */,
 				43DB14A82C5F961400F722D6 /* CanvasBG.swift in Sources */,
 				A86B9E6B2C61541A00DB8F42 /* Extention+View.swift in Sources */,
+				431DD74B2C63CEFE00DE1AA5 /* CoredataManager.swift in Sources */,
 				864031A82C5B925400666B91 /* Extension+Font.swift in Sources */,
 				95EEC50F2C635D290043C23D /* TextfieldCell.swift in Sources */,
 				43DB14AA2C5F963100F722D6 /* DraggableImage.swift in Sources */,
@@ -343,7 +359,7 @@
 				43DB14A02C5EA3C600F722D6 /* GuideImageComponent.swift in Sources */,
 				860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */,
 				43D4330E2C6210F70021DBEB /* FinalConceptKeywordComponent.swift in Sources */,
-				43D756202C57760500D52E06 /* CoredataManager.swift in Sources */,
+				43D756202C57760500D52E06 /* PreviousCoredataManager.swift in Sources */,
 				86D737062C5A887200078D47 /* Cake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

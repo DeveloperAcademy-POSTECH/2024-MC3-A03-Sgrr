@@ -13,29 +13,18 @@ struct CakeView: View {
     @EnvironmentObject var router: Router
     @Environment(\.presentationMode) var presentationMode
 
-    @FetchRequest(
-        entity: OrderForm.entity(),
-        sortDescriptors: []
-    ) private var orderForms: FetchedResults<OrderForm>
-    
-    var orderForm: OrderForm {
-        guard let order = orderForms.last else {
-            return OrderForm()
-        }
-        return order
-    }
     
     var sampleImages: [UIImage] {
         var images: [UIImage] = []
 
         //Safely unwrap and iterate over the optional array `elementImage`
-        if let imageDataArray = orderForm.elementImage {
-            for imageData in imageDataArray {
-                if let image = UIImage(data: imageData) {
-                    images.append(image)
-                }
-            }
-        }
+//        if let imageDataArray = orderForm.elementImage {
+//            for imageData in imageDataArray {
+//                if let image = UIImage(data: imageData) {
+//                    images.append(image)
+//                }
+//            }
+//        }
 
         // Default images
         let defaultImages: [UIImage] = [
@@ -71,43 +60,43 @@ struct CakeView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack (spacing: 0){
-                Cake3DContainer(picker: picker, canvasView: canvasView, currentRotation: $currentRotation, currentScale: $currentScale, cakeImage: $cakeImage, isActive: $showPicker, selectedColor: Color(hex: orderForm.colorBackground ?? "#FFFFFF"))
-                    .edgesIgnoringSafeArea(.all)
-                /// tap시 원 상태로 복귀
-                    .gesture(TapGesture().onEnded {
-                        currentRotation = SIMD3<Float>(0, 0, 0)
-                        currentScale = SIMD3<Float>(1, 1, 1)
-                    })
-                /// drag시 회전
-                    .gesture(DragGesture().onChanged { value in
-                        /// 화면상 가로 이동(x좌표 변화) - 3D상 Y축 회전
-                        /// 화면상 세로 이동(y좌표 변화) - 3D상 X축 회전
-                        let rotationChangeX = Float(value.translation.width) * .pi / 180 * 0.01
-                        let rotationChangeY = Float(value.translation.height) * .pi / 180 * 0.01
-                        currentRotation.x += rotationChangeY
-                        currentRotation.y += rotationChangeX
-                    })
-                /// pinch시 확대, 축소
-                    .gesture(MagnificationGesture().onChanged { value in
-                        let pinchScale = Float(value.magnitude)
-                        currentScale = SIMD3<Float>(x: pinchScale, y: pinchScale, z: pinchScale)
-                    })
-                    .frame(height: geometry.size.height / 2.5)
-                
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(Color(hex: "#CCC7B4"))
-                        .ignoresSafeArea()
-                    
-                    VStack{
-                        CanvasBackgroundView()
-                        Spacer().frame(height: 130)
-                    }
-                    CakeCanvasContainer(canvasView: $canvasView, picker: picker, isActive: $showPicker, cakeImage: $cakeImage, orderFrom: orderForm)
-                }
-                .frame(height: geometry.size.height / 1.5)
-            }
+//            VStack (spacing: 0){
+//                Cake3DContainer(picker: picker, canvasView: canvasView, currentRotation: $currentRotation, currentScale: $currentScale, cakeImage: $cakeImage, isActive: $showPicker, selectedColor: Color(hex: orderForm.colorBackground ?? "#FFFFFF"))
+//                    .edgesIgnoringSafeArea(.all)
+//                /// tap시 원 상태로 복귀
+//                    .gesture(TapGesture().onEnded {
+//                        currentRotation = SIMD3<Float>(0, 0, 0)
+//                        currentScale = SIMD3<Float>(1, 1, 1)
+//                    })
+//                /// drag시 회전
+//                    .gesture(DragGesture().onChanged { value in
+//                        /// 화면상 가로 이동(x좌표 변화) - 3D상 Y축 회전
+//                        /// 화면상 세로 이동(y좌표 변화) - 3D상 X축 회전
+//                        let rotationChangeX = Float(value.translation.width) * .pi / 180 * 0.01
+//                        let rotationChangeY = Float(value.translation.height) * .pi / 180 * 0.01
+//                        currentRotation.x += rotationChangeY
+//                        currentRotation.y += rotationChangeX
+//                    })
+//                /// pinch시 확대, 축소
+//                    .gesture(MagnificationGesture().onChanged { value in
+//                        let pinchScale = Float(value.magnitude)
+//                        currentScale = SIMD3<Float>(x: pinchScale, y: pinchScale, z: pinchScale)
+//                    })
+//                    .frame(height: geometry.size.height / 2.5)
+//                
+//                ZStack {
+//                    Rectangle()
+//                        .foregroundColor(Color(hex: "#CCC7B4"))
+//                        .ignoresSafeArea()
+//                    
+//                    VStack{
+//                        CanvasBackgroundView()
+//                        Spacer().frame(height: 130)
+//                    }
+//                    CakeCanvasContainer(canvasView: $canvasView, picker: picker, isActive: $showPicker, cakeImage: $cakeImage, orderFrom: orderForm)
+//                }
+//                .frame(height: geometry.size.height / 1.5)
+//            }
             if !showPicker {
                 VStack {
                     Spacer()

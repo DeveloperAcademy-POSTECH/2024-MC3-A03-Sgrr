@@ -10,14 +10,21 @@ import CoreData
 
 struct OrderFormView: View {
     @EnvironmentObject var router: Router
-    private var cakeData = CoredataManager.shared
     
-    @FetchRequest(
-        entity: OrderForm.entity(),
-        sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
-    ) private var orderForms: FetchedResults<OrderForm>
+    let coredataManager = CoredataManager.shared
     
-
+    // ColorCell
+    @State var bgColorToString: String = ""
+    @State var letteringColorToString: String = ""
+    // ConceptView
+    @State var conceptImageToData: Data = Data()
+    @State var conceptBindingKeyword: String = ""
+    // ElementView
+    @State private var cakeElementList: [CakeElement] = [
+        .init(id: UUID(), elementKeyword: "", cakeDirection: .top),
+        .init(id: UUID(), elementKeyword: "", cakeDirection: .side)
+    ]
+    
     var body: some View {
         
         GeometryReader { geo in
@@ -26,15 +33,15 @@ struct OrderFormView: View {
             ZStack(alignment: .bottom) {
                 ScrollView {
                     LazyVStack(spacing: 0) {
-                        ColorCell()
+                        ColorCell(bgColorToString: $bgColorToString, letteringColorToString: $letteringColorToString)
                             .ignoresSafeArea(edges: .bottom)
                             .frame(height: geo.size.height + safeAreaHeight)
                         
-                        ConceptView()
+                        ConceptView(conceptImageToData: $conceptImageToData, conceptBindingKeyword: $conceptBindingKeyword)
                             .ignoresSafeArea(edges: .bottom)
                             .frame(height: geo.size.height + safeAreaHeight)
                         
-                        ElementView()
+                        ElementView(cakeElementList: $cakeElementList)
                             .ignoresSafeArea(edges: .bottom)
                             .frame(height: geo.size.height + safeAreaHeight)
                     }
@@ -46,9 +53,10 @@ struct OrderFormView: View {
                 .background(Color.bg)
                 
                 Button {
-                    if let orderForm = orderForms.last {
-                        router.push(view: .FinalGuideView)
-                    }
+                    let cake = Cake(id: UUID(), colorBG: bgColorToString, colorLetter: letteringColorToString, conceptKey: conceptBindingKeyword, conceptImg: conceptImageToData, cakeElement: cakeElementList)
+                    coredataManager.createOrderFormEntity(cake: cake)
+                    print("\(cake)")
+                    router.push(view: .FinalGuideView)
                 } label: {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundStyle(.main)
@@ -60,8 +68,8 @@ struct OrderFormView: View {
                         }
                         .padding(.bottom, 20)
                         .shadow(color: Color(hex: "FA5738"), radius: 2, x: 0, y: 4)
-                       
-
+                    
+                    
                 }
             }
         }
@@ -71,36 +79,32 @@ struct OrderFormView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 
                 Button {
-                     // 홈으로 가기
+                    // 홈으로 가기
                     router.backToHome()
                 } label: {
-                 Image(systemName: "chevron.backward")
+                    Image(systemName: "chevron.backward")
                         .foregroundStyle(.main)
                         .font(.system(size: 20))
                 }
-               
+                
             }
-
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     // 3D 뷰 이동
                     router.push(view: .Cake3DView)
                 } label: {
-                 Text("3D")
+                    Text("3D")
                         .foregroundStyle(.main)
                         .font(.system(size: 20))
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
-       
+        
     }
 }
 
-// MARK: - 저장함수
-private func saveOrder() {
-    CoredataManager.shared.saveOrUpdateOrder()
-}
 
 
 //#Preview {

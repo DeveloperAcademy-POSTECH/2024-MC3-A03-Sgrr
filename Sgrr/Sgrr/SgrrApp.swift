@@ -10,8 +10,6 @@ import Observation
 
 @main
 struct SgrrApp: App {
-    @State private var cake = Cake()
-    let managedObject = CoredataManager.shared
     
     @StateObject var router = Router()
 
@@ -19,8 +17,6 @@ struct SgrrApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environment(\.managedObjectContext, managedObject.context)
-                .environment(cake)
                 .environmentObject(router)
         }
     }

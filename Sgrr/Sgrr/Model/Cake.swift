@@ -6,19 +6,29 @@
 //
 
 import Foundation
-import Observation
+import UIKit
 
 
-@Observable
-class Cake {
-    var uuid = UUID()
-    var colorBG: String = ""
-    var colorLetter: String = ""
-    var conceptKey: String = ""
-    var conceptImg: Data = Data()
-    var elementTopKey: [String] = []
-    var elementSideKey: [String] = []
-    var elementImg: [Data] = []
-    
+struct Cake {
+    var id: UUID
+    var colorBG: String
+    var colorLetter: String
+    var conceptKey: String
+    var conceptImg: Data
+    var cakeElement: [CakeElement]
 }
+
+struct CakeElement: Identifiable {
+    var id: UUID
+    var elementImage: Data?
+    var elementKeyword: String
+    var photoPickerImage: UIImage?
+    var cakeDirection: CakeDirection
+}
+
+enum CakeDirection {
+    case top
+    case side
+}
+
 

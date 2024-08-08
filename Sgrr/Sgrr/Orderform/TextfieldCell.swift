@@ -11,7 +11,7 @@ import SwiftUI
 struct TextfieldCell: View {
     let direction: CakeDirection
     @Binding var cakeElement: CakeElement
-
+    @State var elementArray: [String] = []
     
     var body: some View {
         ZStack {
@@ -39,6 +39,7 @@ struct TextfieldCell: View {
                        
                     
                         .onChange(of: cakeElement.elementKeyword) {
+                            elementArray.append(cakeElement.elementKeyword)
                         }
                         .disableAutocorrection(false)
                 }

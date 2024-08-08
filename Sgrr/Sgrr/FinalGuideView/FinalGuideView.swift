@@ -18,106 +18,99 @@ struct FinalGuideView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
-    @FetchRequest(
-        entity: OrderForm.entity(),
-        sortDescriptors: [] // 정렬 기준 없이 모든 데이터를 가져옴
-    ) private var orderForms: FetchedResults<OrderForm>
+    // 코어데이터 관련
+    let coredataManager = CoredataManager.shared
+    @State var cake: [Cake] = []
     
-    var orderForm: OrderForm {
-        guard let order = orderForms.last else {
-            return OrderForm()
-        }
-        return order
-    }
+    @State var finalImage: [Data] = []
     
-    var combinedImage: [Data] {
-        var images: [Data] = orderForm.elementImage ?? []
-        if let conceptImage = orderForm.conceptImage {
-            images.insert(conceptImage, at: 0)
-        }
-        return images
-    }
     
     var body: some View {
-            ScrollView(.vertical, showsIndicators: false) {
-                ZStack {
-                    Color.bg
-                        .ignoresSafeArea()
-                    
-                    VStack(spacing: 0) {
-                        guideTitle()
-                            .padding(.bottom, 20)
-                            .padding(.top, -20)
-                        
-                        // 이미지 6개 컴포넌트
-                        imageVGrid()
-                            .padding(.horizontal, 16)
-                            .padding(.bottom, 24)
-                        
-                        FinalColorComponent(selectedBg: orderForm.colorBackground ?? "", selectedLetter: orderForm.colorLettering ?? "")
-                            .padding(.bottom, 22)
-                        
-                        FinalConceptKeywordComponent()
-                            .padding(.bottom, 22)
-                        
-                        FinalElementKeywordComponent()
-                        
-                        Spacer()
-                        
-                    } .padding(.bottom, -11)
-                    
-                }
-            }
-            .background(Color.bg)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack(spacing: 5) {
-                        
-                        if let image = screenshotImage {
-                                           Image(uiImage: image)
-                                               .resizable()
-                                               .scaledToFit()
-                                               .frame(width: 200, height: 200)
-                                       }
-                                       
-                                       Button(
-                                           action: {
-                                               share()
-                                           },
-                                           label: {
-                                               Image(systemName: "square.and.arrow.up")
-                                                   .foregroundStyle(.main)
-                                           }
-                                       )
-                                           .padding(.bottom, 3.5)
-                                           .alert(isPresented: $showingAlert) {
-                                               Alert(title: Text("Saved"), message: Text("Screenshot saved to Photos"), dismissButton: .default(Text("OK")))
-                                           }
-
-                        
-                        
-                        
-                        Button(action: {
-                            router.backToHome()
-                        }, label: {
-                            Image(systemName: "square.and.pencil")
-                                .foregroundStyle(.main)
-                        }) .padding(.bottom, 3.5)
-                    }
-                }
+        ScrollView(.vertical, showsIndicators: false) {
+            ZStack {
+                Color.bg
+                    .ignoresSafeArea()
                 
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        HStack {
-                            Image(systemName: "chevron.left")
+                VStack(spacing: 0) {
+                    guideTitle()
+                        .padding(.bottom, 20)
+                        .padding(.top, -20)
+                    
+                    // 이미지 6개 컴포넌트
+                    imageVGrid()
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 24)
+                    
+                    if let cake = cake.last {
+                        FinalColorComponent(selectedBg: cake.colorBG , selectedLetter: cake.colorLetter)
+                            .padding(.bottom, 22)
+                        
+                        
+                        FinalConceptKeywordComponent(finalConceptKeyword: cake.conceptKey)
+                            .padding(.bottom, 22)
+                        
+                        FinalElementKeywordComponent(isSide: ((cake.cakeElement.last?.cakeDirection) != nil), finalKeyword: cake.cakeElement.map { $0.elementKeyword })
+                    }
+                    Spacer()
+                    
+                } .padding(.bottom, -11)
+                
+            }
+        }
+        .background(Color.bg)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack(spacing: 5) {
+                    
+                    if let image = screenshotImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
+                    }
+                    
+                    Button(
+                        action: {
+                            share()
+                        },
+                        label: {
+                            Image(systemName: "square.and.arrow.up")
                                 .foregroundStyle(.main)
                         }
+                    )
+                    .padding(.bottom, 3.5)
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Saved"), message: Text("Screenshot saved to Photos"), dismissButton: .default(Text("OK")))
+                    }
+                    
+                    
+                    
+                    
+                    Button(action: {
+                        router.backToHome()
+                    }, label: {
+                        Image(systemName: "square.and.pencil")
+                            .foregroundStyle(.main)
+                    }) .padding(.bottom, 3.5)
+                }
+            }
+            
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .foregroundStyle(.main)
                     }
                 }
             }
+        }
+        .onAppear {
+            cake = coredataManager.getAllOrders()
+            fetchImages()
+        }
         
     }
     
@@ -144,61 +137,77 @@ struct FinalGuideView: View {
     func imageVGrid() -> some View {
         HStack {
             LazyVGrid(columns: columns) {
-                ForEach(combinedImage.indices, id: \.self) { index in
-                    GuideImageComponent(num: index + 1, selectedImage: combinedImage[index])
-                }
+                                ForEach(finalImage.indices, id: \.self) { index in
+                                    GuideImageComponent(num: index + 1, selectedImage: finalImage[index])
+                                }
             }
         }
     }
     
-    private func screenShot() {
-            let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
-            UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
-            
-            PHPhotoLibrary.requestAuthorization { status in
-                switch status {
-                case .authorized:
-                    DispatchQueue.main.async {
-                        showingAlert = true
-                    }
-                case .denied, .restricted, .notDetermined, .limited:
-                    break
-                @unknown default:
-                    break
-                }
-            }
-        }
-
-
-
-        private func share() {
-            let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
-            let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
-            
-            if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
-                rootViewController.present(activityViewController, animated: true, completion: nil)
-            }
-        }
-
-
-
-
-
-        private func checkPhotoPermission(completion: @escaping (Bool) -> Void) {
-               var status: PHAuthorizationStatus = .notDetermined
-               if #available(iOS 14, *) {
-                   status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
-               } else {
-                   status = PHPhotoLibrary.authorizationStatus()
-               }
+    // MARK: - 이미지 배열화
+    func fetchImages() {
+        let coreDataManager = CoredataManager.shared
+        let orders = coreDataManager.getAllOrders()
+        var finalImages: [Data] = []
         
-               if status == .notDetermined {
-                   PHPhotoLibrary.requestAuthorization { newStatus in
-                       completion(newStatus == .denied)
-                   }
-               } else {
-                   completion(status == .denied)
-               }
-           }
+        if let order = orders.last {
+            finalImages.append(order.conceptImg)
+            for element in order.cakeElement {
+                finalImages.append(element.elementImage ?? Data())
+            }
+        }
+        
+        finalImage = finalImages
+    }
+    
+    private func screenShot() {
+        let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
+        UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
+        
+        PHPhotoLibrary.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                DispatchQueue.main.async {
+                    showingAlert = true
+                }
+            case .denied, .restricted, .notDetermined, .limited:
+                break
+            @unknown default:
+                break
+            }
+        }
+    }
+    
+    
+    
+    private func share() {
+        let screenshot = body.takeScreenshot(origin: UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size)
+        let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
+        
+        if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
+            rootViewController.present(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+    
+    
+    private func checkPhotoPermission(completion: @escaping (Bool) -> Void) {
+        var status: PHAuthorizationStatus = .notDetermined
+        if #available(iOS 14, *) {
+            status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
+        } else {
+            status = PHPhotoLibrary.authorizationStatus()
+        }
+        
+        if status == .notDetermined {
+            PHPhotoLibrary.requestAuthorization { newStatus in
+                completion(newStatus == .denied)
+            }
+        } else {
+            completion(status == .denied)
+        }
+    }
     
 }
