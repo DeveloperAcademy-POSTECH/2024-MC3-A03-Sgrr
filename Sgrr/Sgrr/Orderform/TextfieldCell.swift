@@ -40,6 +40,9 @@ struct TextfieldCell: View {
                         .onChange(of: cakeElement.elementKeyword) {
                             elementArray.append(cakeElement.elementKeyword)
                         }
+//                        .onTapGesture {
+//                            self.endTextEditing()
+//                        }
                         .disableAutocorrection(false)
                 }
                

@@ -96,9 +96,9 @@ struct ElementView: View {
             .background(Color.clear)
             .scrollContentBackground(.hidden)
         }
-        .onTapGesture {
-            self.endTextEditing()
-        }
+//        .onTapGesture {
+//            self.endTextEditing()
+//        }
     }
     
 }

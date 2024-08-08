@@ -91,6 +91,9 @@ struct ConceptView: View {
                                         .onChange(of: conceptKeyword) {
                                             conceptBindingKeyword = conceptKeyword
                                         }
+//                                        .onTapGesture {
+//                                            self.endTextEditing()
+//                                        }
                                         .disableAutocorrection(false)
                                         .focused($isFocused)
                                 }
@@ -113,9 +116,9 @@ struct ConceptView: View {
                 .scrollContentBackground(.hidden)
                 
             }
-        .onTapGesture {
-            self.endTextEditing()
-        }
+//        .onTapGesture {
+//            self.endTextEditing()
+//        }
     }
     
     
