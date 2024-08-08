@@ -21,7 +21,6 @@ struct FinalGuideView: View {
     // 코어데이터 관련
     let coredataManager = CoredataManager.shared
     @State var cake: [Cake] = []
-    
     @State var finalImage: [Data] = []
     
     
@@ -44,7 +43,6 @@ struct FinalGuideView: View {
                     if let cake = cake.last {
                         FinalColorComponent(selectedBg: cake.colorBG , selectedLetter: cake.colorLetter)
                             .padding(.bottom, 22)
-                        
                         
                         FinalConceptKeywordComponent(finalConceptKeyword: cake.conceptKey)
                             .padding(.bottom, 22)

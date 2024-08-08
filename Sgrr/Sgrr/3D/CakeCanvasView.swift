@@ -19,8 +19,6 @@ struct CakeCanvasContainer: UIViewRepresentable {
     @Binding var cakeImage: CGImage?
     
     /// 요소 이미지 불러오기 위한 주문서 모델
-//    var orderFrom: OrderForm
-    
     
     func makeUIView(context: Context) -> PKCanvasView {
         self.canvasView.tool = PKInkingTool(.pen, color: .black, width: 15)

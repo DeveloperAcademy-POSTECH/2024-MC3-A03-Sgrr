@@ -12,20 +12,27 @@ import PencilKit
 class DraggableImage: UIImageView {
     
     var originalPosition: CGPoint?
+    var currentScale: CGFloat = 1.0
 
     override init(image: UIImage?) {
         super.init(image: image)
         self.isUserInteractionEnabled = true
         addPanGesture()
+        addPinchGesture()
     }
 
     required init?(coder: NSCoder) {
         fatalError("NSCoder 불러오기 실패!")
     }
-    /// PanGesture가 Drag..
+    
     private func addPanGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         self.addGestureRecognizer(panGesture)
+    }
+    
+    private func addPinchGesture() {
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
+        self.addGestureRecognizer(pinchGesture)
     }
     
     @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -39,4 +46,15 @@ class DraggableImage: UIImageView {
             break
         }
     }
+    
+    @objc private func handlePinchGesture(_ gesture: UIPinchGestureRecognizer) {
+        switch gesture.state {
+        case .began, .changed:
+            self.transform = self.transform.scaledBy(x: gesture.scale, y: gesture.scale)
+            gesture.scale = 1.0
+        default:
+            break
+        }
+    }
 }
+

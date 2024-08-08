@@ -91,6 +91,9 @@ struct OrderFormView: View {
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
+                    let cake = Cake(id: UUID(), colorBG: bgColorToString, colorLetter: letteringColorToString, conceptKey: conceptBindingKeyword, conceptImg: conceptImageToData, cakeElement: cakeElementList)
+                    coredataManager.createOrderFormEntity(cake: cake)
+                    
                     // 3D 뷰 이동
                     router.push(view: .Cake3DView)
                 } label: {
