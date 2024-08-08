@@ -34,6 +34,7 @@
 		860C87E92C535D4C00D9FC24 /* cakeTray.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E72C535D4C00D9FC24 /* cakeTray.usdz */; };
 		860C87EA2C535D4C00D9FC24 /* cakeModel.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 860C87E82C535D4C00D9FC24 /* cakeModel.usdz */; };
 		860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860C880D2C58C74B00D9FC24 /* CakeCanvasView.swift */; };
+		86290FB82C64A5980085AC76 /* Nuggie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290FB72C64A5980085AC76 /* Nuggie.swift */; };
 		8640316E2C5B582500666B91 /* CakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640316D2C5B582500666B91 /* CakeView.swift */; };
 		864031702C5B5C4D00666B91 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640316F2C5B5C4D00666B91 /* Router.swift */; };
 		864031742C5B5CA200666B91 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864031732C5B5CA200666B91 /* HomeView.swift */; };
@@ -79,6 +80,7 @@
 		860C87E72C535D4C00D9FC24 /* cakeTray.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeTray.usdz; path = ../../../cakeScene/cakeTray.usdz; sourceTree = "<group>"; };
 		860C87E82C535D4C00D9FC24 /* cakeModel.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cakeModel.usdz; path = ../../../cakeScene/cakeModel.usdz; sourceTree = "<group>"; };
 		860C880D2C58C74B00D9FC24 /* CakeCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeCanvasView.swift; sourceTree = "<group>"; };
+		86290FB72C64A5980085AC76 /* Nuggie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nuggie.swift; sourceTree = "<group>"; };
 		8640316D2C5B582500666B91 /* CakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeView.swift; sourceTree = "<group>"; };
 		8640316F2C5B5C4D00666B91 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		864031732C5B5CA200666B91 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				860C880D2C58C74B00D9FC24 /* CakeCanvasView.swift */,
 				43DB14A72C5F961400F722D6 /* CanvasBG.swift */,
 				43DB14A92C5F963100F722D6 /* DraggableImage.swift */,
+				86290FB72C64A5980085AC76 /* Nuggie.swift */,
 			);
 			path = 3D;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86290FB82C64A5980085AC76 /* Nuggie.swift in Sources */,
 				431DD7502C63CF6800DE1AA5 /* OrderFormEntity+CoreDataClass.swift in Sources */,
 				431DD7512C63CF6800DE1AA5 /* OrderFormEntity+CoreDataProperties.swift in Sources */,
 				431DD7522C63CF6800DE1AA5 /* CakeElementEntity+CoreDataClass.swift in Sources */,
