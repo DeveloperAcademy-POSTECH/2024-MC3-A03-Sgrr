@@ -13,7 +13,6 @@
 		431DD7522C63CF6800DE1AA5 /* CakeElementEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431DD74E2C63CF6800DE1AA5 /* CakeElementEntity+CoreDataClass.swift */; };
 		431DD7532C63CF6800DE1AA5 /* CakeElementEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431DD74F2C63CF6800DE1AA5 /* CakeElementEntity+CoreDataProperties.swift */; };
 		43D4330E2C6210F70021DBEB /* FinalConceptKeywordComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D4330D2C6210F70021DBEB /* FinalConceptKeywordComponent.swift */; };
-		43D756202C57760500D52E06 /* PreviousCoredataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D7561F2C57760500D52E06 /* PreviousCoredataManager.swift */; };
 		43DB14832C5C63E100F722D6 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB14822C5C63E100F722D6 /* GmarketSansMedium.otf */; };
 		43DB14882C5C642300F722D6 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB14842C5C642300F722D6 /* SFProDisplay-Medium.otf */; };
 		43DB14892C5C642300F722D6 /* SFProDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 43DB14852C5C642300F722D6 /* SFProDisplay-Semibold.otf */; };
@@ -57,7 +56,6 @@
 		431DD74E2C63CF6800DE1AA5 /* CakeElementEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CakeElementEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		431DD74F2C63CF6800DE1AA5 /* CakeElementEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CakeElementEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		43D4330D2C6210F70021DBEB /* FinalConceptKeywordComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalConceptKeywordComponent.swift; sourceTree = "<group>"; };
-		43D7561F2C57760500D52E06 /* PreviousCoredataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousCoredataManager.swift; sourceTree = "<group>"; };
 		43DB14822C5C63E100F722D6 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
 		43DB14842C5C642300F722D6 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
 		43DB14852C5C642300F722D6 /* SFProDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.otf"; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 		43D7561E2C57730400D52E06 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				43D7561F2C57760500D52E06 /* PreviousCoredataManager.swift */,
 				431DD74A2C63CEFE00DE1AA5 /* CoredataManager.swift */,
 				8640316F2C5B5C4D00666B91 /* Router.swift */,
 			);
@@ -359,7 +356,6 @@
 				43DB14A02C5EA3C600F722D6 /* GuideImageComponent.swift in Sources */,
 				860C880E2C58C74B00D9FC24 /* CakeCanvasView.swift in Sources */,
 				43D4330E2C6210F70021DBEB /* FinalConceptKeywordComponent.swift in Sources */,
-				43D756202C57760500D52E06 /* PreviousCoredataManager.swift in Sources */,
 				86D737062C5A887200078D47 /* Cake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
