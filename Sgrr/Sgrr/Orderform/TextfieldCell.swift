@@ -32,29 +32,28 @@ struct TextfieldCell: View {
                     Spacer()
                 }
                 HStack {
-                    
                     TextField("텍스트를 입력하세요", text: $cakeElement.elementKeyword)
+                        
                         .maxLength(text: $cakeElement.elementKeyword, 15)
                         .foregroundColor(.black)
-                       
-                    
+                        
                         .onChange(of: cakeElement.elementKeyword) {
                             elementArray.append(cakeElement.elementKeyword)
                         }
                         .disableAutocorrection(false)
                 }
-//                .padding()
-                
+               
             }
+           
             .onAppear {
                 UITextField.appearance().clearButtonMode = .whileEditing
             }
+           
         }
-        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-        .frame(height: 62)
-    }
-    
+        
 }
+    }
+       
 
 // 글자수 제한 modifeir
 struct MaxLengthModifier: ViewModifier {

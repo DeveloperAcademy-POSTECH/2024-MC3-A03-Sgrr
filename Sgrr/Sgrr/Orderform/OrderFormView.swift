@@ -67,7 +67,6 @@ struct OrderFormView: View {
                                 .font(.completeText)
                         }
                         .padding(.bottom, 20)
-                        .shadow(color: Color(hex: "FA5738"), radius: 2, x: 0, y: 4)
                     
                     
                 }

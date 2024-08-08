@@ -62,11 +62,12 @@ struct ElementView: View {
                 }
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 
-                Section {
+                Section { 
                     ForEach($cakeElementList.filter {$0.wrappedValue.cakeDirection == .side}) { $cakeElement in
                         HStack {
                             ImageCell(cakeElement: $cakeElement)
                             TextfieldCell(direction: .side, cakeElement: $cakeElement)
+                              
                         }
                     }
                     .onDelete(perform: onDelete)
@@ -94,6 +95,9 @@ struct ElementView: View {
             .listRowBackground(Color.clear)
             .background(Color.clear)
             .scrollContentBackground(.hidden)
+        }
+        .onTapGesture {
+            self.endTextEditing()
         }
     }
     

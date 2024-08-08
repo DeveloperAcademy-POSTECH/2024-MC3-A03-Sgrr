@@ -8,8 +8,11 @@
 import SwiftUI
 import Combine
 import PhotosUI
+import UIKit
 
 struct ConceptView: View {
+    
+    
     
     
     @State private var conceptImage: UIImage?
@@ -84,19 +87,23 @@ struct ConceptView: View {
                                         .onReceive(Just(conceptKeyword)) { newValue in
                                             limitText(newValue, upper: characterLimit)
                                         }
+                                       
                                         .onChange(of: conceptKeyword) {
                                             conceptBindingKeyword = conceptKeyword
                                         }
                                         .disableAutocorrection(false)
                                         .focused($isFocused)
                                 }
+                                
                                 .padding()
                                 
                             }
                             .onAppear {
                                 UITextField.appearance().clearButtonMode = .whileEditing
                             }
+                           
                         }
+                        .padding(.trailing, 10)
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
@@ -106,12 +113,19 @@ struct ConceptView: View {
                 .scrollContentBackground(.hidden)
                 
             }
+        .onTapGesture {
+            self.endTextEditing()
+        }
     }
+    
+    
     private func limitText(_ newValue: String, upper: Int) {
         if newValue.count > upper {
             conceptKeyword = String(newValue.prefix(upper))
         }
     }
+    
+    
 }
 
 

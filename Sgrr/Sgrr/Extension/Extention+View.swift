@@ -1,5 +1,5 @@
 
-
+import Foundation
 import SwiftUI
 import Photos
 
@@ -25,3 +25,13 @@ extension View {
         return hosting.view.screenShot
     }
 }
+
+// textfield 키보드 내려감
+extension View {
+    func endTextEditing() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil, from: nil, for: nil)
+    }
+}
+
