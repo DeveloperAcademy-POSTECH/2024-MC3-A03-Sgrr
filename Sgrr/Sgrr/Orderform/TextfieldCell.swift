@@ -34,7 +34,7 @@ struct TextfieldCell: View {
                 HStack {
                     
                     TextField("텍스트를 입력하세요", text: $cakeElement.elementKeyword)
-                        .maxLength(text: $cakeElement.elementKeyword, 13)
+                        .maxLength(text: $cakeElement.elementKeyword, 15)
                         .foregroundColor(.black)
                        
                     
